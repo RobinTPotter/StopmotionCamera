@@ -14,6 +14,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.*;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.util.Log;
 import android.view.*;
@@ -34,7 +35,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     SurfaceHolder surfaceHolder;
     boolean previewing = false;
 
+    boolean justfocussed=false;
+
     Bitmap lastPicture = null;
+    String lastPictureFile = "";
     Canvas canvas;
 
     File currentDirectory;
@@ -45,11 +49,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     boolean stretch = false;
 
-    File[] skinFiles;
-
-
     LayoutInflater controlInflater = null;
-
     Camera.ShutterCallback myShutterCallback = new Camera.ShutterCallback() {
 
         @Override
@@ -57,14 +57,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             /// TODO Auto-generated method stub
         }
     };
-
     Camera.PictureCallback myPictureCallback_RAW = new Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] arg0, Camera arg1) {
             /// TODO Auto-generated method stub
         }
     };
-
     Camera.PictureCallback myPictureCallback_JPG = new Camera.PictureCallback() {
 
         @Override
@@ -91,6 +89,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
 
             onionskin.setBmp(lastPicture);
+            lastPictureFile = uriTarget.getPath();
             onionskin.updateBackgound();
             camera.startPreview();
             previewing = true;
@@ -100,6 +99,55 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         }
     };
 
+    @Override
+    public void onRestoreInstanceState(Bundle bundle) {
+        super.onRestoreInstanceState(bundle);
+        Log.d(LOGTAG, "onRestoreInstanceState");
+
+        lastPictureFile = bundle.getString("lastPictureFile", "");
+        if (!lastPictureFile.equals("") && (new File(lastPictureFile).exists())) {
+            Log.d(LOGTAG, "picture file from settings " + lastPictureFile);
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            lastPicture = BitmapFactory.decodeFile(lastPictureFile, bmOptions);
+            onionskin.setBmp(lastPicture);
+        }
+
+
+        stretch = bundle.getBoolean("stretch", false);
+        onionskin.setOpacity(bundle.getInt("opacity", 128));
+        if (previewSize != null) {
+            previewSize.width = bundle.getInt("previewWidth", 100);
+            previewSize.height = bundle.getInt("previewHeight", 100);
+            Log.d(LOGTAG, "set preview size from restore");
+        }
+        if (pictureSize != null) {
+            pictureSize.width = bundle.getInt("picturewWidth", 100);
+            pictureSize.height = bundle.getInt("picturewHeight", 100);
+            Log.d(LOGTAG, "set picture size from restore");
+
+
+        }
+        onionskin.setOpacity();
+        onionskin.updateBackgound();
+        onionskin.invalidate();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle bundle) {
+        super.onSaveInstanceState(bundle);
+        Log.d(LOGTAG, "onSaveInstanceState");
+
+        bundle.putString("lastBmp", lastPictureFile);
+        bundle.putInt("opacity", onionskin.getOpacity());
+        bundle.putBoolean("stretch", stretch);
+        bundle.putInt("previewWidth", previewSize.width);
+        bundle.putInt("previewHeight", previewSize.height);
+        bundle.putInt("picturewWidth", pictureSize.width);
+        bundle.putInt("picturewHeight", pictureSize.height);
+        onionskin.invalidate();
+
+
+    }
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -144,60 +192,36 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             public void onClick(View arg0) {
                 /// TODO Auto-generated method stub
 
-                camera.takePicture(myShutterCallback,
-                        myPictureCallback_RAW, myPictureCallback_JPG);
+                if (justfocussed) {
+                    justfocussed=false;
+                }else {
+
+                    camera.takePicture(myShutterCallback,
+                            myPictureCallback_RAW, myPictureCallback_JPG);
+
+                }
+            }
+        });
+
+
+        onionskin.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                camera.autoFocus(new Camera.AutoFocusCallback() {
+                    @Override
+                    public void onAutoFocus(boolean success, Camera camera) {
+                        justfocussed=true;
+                        Toast.makeText(StopmotionCamera.this,"focus",Toast.LENGTH_LONG).show();
+                    }
+                });
+                return false;
             }
         });
 
         onionskin.setOpacity();
         onionskin.updateBackgound();
 
-
-
-        skinFiles=new File[3];
-
-
         Log.d(LOGTAG, "created");
-    }
-
-
-    @Override
-    public void onRestoreInstanceState(Bundle bundle) {
-        super.onRestoreInstanceState(bundle);
-        Log.d(LOGTAG, "onRestoreInstanceState");
-        if (bundle != null) {
-            stretch = bundle.getBoolean("stretch", false);
-            onionskin.setOpacity(bundle.getInt("opacity", 128));
-            if (previewSize != null) {
-                previewSize.width = bundle.getInt("previewWidth", 100);
-                previewSize.height = bundle.getInt("previewHeight", 100);
-                Log.d(LOGTAG, "set preview size from restore");
-            }
-            if (pictureSize != null) {
-                pictureSize.width = bundle.getInt("picturewWidth", 100);
-                pictureSize.height = bundle.getInt("picturewHeight", 100);
-                Log.d(LOGTAG, "set picture size from restore");
-            }
-            onionskin.setOpacity();
-            onionskin.updateBackgound();
-            onionskin.invalidate();
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle bundle) {
-        super.onSaveInstanceState(bundle);
-        Log.d(LOGTAG, "onSaveInstanceState");
-        if (bundle != null) {
-            bundle.putInt("opacity", onionskin.getOpacity());
-            bundle.putBoolean("stretch", stretch);
-            bundle.putInt("previewWidth", previewSize.width);
-            bundle.putInt("previewHeight", previewSize.height);
-            bundle.putInt("picturewWidth", pictureSize.width);
-            bundle.putInt("picturewHeight", pictureSize.height);
-            onionskin.invalidate();
-        }
-
     }
 
     @Override
@@ -208,11 +232,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             previewing = false;
         }
 
-
-
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
         SharedPreferences.Editor editor = settings.edit();
+        editor.putString("lastBmp", lastPictureFile);
         editor.putBoolean("stretch", stretch);
         editor.putInt("opacity", onionskin.getOpacity());
         editor.putInt("previewWidth", previewSize.width);
@@ -251,6 +274,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             previewSize.height = height;
             Log.d(LOGTAG, "set preview size from resume");
         }
+
+        lastPictureFile = settings.getString("lastBmp", "");
+        if (!lastPictureFile.equals("") && (new File(lastPictureFile).exists())) {
+            Log.d(LOGTAG, "picture file from settings " + lastPictureFile);
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            lastPicture = BitmapFactory.decodeFile(lastPictureFile, bmOptions);
+            onionskin.setBmp(lastPicture);
+        }
+
         if (pictureSize != null) {
             pictureSize.width = settings.getInt("picturewWidth", 100);
             pictureSize.height = settings.getInt("picturewHeight", 100);
@@ -286,7 +318,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             for (Camera.Size size : previewSizes) {
                 String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
-                if (text.equals(item.getTitle())) {
+                if (item.getTitle().toString().startsWith(text)) {
                     Camera.Parameters params = camera.getParameters();
                     params.setPreviewSize(size.width, size.height);
                     camera.setParameters(params);
@@ -303,7 +335,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             for (Camera.Size size : pictureSizes) {
                 String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
-                if (text.equals(item.getTitle())) {
+                if (item.getTitle().toString().startsWith(text)) {
                     Camera.Parameters params = camera.getParameters();
                     params.setPictureSize(size.width, size.height);
                     pictureSize = size;
@@ -317,10 +349,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 setStretch(!stretch);
 
             } else if (item.getTitle().equals(CHANGE_OPACITY_DEC)) {
-            onionskin.decreaseOpacity();
+                onionskin.decreaseOpacity();
 
             } else if (item.getTitle().equals(CHANGE_OPACITY_INC)) {
-onionskin.increaseOpacity();
+                onionskin.increaseOpacity();
 
             }
         }
@@ -337,6 +369,7 @@ onionskin.increaseOpacity();
         this.stretch = stretch;
         setSize(previewSize.width, previewSize.height);
         Log.d(LOGTAG, "setStretch to " + this.stretch);
+        onionskin.invalidate();
 
     }
 
@@ -394,7 +427,7 @@ onionskin.increaseOpacity();
         SubMenu sm1 = menu.addSubMenu(0, 12, order++, "Preview Size");
 
         for (Camera.Size size : previewSizes) {
-            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
+            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f",(float) size.width / size.height);
             MenuItem mi = sm1.add(0, Menu.NONE, order++, text);
         }
 
@@ -403,7 +436,8 @@ onionskin.increaseOpacity();
         menu.setGroupCheckable(1, false, true);
 
         for (Camera.Size size : pictureSizes) {
-            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
+            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float)size.width / size.height);
+            ;
             MenuItem mi = sm2.add(1, Menu.NONE, order++, text);
         }
 
@@ -424,7 +458,7 @@ onionskin.increaseOpacity();
 
         float dev_asp = (float) measuredWidth / measuredHeight;
 
-        if (stretch || (width > measuredWidth && height > measuredHeight)) {
+        if (stretch || width > measuredWidth || height > measuredHeight) {
 
             if (asp > dev_asp) {
                 /// wider, set width to device, change height
@@ -480,5 +514,23 @@ onionskin.increaseOpacity();
         return file;
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(LOGTAG, "START");
+        new CountDownTimer(2000, 200) {
+            @Override
+            public void onFinish() {
+                Log.d(LOGTAG, "set stretch with timebombtick");
+                setStretch(stretch);
+            }
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(LOGTAG, "tick");
+            }
+        }.start();
+    }
 }
 
