@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="robin.stopmotion"
-          android:versionCode="1"
-          android:versionName="1.0">
-    <application android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:debuggable="true">
-        <activity android:name=".StopmotionCamera"
-                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                  android:label="@string/app_name"
-        android:screenOrientation="landscape">
+    package="robin.stopmotion"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <application
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true">
+        <activity
+            android:name=".StopmotionCamera"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -1,3 +1,3 @@
-/home/deadmeat/Spod/unfinished-games/stopmotioncamera/bin/stopmotioncamera-release-unsigned.apk : \
-/home/deadmeat/Spod/unfinished-games/stopmotioncamera/bin/stopmotioncamera.ap_ \
-/home/deadmeat/Spod/unfinished-games/stopmotioncamera/bin/classes.dex \
+/home/deadmeat/Spod/StopmotionCamera/bin/stopmotioncamera-release-unsigned.apk : \
+/home/deadmeat/Spod/StopmotionCamera/bin/stopmotioncamera.ap_ \
+/home/deadmeat/Spod/StopmotionCamera/bin/classes.dex \
