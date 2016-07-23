@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="StopmotionCamera" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Stopmo" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -44,15 +44,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="375" column="19" selection-start-line="375" selection-start-column="19" selection-end-line="375" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.4745223">
+              <caret line="345" column="27" selection-start-line="345" selection-start-column="27" selection-end-line="345" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2593#2634#0" expanded="false" />
+                <element signature="method#onSaveInstanceState#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="e#6671#7187#0" expanded="true" />
+                <element signature="e#7186#7187#0" expanded="true" />
                 <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#save#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#onResume#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#onOptionsItemSelected#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="e#12866#12950#0" expanded="false" />
+                <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#surfaceDestroyed#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#createMenu#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="method#getAlbumStorageDir#0;class#StopmotionCamera#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -63,10 +76,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-              <folding>
-                <element signature="e#315#333#0" expanded="true" />
-                <element signature="e#457#475#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Onionskin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Onionskin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/Onionskin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5532787">
-              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="118" column="21" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,8 +131,8 @@
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/control.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/Onionskin.java" />
+        <option value="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" />
       </list>
     </option>
   </component>
@@ -203,6 +213,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,9 +263,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -262,7 +272,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
   </component>
@@ -469,18 +479,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="998" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.64452213" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5699301" sideWeight="0.49676898" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3997669" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997669" sideWeight="0.52584815" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997669" sideWeight="0.47415185" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -496,8 +506,8 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -516,6 +526,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
     <MESSAGE value="stretch" />
     <MESSAGE value="stretch-working" />
     <MESSAGE value="opacity" />
@@ -523,7 +536,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java</url>
+          <line>108</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -590,9 +611,22 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="19" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2593#2634#0" expanded="false" />
+            <element signature="method#onSaveInstanceState#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="e#6671#7187#0" expanded="true" />
+            <element signature="e#7186#7187#0" expanded="true" />
             <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#save#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#onResume#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="e#12866#12950#0" expanded="false" />
+            <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#surfaceDestroyed#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#createMenu#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#getAlbumStorageDir#0;class#StopmotionCamera#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -644,9 +678,22 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2593#2634#0" expanded="false" />
+            <element signature="method#onSaveInstanceState#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="e#6671#7187#0" expanded="true" />
+            <element signature="e#7186#7187#0" expanded="true" />
             <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#save#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#onResume#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="e#12866#12950#0" expanded="false" />
+            <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#surfaceDestroyed#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#createMenu#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#getAlbumStorageDir#0;class#StopmotionCamera#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -955,10 +1002,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding>
-            <element signature="e#315#333#0" expanded="true" />
-            <element signature="e#457#475#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -966,7 +1010,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1197" column="0" selection-start-line="1197" selection-start-column="0" selection-end-line="1197" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -974,7 +1017,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1135" column="0" selection-start-line="1135" selection-start-column="0" selection-end-line="1135" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -982,28 +1024,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="375" column="19" selection-start-line="375" selection-start-column="19" selection-end-line="375" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/Onionskin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5532787">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="21" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4745223">
+          <caret line="345" column="27" selection-start-line="345" selection-start-column="27" selection-end-line="345" selection-end-column="27" />
+          <folding>
+            <element signature="e#2593#2634#0" expanded="false" />
+            <element signature="method#onSaveInstanceState#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="e#6671#7187#0" expanded="true" />
+            <element signature="e#7186#7187#0" expanded="true" />
+            <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#save#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#onResume#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="e#12866#12950#0" expanded="false" />
+            <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#surfaceDestroyed#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#createMenu#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="method#getAlbumStorageDir#0;class#StopmotionCamera#0" expanded="false" />
           </folding>
         </state>
       </provider>

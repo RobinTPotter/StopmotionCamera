@@ -45,6 +45,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     Camera.Size previewSize = null;
     Camera.Size pictureSize = null;
+
+
+    int previewSizeWhich = -1;
+    int pictureSizeWhich = -1;
+
     Onionskin onionskin;
 
     boolean stretch = false;
@@ -115,18 +120,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         stretch = bundle.getBoolean("stretch", false);
         onionskin.setOpacity(bundle.getInt("opacity", 128));
-        if (previewSize != null) {
-            previewSize.width = bundle.getInt("previewWidth", 100);
-            previewSize.height = bundle.getInt("previewHeight", 100);
-            Log.d(LOGTAG, "set preview size from restore");
-        }
-        if (pictureSize != null) {
-            pictureSize.width = bundle.getInt("picturewWidth", 100);
-            pictureSize.height = bundle.getInt("picturewHeight", 100);
-            Log.d(LOGTAG, "set picture size from restore");
+        previewSizeWhich = bundle.getInt("previewSizeWhich", 100);
+        pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
+        idPreviewSize("bollocks", previewSizeWhich);
+        idPictureSize("bollocks", pictureSizeWhich);
 
 
-        }
         onionskin.setOpacity();
         onionskin.updateBackgound();
         onionskin.invalidate();
@@ -140,10 +139,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         bundle.putString("lastBmp", lastPictureFile);
         bundle.putInt("opacity", onionskin.getOpacity());
         bundle.putBoolean("stretch", stretch);
-        bundle.putInt("previewWidth", previewSize.width);
-        bundle.putInt("previewHeight", previewSize.height);
-        bundle.putInt("picturewWidth", pictureSize.width);
-        bundle.putInt("picturewHeight", pictureSize.height);
+        bundle.putInt("previewSizeWhich", previewSizeWhich);
+        bundle.putInt("pictureSizeWhich", pictureSizeWhich);
         onionskin.invalidate();
 
 
@@ -181,8 +178,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin = new Onionskin(this);
 
         onionskin.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.FILL_PARENT,
-                LinearLayout.LayoutParams.FILL_PARENT));
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT));
 
         viewControl.addView(onionskin);
 
@@ -221,6 +218,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.setOpacity();
         onionskin.updateBackgound();
 
+
         Log.d(LOGTAG, "created");
     }
 
@@ -248,10 +246,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         editor.putString("lastBmp", lastPictureFile);
         editor.putBoolean("stretch", stretch);
         editor.putInt("opacity", onionskin.getOpacity());
-        editor.putInt("previewWidth", previewSize.width);
-        editor.putInt("previewHeight", previewSize.height);
-        editor.putInt("picturewWidth", pictureSize.width);
-        editor.putInt("picturewHeight", pictureSize.height);
+        editor.putInt("previewSizeWhich", previewSizeWhich);
+        editor.putInt("pictureSizeWhich", pictureSizeWhich);
         // Commit the edits!
         editor.commit();
         Log.d(LOGTAG, "committed");
@@ -274,24 +270,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-
         stretch = settings.getBoolean("stretch", false);
         onionskin.setOpacity(settings.getInt("opacity", 128));
+        previewSizeWhich = settings.getInt("previewSizeWhich", 100);
+        pictureSizeWhich = settings.getInt("pictureSizeWhich", 100);
+        idPreviewSize("bollocks", previewSizeWhich);
+        idPictureSize("bollocks", pictureSizeWhich);
 
-        Log.d(LOGTAG, "set stretch from resume " + stretch);
-
-        int width = settings.getInt("previewWidth", 100);
-        int height = settings.getInt("previewHeight", 100);
-        setSize(width, height);
-
-        Log.d(LOGTAG, "set preview size from resume");
-
-        if (previewSize != null) {
-
-            previewSize.width = width;
-            previewSize.height = height;
-            Log.d(LOGTAG, "set preview size from resume");
-        }
 
         lastPictureFile = settings.getString("lastBmp", "");
         if (!lastPictureFile.equals("") && (new File(lastPictureFile).exists())) {
@@ -301,11 +286,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             onionskin.setBmp(lastPicture);
         }
 
-        if (pictureSize != null) {
-            pictureSize.width = settings.getInt("picturewWidth", 100);
-            pictureSize.height = settings.getInt("picturewHeight", 100);
-            Log.d(LOGTAG, "set picture size from resume");
-        }
     }
 
     @Override
@@ -330,37 +310,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         /// Handle item selection
         if (item.getGroupId() == 0) {
             /// preview
-            List<Camera.Size> previewSizes = camera.getParameters().getSupportedPreviewSizes();
-
-            for (Camera.Size size : previewSizes) {
-                String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
-                if (item.getTitle().toString().startsWith(text)) {
-                    Camera.Parameters params = camera.getParameters();
-                    params.setPreviewSize(size.width, size.height);
-                    camera.setParameters(params);
-                    success = true;
-                    previewSize = size;
-                    setSize(size.width, size.height);
-                    save();
-                }
-            }
+            success = idPreviewSize(item.getTitle().toString(),-1);
 
         } else if (item.getGroupId() == 1) {
 
             /// pict
-            List<Camera.Size> pictureSizes = camera.getParameters().getSupportedPictureSizes();
 
-            for (Camera.Size size : pictureSizes) {
-                String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
-                if (item.getTitle().toString().startsWith(text)) {
-                    Camera.Parameters params = camera.getParameters();
-                    params.setPictureSize(size.width, size.height);
-                    pictureSize = size;
-                    camera.setParameters(params);
-                    success = true;
-                    save();
-                }
-            }
+            success = idPictureSize(item.getTitle().toString(),-1);
+
         } else if (item.getGroupId() == 2) {
             if (item.getTitle().equals(BUTTON_TOGGLE_STRETCH)) {
 
@@ -386,9 +343,60 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     public void setStretch(boolean stretch) {
 
         this.stretch = stretch;
-        setSize(previewSize.width, previewSize.height);
+      if (previewSize!=null)  setSize(previewSize.width, previewSize.height);
         Log.d(LOGTAG, "setStretch to " + this.stretch);
         onionskin.invalidate();
+
+    }
+
+
+    private boolean idPreviewSize(String thing, int idnum) {
+
+        Log.d(LOGTAG,"idPreviewSize");
+
+        List<Camera.Size> previewSizes = camera.getParameters().getSupportedPreviewSizes();
+        boolean success = false;
+        int enumc = 0;
+
+        for (Camera.Size size : previewSizes) {
+            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
+            if (thing.startsWith(text) || enumc==idnum) {
+                Camera.Parameters params = camera.getParameters();
+                params.setPreviewSize(size.width, size.height);
+                camera.setParameters(params);
+                success = true;
+                previewSize = size;
+                setSize(size.width, size.height);
+                previewSizeWhich = enumc;
+                save();
+            }
+            enumc++;
+        }
+        return success;
+    }
+
+    private boolean idPictureSize(String startswith, int idnum) {
+
+        Log.d(LOGTAG,"idPictureSize");
+        boolean success = false;
+        List<Camera.Size> pictureSizes = camera.getParameters().getSupportedPictureSizes();
+
+        int enumc = 0;
+
+        for (Camera.Size size : pictureSizes) {
+            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
+            if (startswith.startsWith(text)|| enumc==idnum) {
+                Camera.Parameters params = camera.getParameters();
+                params.setPictureSize(size.width, size.height);
+                pictureSize = size;
+                camera.setParameters(params);
+                success = true;
+                pictureSizeWhich = enumc;
+                save();
+            }
+            enumc++;
+        }
+        return success;
 
     }
 
@@ -402,8 +410,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         if (camera != null) {
             try {
-                if (previewSize == null) previewSize = camera.getParameters().getPreviewSize();
-                if (pictureSize == null) pictureSize = camera.getParameters().getPictureSize();
+                //   if (previewSize == null) previewSize = camera.getParameters().getPreviewSize();
+                //  if (pictureSize == null) pictureSize = camera.getParameters().getPictureSize();
                 camera.setPreviewDisplay(surfaceHolder);
                 camera.startPreview();
                 previewing = true;
@@ -417,7 +425,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        camera = Camera.open();
 
     }
 
@@ -445,9 +452,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         SubMenu sm1 = menu.addSubMenu(0, 12, order++, "Preview Size");
 
+
         for (Camera.Size size : previewSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
             MenuItem mi = sm1.add(0, Menu.NONE, order++, text);
+
         }
 
         SubMenu sm2 = menu.addSubMenu(1, 23, order++, "Picture Size");
@@ -533,6 +542,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     @Override
     public void onStart() {
         super.onStart();
+        camera = Camera.open();
         Log.d(LOGTAG, "START");
         new CountDownTimer(2000, 200) {
             @Override

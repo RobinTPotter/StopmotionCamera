@@ -16,7 +16,8 @@ public class Onionskin extends View {
 
     private static String LOGTAG = "StopmotionCameraLog-Onionskin";
     private static int OPACITY_INCREMENT = 64;
-    private static int SKINS_ALPHA = 64;
+    private static int SKINS_MIN_ALPHA = 64;
+    private static int numSkins = 3;
     Bitmap bmp;
     String timeupdate = "not set";
     Bitmap skins[];
@@ -66,9 +67,10 @@ public class Onionskin extends View {
         this.bmp = bmp;
         this.timeupdate = (new Date()).toString();
 
-        skins[0] = skins[1];
-        skins[1] = skins[2];
-        skins[2] = bmp;
+        for (int ss = numSkins - 1; ss > 0; ss--) {
+            skins[ss] = skins[ss - 1];
+        }
+        skins[0] = bmp;
 
         // skins[2] = skins[1];
         // skins[1] = skins[0];
@@ -88,7 +90,7 @@ public class Onionskin extends View {
 
     public Onionskin(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        skins = new Bitmap[3];
+        skins = new Bitmap[numSkins];
 
         Log.d(LOGTAG, "creaed Onionskin");
     }
@@ -110,29 +112,32 @@ public class Onionskin extends View {
 
         c.drawARGB(0, 0, 0, 0);
 
-        Paint trans = new Paint();
-        trans.setAlpha(SKINS_ALPHA);
+        int op = 255;
+        int dec = (255 - SKINS_MIN_ALPHA) / numSkins;
 
-        // p.setStyle(Paint.Style.STROKE);
-        //      p.setStrokeWidth(1.0f);
 
-        //Bitmap _bmp = bmp;
         int skin = 0;
 
-        for (Bitmap _bmp : skins) {
+        for (int ss = numSkins - 1; ss >= 0; ss--) {
 
+            Bitmap _bmp = skins[ss];
             skin++;
+            Paint trans = new Paint();
+            trans.setAlpha(op);
+            op-=dec;
+            Log.d(LOGTAG, "bmp with paint " + trans.getAlpha() + " " + trans.getColor());
 
             if (_bmp != null) {
-                //c.drawBitmap(bmp, new Rect(0, 0, bmp.getWidth(), bmp.getHeight()), new Rect(0, 0, getWidth(), getHeight()), null);
                 try {
-                    c.drawBitmap(_bmp, new Rect(0, 0, _bmp.getWidth(), _bmp.getHeight()), new Rect(0, 0, getWidth(), getHeight()), trans);
+                    c.drawBitmap(_bmp, new Rect(0, 0, _bmp.getWidth(), _bmp.getHeight()),
+                            new Rect(0, 0, getWidth(), getHeight()), trans);
                     c.drawText(String.valueOf(skin), 30, 50 + (skin * 20), p);
-                    c.drawText(String.valueOf(_bmp.getWidth()) + "x" + String.valueOf(_bmp.getHeight()), 10, 30, p);
+                    c.drawText(String.valueOf(_bmp.getWidth()) + "x" +
+                            String.valueOf(_bmp.getHeight()), 10, 30, p);
                     c.drawText(timeupdate, 10, 50, p);
 
                 } catch (Exception ex) {
-                    Toast.makeText( Onionskin.this.getContext(),ex.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(Onionskin.this.getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
