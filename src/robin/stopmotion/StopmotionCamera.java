@@ -26,9 +26,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private static String PREFS_NAME = "StopmotionCameraPreferences";
     private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
-    private static String BUTTON_TOGGLE_STRETCH = "ToggleStretch";
-    private static String CHANGE_OPACITY_INC = "Opacity+";
-    private static String CHANGE_OPACITY_DEC = "Opacity-";
+    private static String BUTTON_TOGGLE_STRETCH = "Toggle";
+    private static String CHANGE_OPACITY_INC = "Opac+";
+    private static String CHANGE_OPACITY_DEC = "Opac-";
 
     private static String ONION_LEAF_INC = "Skin+";
     private static String ONION_LEAF_DEC = "Skin-";
@@ -314,6 +314,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Log.d(LOGTAG, "picture file from settings " + lastPictureFile);
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             lastPicture = BitmapFactory.decodeFile(lastPictureFile, bmOptions);
+
             onionskin.setBmp(lastPicture);
         }
 
@@ -366,7 +367,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             } else if (item.getTitle().equals(ONION_LEAF_DEC)) {
                 if (numSkins > 1) {
-
+                    numSkins--;
                     onionskin.setSkins(numSkins);
                 }
 

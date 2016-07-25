@@ -16,7 +16,7 @@ public class Onionskin extends View {
 
     private static String LOGTAG = "StopmotionCameraLog-Onionskin";
     private static int OPACITY_INCREMENT = 32;
-    private static int SKINS_MIN_ALPHA = 212;
+    private static int SKINS_MIN_ALPHA = 0;
     private int numSkins = 3;
     Bitmap bmp;
     String timeupdate = "not set";
@@ -64,6 +64,9 @@ public class Onionskin extends View {
     }
 
     public void setBmp(Bitmap bmp) {
+
+        if (skins == null) return;
+
         this.bmp = bmp;
         this.timeupdate = (new Date()).toString();
 
@@ -82,6 +85,11 @@ public class Onionskin extends View {
 
     public void setSkins(int skinsnum) {
 
+        //  if (skinsnum == this.numSkins) return;
+
+        if (skins == null) {
+            initSkins();
+        }
 
         if (skinsnum == this.numSkins) return;
 
@@ -93,10 +101,11 @@ public class Onionskin extends View {
         this.numSkins = skinsnum;
 
         skins = new Bitmap[skinsnum];
-        for (int bb = 0; bb < tmpskins.length; bb++) {
-            skins[bb] = tmpskins[bb];
+        for (int bb = 0; bb < skins.length; bb++) {
+            if (bb < tmpskins.length) skins[bb] = tmpskins[bb];
         }
 
+        Log.d(LOGTAG, "Number of skins is " + this.numSkins);
         invalidate();
     }
 
@@ -136,34 +145,45 @@ public class Onionskin extends View {
         c.drawARGB(0, 0, 0, 0);
 
         int op = 255;
-        int dec = (255 - SKINS_MIN_ALPHA) / numSkins;
+        int dec = (255 - SKINS_MIN_ALPHA) / (numSkins);
 
         int skin = 0;
 
-        for (int ss = numSkins - 1; ss >= 0; ss--) {
 
-            Bitmap _bmp = skins[ss];
-            skin++;
-            Paint trans = new Paint();
-            trans.setAlpha(op);
-            op -= dec;
-            Log.d(LOGTAG, "bmp with paint " + trans.getAlpha() + " " + trans.getColor());
+        if (skins != null) {
 
-            if (_bmp != null) {
-                try {
-                    c.drawBitmap(_bmp, new Rect(0, 0, _bmp.getWidth(), _bmp.getHeight()),
-                            new Rect(0, 0, getWidth(), getHeight()), trans);
-                    c.drawText(String.valueOf(skin), 30, 50 + (skin * 20), p);
-                    c.drawText(String.valueOf(_bmp.getWidth()) + "x" +
-                            String.valueOf(_bmp.getHeight()), 10, 30, p);
-                    c.drawText(timeupdate, 10, 50, p);
+            for (int ss = numSkins - 1; ss >= 0; ss--) {
 
-                } catch (Exception ex) {
-                    Toast.makeText(Onionskin.this.getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                Bitmap _bmp = skins[ss];
+                skin++;
+                Paint trans = new Paint();
+                trans.setAlpha(op);
+                op -= dec;
+                Log.d(LOGTAG, "bmp with paint " + trans.getAlpha() + " " + trans.getColor());
+
+                if (_bmp != null) {
+                    try {
+                        c.drawBitmap(_bmp, new Rect(0, 0, _bmp.getWidth(), _bmp.getHeight()),
+                                new Rect(0, 0, getWidth(), getHeight()), trans);
+                        c.drawText(String.valueOf(skin), 30, 50 + (skin * 20), p);
+                        c.drawText(String.valueOf(_bmp.getWidth()) + "x" +
+                                String.valueOf(_bmp.getHeight()), 10, 30, p);
+                        c.drawText(timeupdate, 10, 50, p);
+
+                    } catch (Exception ex) {
+                        Toast.makeText(Onionskin.this.getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
                 }
-
             }
+        } else {
+            c.drawText("null array", 10, 50, p);
+            initSkins();
         }
+    }
+
+    private void initSkins() {
+        skins = new Bitmap[numSkins];
     }
 
 }
