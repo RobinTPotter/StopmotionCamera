@@ -30,6 +30,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static String CHANGE_OPACITY_INC = "Opacity+";
     private static String CHANGE_OPACITY_DEC = "Opacity-";
 
+    private static String ONION_LEAF_INC = "Skin+";
+    private static String ONION_LEAF_DEC = "Skin-";
+
+    private int numSkins = 3;
+
+    Process process;
+
     Camera camera;
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
@@ -46,7 +53,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     Camera.Size previewSize = null;
     Camera.Size pictureSize = null;
 
-
     int previewSizeWhich = -1;
     int pictureSizeWhich = -1;
 
@@ -55,6 +61,26 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     boolean stretch = false;
 
     LayoutInflater controlInflater = null;
+    LinearLayout viewControl;
+
+    Button.OnClickListener buttonClickListener =
+            new Button.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    /// TODO Auto-generated method stub
+
+                    if (justfocussed) {
+                        justfocussed = false;
+                    } else {
+
+                        camera.takePicture(myShutterCallback,
+                                myPictureCallback_RAW, myPictureCallback_JPG);
+
+                    }
+                }
+            };
+
     Camera.ShutterCallback myShutterCallback = new Camera.ShutterCallback() {
 
         @Override
@@ -83,9 +109,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 imageFileOS.write(arg0);
                 imageFileOS.flush();
                 imageFileOS.close();
-                //  Toast.makeText(StopmotionCamera.this,
-                //        "Image saved: " + uriTarget.toString(),
-                //        Toast.LENGTH_SHORT).show();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -117,15 +140,17 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             onionskin.setBmp(lastPicture);
         }
 
-
         stretch = bundle.getBoolean("stretch", false);
         onionskin.setOpacity(bundle.getInt("opacity", 128));
         previewSizeWhich = bundle.getInt("previewSizeWhich", 100);
         pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
+        numSkins = bundle.getInt("numSkins", 3);
+
+
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
 
-
+        onionskin.setSkins(numSkins);
         onionskin.setOpacity();
         onionskin.updateBackgound();
         onionskin.invalidate();
@@ -141,14 +166,30 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         bundle.putBoolean("stretch", stretch);
         bundle.putInt("previewSizeWhich", previewSizeWhich);
         bundle.putInt("pictureSizeWhich", pictureSizeWhich);
+        bundle.putInt("numSkins", numSkins);
         onionskin.invalidate();
 
+    }
 
+    private Process launchLogcat() {
+
+        try {
+            File filename = new File(Environment.getExternalStorageDirectory() + "/stopmotion-logfile.log");
+            filename.createNewFile();
+            String cmd = "logcat -d -f " + filename.getAbsolutePath();
+            return Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        process = launchLogcat();
 
         setContentView(R.layout.main_camera_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -164,7 +205,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
 
         controlInflater = LayoutInflater.from(getBaseContext());
-        LinearLayout viewControl = (LinearLayout) (controlInflater.inflate(R.layout.control, null));
+        viewControl = (LinearLayout) (controlInflater.inflate(R.layout.control, null));
 
         LayoutParams layoutParamsControl
                 = new LayoutParams(LayoutParams.MATCH_PARENT,/// FILL_PARENT,
@@ -172,10 +213,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         this.addContentView(viewControl, layoutParamsControl);
 
+        initOnionskin(viewControl, 3);
 
-        //  onionskin = (Onionskin) findViewById(R.id.takepicture);
+        Log.d(LOGTAG, "created");
+    }
 
-        onionskin = new Onionskin(this);
+    private void initOnionskin(LinearLayout viewControl, int skins) {
+
+        viewControl.removeView(onionskin);
+
+        onionskin = new Onionskin(this, skins);
 
         onionskin.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -183,23 +230,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         viewControl.addView(onionskin);
 
-        onionskin.setOnClickListener(new Button.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                /// TODO Auto-generated method stub
-
-                if (justfocussed) {
-                    justfocussed = false;
-                } else {
-
-                    camera.takePicture(myShutterCallback,
-                            myPictureCallback_RAW, myPictureCallback_JPG);
-
-                }
-            }
-        });
-
+        onionskin.setOnClickListener(buttonClickListener);
 
         onionskin.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -218,8 +249,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.setOpacity();
         onionskin.updateBackgound();
 
-
-        Log.d(LOGTAG, "created");
     }
 
     @Override
@@ -248,6 +277,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         editor.putInt("opacity", onionskin.getOpacity());
         editor.putInt("previewSizeWhich", previewSizeWhich);
         editor.putInt("pictureSizeWhich", pictureSizeWhich);
+        editor.putInt("numSkins", numSkins);
         // Commit the edits!
         editor.commit();
         Log.d(LOGTAG, "committed");
@@ -264,9 +294,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.invalidate();
     }
 
-
     private void load() {
-
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
@@ -274,9 +302,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.setOpacity(settings.getInt("opacity", 128));
         previewSizeWhich = settings.getInt("previewSizeWhich", 100);
         pictureSizeWhich = settings.getInt("pictureSizeWhich", 100);
+        numSkins = settings.getInt("numSkins", 3);
+
+        onionskin.setSkins(numSkins);
+
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
-
 
         lastPictureFile = settings.getString("lastBmp", "");
         if (!lastPictureFile.equals("") && (new File(lastPictureFile).exists())) {
@@ -310,13 +341,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         /// Handle item selection
         if (item.getGroupId() == 0) {
             /// preview
-            success = idPreviewSize(item.getTitle().toString(),-1);
+            success = idPreviewSize(item.getTitle().toString(), -1);
 
         } else if (item.getGroupId() == 1) {
 
             /// pict
 
-            success = idPictureSize(item.getTitle().toString(),-1);
+            success = idPictureSize(item.getTitle().toString(), -1);
 
         } else if (item.getGroupId() == 2) {
             if (item.getTitle().equals(BUTTON_TOGGLE_STRETCH)) {
@@ -329,7 +360,18 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             } else if (item.getTitle().equals(CHANGE_OPACITY_INC)) {
                 onionskin.increaseOpacity();
 
+            } else if (item.getTitle().equals(ONION_LEAF_INC)) {
+                numSkins++;
+                onionskin.setSkins(numSkins);
+
+            } else if (item.getTitle().equals(ONION_LEAF_DEC)) {
+                if (numSkins > 1) {
+
+                    onionskin.setSkins(numSkins);
+                }
+
             }
+
             save();
         }
 
@@ -343,16 +385,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     public void setStretch(boolean stretch) {
 
         this.stretch = stretch;
-      if (previewSize!=null)  setSize(previewSize.width, previewSize.height);
+        if (previewSize != null) setSize(previewSize.width, previewSize.height);
         Log.d(LOGTAG, "setStretch to " + this.stretch);
         onionskin.invalidate();
 
     }
 
-
     private boolean idPreviewSize(String thing, int idnum) {
 
-        Log.d(LOGTAG,"idPreviewSize");
+        Log.d(LOGTAG, "idPreviewSize");
 
         List<Camera.Size> previewSizes = camera.getParameters().getSupportedPreviewSizes();
         boolean success = false;
@@ -360,7 +401,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         for (Camera.Size size : previewSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
-            if (thing.startsWith(text) || enumc==idnum) {
+            if (thing.startsWith(text) || enumc == idnum) {
                 Camera.Parameters params = camera.getParameters();
                 params.setPreviewSize(size.width, size.height);
                 camera.setParameters(params);
@@ -377,7 +418,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private boolean idPictureSize(String startswith, int idnum) {
 
-        Log.d(LOGTAG,"idPictureSize");
+        Log.d(LOGTAG, "idPictureSize");
         boolean success = false;
         List<Camera.Size> pictureSizes = camera.getParameters().getSupportedPictureSizes();
 
@@ -385,7 +426,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         for (Camera.Size size : pictureSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
-            if (startswith.startsWith(text)|| enumc==idnum) {
+            if (startswith.startsWith(text) || enumc == idnum) {
                 Camera.Parameters params = camera.getParameters();
                 params.setPictureSize(size.width, size.height);
                 pictureSize = size;
@@ -425,7 +466,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-
     }
 
     @Override
@@ -449,9 +489,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         menu.add(2, Menu.NONE, order++, BUTTON_TOGGLE_STRETCH);
         menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_DEC);
         menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_INC);
+        menu.add(2, Menu.NONE, order++, ONION_LEAF_DEC);
+        menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
 
         SubMenu sm1 = menu.addSubMenu(0, 12, order++, "Preview Size");
-
 
         for (Camera.Size size : previewSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
@@ -473,7 +514,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         return true;
     }
-
 
     public void setSize(int width, int height) {
 
@@ -532,12 +572,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         if (!file.mkdirs()) {
         }
 
-
         Log.d(LOGTAG, "getAlbumStorageDir " + file.toString());
 
         return file;
     }
-
 
     @Override
     public void onStart() {

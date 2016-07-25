@@ -15,9 +15,9 @@ import java.util.Date;
 public class Onionskin extends View {
 
     private static String LOGTAG = "StopmotionCameraLog-Onionskin";
-    private static int OPACITY_INCREMENT = 64;
-    private static int SKINS_MIN_ALPHA = 64;
-    private static int numSkins = 3;
+    private static int OPACITY_INCREMENT = 32;
+    private static int SKINS_MIN_ALPHA = 212;
+    private int numSkins = 3;
     Bitmap bmp;
     String timeupdate = "not set";
     Bitmap skins[];
@@ -80,7 +80,31 @@ public class Onionskin extends View {
         Log.d(LOGTAG, "setBmp");
     }
 
+    public void setSkins(int skinsnum) {
+
+
+        if (skinsnum == this.numSkins) return;
+
+        Bitmap[] tmpskins = new Bitmap[this.numSkins];
+        for (int bb = 0; bb < skins.length; bb++) {
+            tmpskins[bb] = skins[bb];
+        }
+
+        this.numSkins = skinsnum;
+
+        skins = new Bitmap[skinsnum];
+        for (int bb = 0; bb < tmpskins.length; bb++) {
+            skins[bb] = tmpskins[bb];
+        }
+
+        invalidate();
+    }
+
     public Onionskin(Context context) {
+        this(context, null);
+    }
+
+    public Onionskin(Context context, int skinsnum) {
         this(context, null);
     }
 
@@ -90,7 +114,6 @@ public class Onionskin extends View {
 
     public Onionskin(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        skins = new Bitmap[numSkins];
 
         Log.d(LOGTAG, "creaed Onionskin");
     }
@@ -115,7 +138,6 @@ public class Onionskin extends View {
         int op = 255;
         int dec = (255 - SKINS_MIN_ALPHA) / numSkins;
 
-
         int skin = 0;
 
         for (int ss = numSkins - 1; ss >= 0; ss--) {
@@ -124,7 +146,7 @@ public class Onionskin extends View {
             skin++;
             Paint trans = new Paint();
             trans.setAlpha(op);
-            op-=dec;
+            op -= dec;
             Log.d(LOGTAG, "bmp with paint " + trans.getAlpha() + " " + trans.getColor());
 
             if (_bmp != null) {
