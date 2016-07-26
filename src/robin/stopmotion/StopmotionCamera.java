@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.*;
 import android.hardware.Camera;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -107,7 +108,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         @Override
         public void onPictureTaken(byte[] arg0, Camera arg1) {
 
-            lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+            Bitmap lastPicture0 = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
 
             Uri uriTarget = android.net.Uri.fromFile(new File(currentDirectory, String.valueOf((new Date()).getTime()) + ".jpg"));
 
@@ -123,6 +124,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            lastPicture=Bitmap.createScaledBitmap(lastPicture0,lastPicture0.getWidth()/2,lastPicture0.getHeight()/2,false);
+
 
             onionskin.setBmp(lastPicture);
             lastPictureFile = uriTarget.getPath();

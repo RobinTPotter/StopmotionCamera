@@ -75,6 +75,8 @@ public class Onionskin extends View {
         for (int ss = numSkins - 1; ss > 0; ss--) {
             skins[ss] = skins[ss - 1];
         }
+
+        skins[0].recycle();
         skins[0] = bmp;
 
         // skins[2] = skins[1];
