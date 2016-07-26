@@ -4,9 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.File;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.net.*;
 import android.app.Activity;
@@ -29,18 +33,22 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private static int ITEMID_PREVIEW = 12;
     private static int ITEMID_PICTURE = 23;
-    private static int  GROUPID_PREVIEW =0;
+    private static int GROUPID_PREVIEW = 0;
     private static int GROUPID_PICTURE = 1;
-    private static int GROUPID_OTHER= 2;
+    private static int GROUPID_OTHER = 2;
 
+    private String dateFormat = "yyyy-MM-dd-HH-mm-ss";
+    private String defaultDateFormat = "yyyy-MM-dd-HH-mm-ss";
 
     private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
     private static String BUTTON_TOGGLE_STRETCH = "Toggle";
-    private static String CHANGE_OPACITY_INC = "Opac+";
-    private static String CHANGE_OPACITY_DEC = "Opac-";
+    //  private static String CHANGE_OPACITY_INC = "Opac+";
+    //  private static String CHANGE_OPACITY_DEC = "Opac-";
 
     private static String ONION_LEAF_INC = "Skin+";
     private static String ONION_LEAF_DEC = "Skin-";
+
+    private static String CHANGE_DATE_FORMAT = "Date";
 
     private int numSkins = 3;
 
@@ -108,7 +116,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         @Override
         public void onPictureTaken(byte[] arg0, Camera arg1) {
 
-            Bitmap lastPicture0 = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+            lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
 
             Uri uriTarget = android.net.Uri.fromFile(new File(currentDirectory, String.valueOf((new Date()).getTime()) + ".jpg"));
 
@@ -124,8 +132,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            lastPicture=Bitmap.createScaledBitmap(lastPicture0,lastPicture0.getWidth()/2,lastPicture0.getHeight()/2,false);
 
 
             onionskin.setBmp(lastPicture);
@@ -156,8 +162,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.setOpacity(bundle.getInt("opacity", 128));
         previewSizeWhich = bundle.getInt("previewSizeWhich", 100);
         pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
+        dateFormat = bundle.getString("dateFormat", "yyyy-MM-dd-HH-mm-ss");
         numSkins = bundle.getInt("numSkins", 3);
-
 
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
@@ -173,6 +179,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         super.onSaveInstanceState(bundle);
         Log.d(LOGTAG, "onSaveInstanceState");
 
+        bundle.putString("dateFormat", dateFormat);
         bundle.putString("lastBmp", lastPictureFile);
         bundle.putInt("opacity", onionskin.getOpacity());
         bundle.putBoolean("stretch", stretch);
@@ -213,7 +220,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         surfaceHolder.addCallback(this);
         /// surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
-        String x = (new Date()).toString().replace(" ", "-");
+        String x = new SimpleDateFormat(dateFormat).format(new Date());
         currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
 
         controlInflater = LayoutInflater.from(getBaseContext());
@@ -289,6 +296,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         editor.putInt("opacity", onionskin.getOpacity());
         editor.putInt("previewSizeWhich", previewSizeWhich);
         editor.putInt("pictureSizeWhich", pictureSizeWhich);
+        editor.putString("dateFormat", dateFormat);
         editor.putInt("numSkins", numSkins);
         // Commit the edits!
         editor.commit();
@@ -318,6 +326,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         onionskin.setSkins(numSkins);
 
+        dateFormat = settings.getString("dateFormat", "yyyy-MM-dd-HH-mm-ss");
+
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
 
@@ -335,7 +345,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        if (menu.findItem(ITEMID_PREVIEW) == null || menu.findItem(ITEMID_PICTURE) == null) return createMenu(menu);
+        if (menu.findItem(ITEMID_PREVIEW) == null || menu.findItem(ITEMID_PICTURE) == null)
+            return createMenu(menu);
         else return true;
 
     }
@@ -367,11 +378,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                 setStretch(!stretch);
 
-            } else if (item.getTitle().equals(CHANGE_OPACITY_DEC)) {
-                onionskin.decreaseOpacity();
+                //    } else if (item.getTitle().equals(CHANGE_OPACITY_DEC)) {
+                //        onionskin.decreaseOpacity();
 
-            } else if (item.getTitle().equals(CHANGE_OPACITY_INC)) {
-                onionskin.increaseOpacity();
+                //     } else if (item.getTitle().equals(CHANGE_OPACITY_INC)) {
+                //       onionskin.increaseOpacity();
 
             } else if (item.getTitle().equals(ONION_LEAF_INC)) {
                 numSkins++;
@@ -382,6 +393,70 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     numSkins--;
                     onionskin.setSkins(numSkins);
                 }
+
+            } else if (item.getTitle().equals(CHANGE_DATE_FORMAT)) {
+                // showEditDialog();
+
+
+                (new Dialog(this) {
+                    @Override
+                    protected void onCreate(Bundle savedInstanceState) {
+                        super.onCreate(savedInstanceState);
+                        setContentView(R.layout.details);
+                        getWindow().setLayout(600, 400);
+
+                        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+                        seekBar.setMax(255);
+                        seekBar.setProgress(onionskin.getOpacity());
+
+                        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                            @Override
+                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                                Log.d(LOGTAG, "progress " + progress + " " + seekBar.getMax() + " " + (int) (255 * (float) progress / seekBar.getMax()));
+                                onionskin.setOpacity(progress);
+                                onionskin.updateBackgound();
+                                onionskin.invalidate();
+                            }
+
+                            @Override
+                            public void onStartTrackingTouch(SeekBar seekBar) {
+
+                            }
+
+                            @Override
+                            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                            }
+                        });
+
+
+                        final EditText editText = (EditText) findViewById(R.id.editDate);
+                        editText.setText(dateFormat);
+
+                        final Button button = (Button) findViewById(R.id.button);
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dateFormat = editText.getText().toString();
+                                String x = new SimpleDateFormat(dateFormat).format(new Date());
+                                currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
+                            }
+                        });
+                        final Button defbutton = (Button) findViewById(R.id.defaultDateButton);
+                        defbutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                editText.setText(defaultDateFormat);
+                            }
+                        });
+
+
+
+
+
+                    }
+                }).show();
+
 
             }
 
@@ -394,6 +469,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.invalidate();
         return success;
     }
+
 
     public void setStretch(boolean stretch) {
 
@@ -500,12 +576,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         int order = 0;
 
         menu.add(2, Menu.NONE, order++, BUTTON_TOGGLE_STRETCH);
-        menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_DEC);
-        menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_INC);
+        //    menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_DEC);
+        //   menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_INC);
         menu.add(2, Menu.NONE, order++, ONION_LEAF_DEC);
         menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
+        menu.add(2, Menu.NONE, order++, CHANGE_DATE_FORMAT);
 
-        SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW,   ITEMID_PREVIEW, order++, "Preview Size");
+
+        SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
         for (Camera.Size size : previewSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
@@ -581,6 +659,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
         if (!file.mkdirs()) {
+            Log.d(LOGTAG, "couldn't create "+ albumName);
         }
 
         Log.d(LOGTAG, "getAlbumStorageDir " + file.toString());

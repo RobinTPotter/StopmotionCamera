@@ -4,6 +4,37 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editDate"
+            android:layout_gravity="left" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:text="set"
+            android:id="@+id/button"
+            android:layout_gravity="fill_horizontal" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="def."
+            android:id="@+id/defaultDateButton"
+            android:layout_gravity="fill_horizontal" />
+
+
+
+
+
+    </GridLayout>
+
     <SeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -18,7 +18,6 @@ public class Onionskin extends View {
     private static int OPACITY_INCREMENT = 32;
     private static int SKINS_MIN_ALPHA = 0;
 
-
     private int numSkins = 3;
     Bitmap bmp;
     String timeupdate = "not set";
@@ -48,7 +47,6 @@ public class Onionskin extends View {
 
         setOpacity(getOpacity() - OPACITY_INCREMENT);
         updateBackgound();
-
         Log.d(LOGTAG, "decreaseOpacity");
 
     }
@@ -70,18 +68,14 @@ public class Onionskin extends View {
         if (skins == null) return;
 
         this.bmp = bmp;
-        this.timeupdate = (new Date()).toString();
+        this.timeupdate = (new Date()).toString()+" | "+bmp.getWidth()+" x "+bmp.getHeight();
 
         for (int ss = numSkins - 1; ss > 0; ss--) {
             skins[ss] = skins[ss - 1];
         }
 
-        skins[0].recycle();
-        skins[0] = bmp;
 
-        // skins[2] = skins[1];
-        // skins[1] = skins[0];
-        // skins[0] = bmp;
+        skins[0] = Bitmap.createScaledBitmap(bmp,bmp.getWidth()/2,bmp.getHeight()/2,false);
 
         invalidate();
         Log.d(LOGTAG, "setBmp");
@@ -169,10 +163,9 @@ public class Onionskin extends View {
                     try {
                         c.drawBitmap(_bmp, new Rect(0, 0, _bmp.getWidth(), _bmp.getHeight()),
                                 new Rect(0, 0, getWidth(), getHeight()), trans);
-                        c.drawText(String.valueOf(skin), 30, 50 + (skin * 20), p);
-                        c.drawText(String.valueOf(_bmp.getWidth()) + "x" +
-                                String.valueOf(_bmp.getHeight()), 10, 30, p);
-                        c.drawText(timeupdate, 10, 50, p);
+                        c.drawText(String.valueOf(skin), 30, 30 + (skin * 16), p);
+                     //   c.drawText(String.valueOf(_bmp.getWidth()) + "x" +
+                     //           String.valueOf(_bmp.getHeight()), 10, 30, p);
 
                     } catch (Exception ex) {
                         Toast.makeText(Onionskin.this.getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -180,6 +173,8 @@ public class Onionskin extends View {
 
                 }
             }
+
+            c.drawText(timeupdate, 10, 30, p);
         } else {
             c.drawText("null array", 10, 50, p);
             initSkins();
