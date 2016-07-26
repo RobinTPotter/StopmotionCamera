@@ -17,6 +17,8 @@ public class Onionskin extends View {
     private static String LOGTAG = "StopmotionCameraLog-Onionskin";
     private static int OPACITY_INCREMENT = 32;
     private static int SKINS_MIN_ALPHA = 0;
+
+
     private int numSkins = 3;
     Bitmap bmp;
     String timeupdate = "not set";

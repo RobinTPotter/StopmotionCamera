@@ -25,6 +25,14 @@ import android.view.ViewGroup.LayoutParams;
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
 
     private static String PREFS_NAME = "StopmotionCameraPreferences";
+
+    private static int ITEMID_PREVIEW = 12;
+    private static int ITEMID_PICTURE = 23;
+    private static int  GROUPID_PREVIEW =0;
+    private static int GROUPID_PICTURE = 1;
+    private static int GROUPID_OTHER= 2;
+
+
     private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
     private static String BUTTON_TOGGLE_STRETCH = "Toggle";
     private static String CHANGE_OPACITY_INC = "Opac+";
@@ -323,7 +331,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        if (menu.findItem(12) == null || menu.findItem(23) == null) return createMenu(menu);
+        if (menu.findItem(ITEMID_PREVIEW) == null || menu.findItem(ITEMID_PICTURE) == null) return createMenu(menu);
         else return true;
 
     }
@@ -340,17 +348,17 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         boolean success = false;
 
         /// Handle item selection
-        if (item.getGroupId() == 0) {
+        if (item.getGroupId() == GROUPID_PREVIEW) {
             /// preview
             success = idPreviewSize(item.getTitle().toString(), -1);
 
-        } else if (item.getGroupId() == 1) {
+        } else if (item.getGroupId() == GROUPID_PICTURE) {
 
             /// pict
 
             success = idPictureSize(item.getTitle().toString(), -1);
 
-        } else if (item.getGroupId() == 2) {
+        } else if (item.getGroupId() == GROUPID_OTHER) {
             if (item.getTitle().equals(BUTTON_TOGGLE_STRETCH)) {
 
                 setStretch(!stretch);
@@ -493,22 +501,20 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         menu.add(2, Menu.NONE, order++, ONION_LEAF_DEC);
         menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
 
-        SubMenu sm1 = menu.addSubMenu(0, 12, order++, "Preview Size");
+        SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW,   ITEMID_PREVIEW, order++, "Preview Size");
 
         for (Camera.Size size : previewSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
-            MenuItem mi = sm1.add(0, Menu.NONE, order++, text);
+            MenuItem mi = sm1.add(GROUPID_PREVIEW, Menu.NONE, order++, text);
 
         }
 
-        SubMenu sm2 = menu.addSubMenu(1, 23, order++, "Picture Size");
-        sm2.setGroupCheckable(1, false, true);
-        menu.setGroupCheckable(1, false, true);
+        SubMenu sm2 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PICTURE, order++, "Picture Size");
 
         for (Camera.Size size : pictureSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
             ;
-            MenuItem mi = sm2.add(1, Menu.NONE, order++, text);
+            MenuItem mi = sm2.add(GROUPID_PICTURE, Menu.NONE, order++, text);
         }
 
         Log.d(LOGTAG, "created Menu for first time");
