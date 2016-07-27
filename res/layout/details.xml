@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="202dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editDate"
-            android:layout_gravity="left" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="93dp"
-            android:layout_height="wrap_content"
-            android:text="set"
-            android:id="@+id/button"
-            android:layout_gravity="fill_horizontal" />
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="def."
-            android:id="@+id/defaultDateButton"
-            android:layout_gravity="fill_horizontal" />
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent" android:layout_gravity="center_horizontal" android:columnCount="12"
+             android:rowCount="4" android:orientation="vertical">
 
 
-
-
-
-    </GridLayout>
-
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Opacity"
+              android:id="@+id/textView2" android:layout_column="1"/>
     <SeekBar
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekBar"
+    />
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:id="@+id/textView3" android:layout_column="1"/>
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Date Format String"
+            android:id="@+id/textView" android:layout_column="1"/>
+    <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/seekBar" android:layout_gravity="center_horizontal"/>
+            android:id="@+id/editDate"
+            android:focusableInTouchMode="true"
+            android:inputType="text" android:enabled="true" android:focusable="true"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="right">
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:text="def."
+                android:id="@+id/defaultDateButton"
+                android:longClickable="false" android:layout_column="3"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxWidth="20dp"
+                android:layout_gravity="right" android:layout_alignParentEnd="true"/>
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:text="set"
+                android:id="@+id/button"
+                android:layout_gravity="right" android:layout_column="2" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:maxWidth="20dp" android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" android:layout_alignStart="@id/editDate"/>
+    </LinearLayout>
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/textView4"
+              android:layout_column="1"/>
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/textView5"
+              android:layout_column="1"/>
+
 </LinearLayout>

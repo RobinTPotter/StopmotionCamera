@@ -21,6 +21,8 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
@@ -48,7 +50,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static String ONION_LEAF_INC = "Skin+";
     private static String ONION_LEAF_DEC = "Skin-";
 
-    private static String CHANGE_DATE_FORMAT = "Date";
+    private static String CHANGE_DATE_FORMAT = "Settings";
 
     private int numSkins = 3;
 
@@ -132,7 +134,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
 
             onionskin.setBmp(lastPicture);
             lastPictureFile = uriTarget.getPath();
@@ -397,12 +398,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             } else if (item.getTitle().equals(CHANGE_DATE_FORMAT)) {
                 // showEditDialog();
 
-
                 (new Dialog(this) {
                     @Override
                     protected void onCreate(Bundle savedInstanceState) {
                         super.onCreate(savedInstanceState);
                         setContentView(R.layout.details);
+
                         getWindow().setLayout(600, 400);
 
                         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -412,7 +413,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                                Log.d(LOGTAG, "progress " + progress + " " + seekBar.getMax() + " " + (int) (255 * (float) progress / seekBar.getMax()));
+                                Log.d(LOGTAG, "progress " + progress);
                                 onionskin.setOpacity(progress);
                                 onionskin.updateBackgound();
                                 onionskin.invalidate();
@@ -420,17 +421,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                             @Override
                             public void onStartTrackingTouch(SeekBar seekBar) {
-
                             }
 
                             @Override
                             public void onStopTrackingTouch(SeekBar seekBar) {
-
                             }
                         });
 
-
                         final EditText editText = (EditText) findViewById(R.id.editDate);
+                        editText.setClickable(true);
+                        editText.setEnabled(true);
                         editText.setText(dateFormat);
 
                         final Button button = (Button) findViewById(R.id.button);
@@ -442,6 +442,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                 currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
                             }
                         });
+
                         final Button defbutton = (Button) findViewById(R.id.defaultDateButton);
                         defbutton.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -450,13 +451,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             }
                         });
 
-
-
-
-
                     }
                 }).show();
-
 
             }
 
@@ -469,7 +465,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.invalidate();
         return success;
     }
-
 
     public void setStretch(boolean stretch) {
 
@@ -582,7 +577,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
         menu.add(2, Menu.NONE, order++, CHANGE_DATE_FORMAT);
 
-
         SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
         for (Camera.Size size : previewSizes) {
@@ -659,7 +653,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
         if (!file.mkdirs()) {
-            Log.d(LOGTAG, "couldn't create "+ albumName);
+            Log.d(LOGTAG, "couldn't create " + albumName);
         }
 
         Log.d(LOGTAG, "getAlbumStorageDir " + file.toString());
