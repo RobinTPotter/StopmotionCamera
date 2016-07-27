@@ -6,17 +6,6 @@
             android:id="@+id/control"
             android:gravity="bottom"
             android:rowCount="5" android:columnCount="5">
-    <!--
-        <robin.stopmotion.Onionskin
-                android:id="@+id/takepicture"
-                android:layout_width="fill_parent"
-                android:layout_height="448dp"
-                android:text=" * Take Picture "
-                android:background="#99000000"
-        />
-          android:layout_margin="10px" -->
-
-
 
 
 </LinearLayout>

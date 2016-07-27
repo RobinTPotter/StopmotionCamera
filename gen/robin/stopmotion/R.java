@@ -20,7 +20,7 @@ public final class R {
     }
     public static final class layout {
         public static final int control=0x7f030000;
-        public static final int details=0x7f030001;
+        public static final int stopmotion_settings_panel =0x7f030001;
         public static final int main_camera_activity=0x7f030002;
     }
     public static final class menu {

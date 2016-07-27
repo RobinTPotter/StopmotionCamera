@@ -9,20 +9,16 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.*;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.*;
 import android.hardware.Camera;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
@@ -51,6 +47,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static String ONION_LEAF_DEC = "Skin-";
 
     private static String CHANGE_DATE_FORMAT = "Settings";
+    private static String SHOW_RUSHES = "Rushes";
 
     private int numSkins = 3;
 
@@ -81,6 +78,50 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     LayoutInflater controlInflater = null;
     LinearLayout viewControl;
+
+
+
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        process = launchLogcat();
+
+        setContentView(R.layout.main_camera_activity);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        getWindow().setFormat(PixelFormat.UNKNOWN);
+        surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
+
+        surfaceHolder = surfaceView.getHolder();
+        surfaceHolder.addCallback(this);
+        /// surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+        String x = new SimpleDateFormat(dateFormat).format(new Date());
+        currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
+
+        controlInflater = LayoutInflater.from(getBaseContext());
+        viewControl = (LinearLayout) (controlInflater.inflate(R.layout.control, null));
+
+        LayoutParams layoutParamsControl
+                = new LayoutParams(LayoutParams.MATCH_PARENT,/// FILL_PARENT,
+                LayoutParams.MATCH_PARENT);/// FILL_PARENT);
+
+        this.addContentView(viewControl, layoutParamsControl);
+
+        initOnionskin(viewControl, 3);
+
+        Log.d(LOGTAG, "created");
+    }
+
+
+
+
+
+
+
+
+
 
     Button.OnClickListener buttonClickListener =
             new Button.OnClickListener() {
@@ -205,38 +246,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         }
     }
 
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        process = launchLogcat();
-
-        setContentView(R.layout.main_camera_activity);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-        getWindow().setFormat(PixelFormat.UNKNOWN);
-        surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
-
-        surfaceHolder = surfaceView.getHolder();
-        surfaceHolder.addCallback(this);
-        /// surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-
-        String x = new SimpleDateFormat(dateFormat).format(new Date());
-        currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
-
-        controlInflater = LayoutInflater.from(getBaseContext());
-        viewControl = (LinearLayout) (controlInflater.inflate(R.layout.control, null));
-
-        LayoutParams layoutParamsControl
-                = new LayoutParams(LayoutParams.MATCH_PARENT,/// FILL_PARENT,
-                LayoutParams.MATCH_PARENT);/// FILL_PARENT);
-
-        this.addContentView(viewControl, layoutParamsControl);
-
-        initOnionskin(viewControl, 3);
-
-        Log.d(LOGTAG, "created");
-    }
 
     private void initOnionskin(LinearLayout viewControl, int skins) {
 
@@ -395,6 +404,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     onionskin.setSkins(numSkins);
                 }
 
+            } else if (item.getTitle().equals(SHOW_RUSHES)) {
+
+
+
+
             } else if (item.getTitle().equals(CHANGE_DATE_FORMAT)) {
                 // showEditDialog();
 
@@ -402,7 +416,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     @Override
                     protected void onCreate(Bundle savedInstanceState) {
                         super.onCreate(savedInstanceState);
-                        setContentView(R.layout.details);
+                        setContentView(R.layout.stopmotion_settings_panel);
 
                         getWindow().setLayout(600, 400);
 
