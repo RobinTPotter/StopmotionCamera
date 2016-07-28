@@ -87,8 +87,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         process = launchLogcat();
 
-        setContentView(R.layout.main_camera_activity);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setContentView(R.layout.main_camera_activity);
+
+
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
         surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
@@ -363,6 +369,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
+
         /// public boolean onGroupItemClick(MenuItem item) {
 
         if (camera != null) {
@@ -405,6 +414,23 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 }
 
             } else if (item.getTitle().equals(SHOW_RUSHES)) {
+
+                (new Dialog(this) {
+                    @Override
+                    protected void onCreate(Bundle savedInstanceState) {
+
+                        super.onCreate(savedInstanceState);
+
+                        requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                        setContentView(R.layout.stopmotion_rushes_panel);
+
+
+
+                    }
+                }).show();
 
 
 
@@ -590,6 +616,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         menu.add(2, Menu.NONE, order++, ONION_LEAF_DEC);
         menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
         menu.add(2, Menu.NONE, order++, CHANGE_DATE_FORMAT);
+        menu.add(2, Menu.NONE, order++, SHOW_RUSHES);
 
         SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
