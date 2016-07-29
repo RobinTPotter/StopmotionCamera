@@ -35,8 +35,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int GROUPID_PICTURE = 1;
     private static int GROUPID_OTHER = 2;
 
-    private String dateFormat = "yyyy-MM-dd-HH-mm-ss";
-    private String defaultDateFormat = "yyyy-MM-dd-HH-mm-ss";
+    private String dateFormat = "yyyy-MM-dd-HH-mm";
+    private String defaultDateFormat = "yyyy-MM-dd-HH-mm";
 
     private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
     private static String BUTTON_TOGGLE_STRETCH = "Toggle";
@@ -47,7 +47,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static String ONION_LEAF_DEC = "Skin-";
 
     private static String CHANGE_DATE_FORMAT = "Settings";
-    private static String SHOW_RUSHES = "Rushes";
+    private static String SHOW_RUSHES = "Preview";
 
     private int numSkins = 3;
 
