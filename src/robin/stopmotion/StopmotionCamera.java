@@ -79,8 +79,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     LayoutInflater controlInflater = null;
     LinearLayout viewControl;
 
-
-
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -119,15 +117,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         Log.d(LOGTAG, "created");
     }
-
-
-
-
-
-
-
-
-
 
     Button.OnClickListener buttonClickListener =
             new Button.OnClickListener() {
@@ -427,7 +416,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         setContentView(R.layout.stopmotion_rushes_panel);
 
+                        SquashedImagePanel squashedImagePanel=(SquashedImagePanel)findViewById(R.id.imagePanel);
+                        SquashedPreview squashedPreview=(SquashedPreview)findViewById(R.id.view);
 
+                        squashedImagePanel.setDirectory(currentDirectory);
 
                     }
                 }).show();

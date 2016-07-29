@@ -1,8 +1,10 @@
 /home/deadmeat/Spod/StopmotionCamera/bin/stopmotioncamera.ap_ \
  : /home/deadmeat/Spod/StopmotionCamera/res/mipmap-mdpi/ic_launcher.png \
+/home/deadmeat/Spod/StopmotionCamera/res/layout/stopmotion_settings_panel.xml \
 /home/deadmeat/Spod/StopmotionCamera/res/layout/control.xml \
 /home/deadmeat/Spod/StopmotionCamera/res/layout/details.xml \
 /home/deadmeat/Spod/StopmotionCamera/res/layout/main_camera_activity.xml \
+/home/deadmeat/Spod/StopmotionCamera/res/layout/stopmotion_rushes_panel.xml \
 /home/deadmeat/Spod/StopmotionCamera/res/mipmap-xxhdpi/ic_launcher.png \
 /home/deadmeat/Spod/StopmotionCamera/res/mipmap-xxxhdpi/ic_launcher.png \
 /home/deadmeat/Spod/StopmotionCamera/res/menu/menu.xml \
