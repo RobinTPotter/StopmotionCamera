@@ -27,4 +27,5 @@
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/R$id.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$3.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/SquashedImagePanel.class \
+/home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/SquashedPreview$1.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/R$layout.class \
