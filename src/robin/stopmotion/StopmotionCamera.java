@@ -199,7 +199,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.setOpacity(bundle.getInt("opacity", 128));
         previewSizeWhich = bundle.getInt("previewSizeWhich", 100);
         pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
-        dateFormat = bundle.getString("dateFormat", "yyyy-MM-dd-HH-mm-ss");
+        dateFormat = bundle.getString("dateFormat", defaultDateFormat);
+
+        String x = new SimpleDateFormat(dateFormat).format(new Date());
+        currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
+
+
         numSkins = bundle.getInt("numSkins", 3);
 
         idPreviewSize("bollocks", previewSizeWhich);
@@ -331,7 +336,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         onionskin.setSkins(numSkins);
 
-        dateFormat = settings.getString("dateFormat", "yyyy-MM-dd-HH-mm-ss");
+        dateFormat = settings.getString("dateFormat",defaultDateFormat);
+
+        String x = new SimpleDateFormat(dateFormat).format(new Date());
+        currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
+
 
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
