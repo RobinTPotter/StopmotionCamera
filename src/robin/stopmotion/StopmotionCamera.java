@@ -416,10 +416,34 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         setContentView(R.layout.stopmotion_rushes_panel);
 
-                        SquashedImagePanel squashedImagePanel=(SquashedImagePanel)findViewById(R.id.imagePanel);
-                        SquashedPreview squashedPreview=(SquashedPreview)findViewById(R.id.view);
 
-                        squashedImagePanel.setDirectory(currentDirectory);
+
+                    }
+                    protected void onStart() {
+
+                        final SquashedPreview squashedPreview=(SquashedPreview)findViewById(R.id.view);
+
+                        squashedPreview.setDirectory(currentDirectory);
+
+                        SeekBar seekBar=(SeekBar)findViewById(R.id.previewSeekBar);
+                        seekBar.setMax(squashedPreview.getNumberImages()-1);
+
+                        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                            @Override
+                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                                squashedPreview.setImageNumber(progress);
+                            }
+
+                            @Override
+                            public void onStartTrackingTouch(SeekBar seekBar) {
+
+                            }
+
+                            @Override
+                            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                            }
+                        });
 
                     }
                 }).show();

@@ -5,25 +5,18 @@
     android:orientation="horizontal">
 
 
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:layout_weight=".5">
-
-        <robin.stopmotion.SquashedImagePanel android:id="@+id/imagePanel" android:layout_width="fill_parent" android:layout_height="fill_parent"/>
-    </LinearLayout>
     <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:layout_weight=".5">
+            android:layout_height="match_parent">
         <robin.stopmotion.SquashedPreview
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:id="@+id/view" android:layout_above="@+id/seekBar2"
+                android:layout_height="wrap_content" android:id="@+id/view"
         />
         <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/seekBar2" android:layout_gravity="center_horizontal"
+                android:id="@+id/previewSeekBar" android:layout_gravity="center_horizontal"
                 android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </LinearLayout>

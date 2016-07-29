@@ -14,6 +14,8 @@ import android.view.View;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Created by potterr on 28/07/2016.
@@ -25,6 +27,9 @@ public class SquashedImagePanel extends View {
     String[] images;
     Bitmap[] bmps;
     boolean[] selected;
+    
+    int cc = 3;
+    int rr = 4;
 
     public SquashedImagePanel(Context context) {
         super(context);
@@ -44,8 +49,6 @@ public class SquashedImagePanel extends View {
         Paint p = new Paint();
         p.setColor(Color.GREEN);
         c.drawRect(new Rect(0, 0, getWidth(), getHeight()), p);
-        int cc = 3;
-        int rr = 3;
 
         int ww = getWidth() / cc;
         int hh = getHeight() / rr;
@@ -80,10 +83,12 @@ public class SquashedImagePanel extends View {
             }
         });
 
+        Arrays.sort(images, Collections.reverseOrder());
+
         Log.d(LOGTAG, "images " + images.length);
 
         bmps = new Bitmap[images.length];
-        for (int ii = 0; ii < images.length; ii++) {
+        for (int ii = 0; (ii < images.length) && ii<(rr*cc); ii++) {
 
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             Log.d(LOGTAG, "loading " + images[ii]);

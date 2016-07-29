@@ -8,15 +8,23 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Created by potterr on 28/07/2016.
  */
 public class SquashedPreview extends View {
 
+    File directory;
     private static String LOGTAG = "StopmotionCameraLog-SquashedPreview";
     Bitmap[] previewImages;
+    String[] images;
     int currentImage = 0;
 
     public SquashedPreview(Context context) {
@@ -35,21 +43,47 @@ public class SquashedPreview extends View {
         if (i > previewImages.length - 1) i = previewImages.length - 1;
         if (i < 0) i = 0;
         currentImage = i;
+        invalidate();
     }
 
-    public void loadImages(String[] ims) {
+    public int getNumberImages() {
 
-        previewImages = new Bitmap[ims.length];
+        if (previewImages==null) return 0;
 
-        for (int ii = 0; ii < ims.length; ii++) {
+        return previewImages.length;
 
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            Bitmap pic = BitmapFactory.decodeFile(ims[ii], bmOptions);
+    }
 
-            previewImages[ii] = Bitmap.createScaledBitmap(pic, pic.getWidth() / 2, pic.getHeight() / 2, false);
+    public void setDirectory(File d) {
+        directory = d;
+
+
+
+        images = directory.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String filename) {
+                return filename.endsWith(".jpg");
+            }
+        });
+
+        //Arrays.sort(images, Collections.reverseOrder());
+
+        Log.d(LOGTAG, "images " + images.length);
+
+        if (images.length>0) {
+
+            previewImages = new Bitmap[images.length];
+            for (int ii = 0; (ii < images.length); ii++) {
+
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                Log.d(LOGTAG, "loading " + images[ii]);
+                Bitmap pic = BitmapFactory.decodeFile(directory + "/" + images[ii], bmOptions);
+                Log.d(LOGTAG, pic.toString());
+                previewImages[ii] = Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
+            }
         }
-    }
 
+    }
 
     public void draw(Canvas c) {
 
@@ -78,6 +112,8 @@ public class SquashedPreview extends View {
                 c.drawBitmap(previewImages[currentImage], new Rect(0, 0, w, h), new Rect(0, 0, ww, ht), p);
 
             }
+        } else {
+            c.drawText("Loading...",20,20,p);
         }
     }
 }
