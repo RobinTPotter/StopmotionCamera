@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.SeekBar;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -26,6 +27,7 @@ public class SquashedPreview extends View {
     Bitmap[] previewImages;
     String[] images;
     int currentImage = 0;
+    SeekBar seekbar;
 
     public SquashedPreview(Context context) {
         super(context);
@@ -39,6 +41,10 @@ public class SquashedPreview extends View {
         super(context, attrs, defStyleAttr);
     }
 
+    public void setSeekbar(SeekBar s) {
+        seekbar = s;
+    }
+
     public void setImageNumber(int i) {
         if (i > previewImages.length - 1) i = previewImages.length - 1;
         if (i < 0) i = 0;
@@ -48,7 +54,7 @@ public class SquashedPreview extends View {
 
     public int getNumberImages() {
 
-        if (previewImages==null) return 0;
+        if (previewImages == null) return 0;
 
         return previewImages.length;
 
@@ -57,8 +63,6 @@ public class SquashedPreview extends View {
     public void setDirectory(File d) {
         directory = d;
 
-
-
         images = directory.list(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String filename) {
@@ -66,22 +70,36 @@ public class SquashedPreview extends View {
             }
         });
 
-        //Arrays.sort(images, Collections.reverseOrder());
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        Log.d(LOGTAG, "images " + images.length);
+                try {
+                    //Arrays.sort(images, Collections.reverseOrder());
 
-        if (images.length>0) {
+                    Log.d(LOGTAG, "images " + images.length);
 
-            previewImages = new Bitmap[images.length];
-            for (int ii = 0; (ii < images.length); ii++) {
+                    if (images.length > 0) {
 
-                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                Log.d(LOGTAG, "loading " + images[ii]);
-                Bitmap pic = BitmapFactory.decodeFile(directory + "/" + images[ii], bmOptions);
-                Log.d(LOGTAG, pic.toString());
-                previewImages[ii] = Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
+                        previewImages = new Bitmap[images.length];
+                        for (int ii = 0; (ii < images.length); ii++) {
+
+                            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                            Log.d(LOGTAG, "loading " + images[ii]);
+                            Bitmap pic = BitmapFactory.decodeFile(directory + "/" + images[ii], bmOptions);
+                            Log.d(LOGTAG, pic.toString());
+                            previewImages[ii] = Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
+                            setImageNumber(ii);
+                            seekbar.setMax(ii);
+                        }
+                    }
+                } catch (Exception ex) {
+                    Log.d(LOGTAG,ex.getMessage());
+                }
+
             }
-        }
+        });
+        t.start();
 
     }
 
@@ -113,7 +131,7 @@ public class SquashedPreview extends View {
 
             }
         } else {
-            c.drawText("Loading...",20,20,p);
+            c.drawText("Loading...", 20, 20, p);
         }
     }
 }

@@ -432,10 +432,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final SquashedPreview squashedPreview=(SquashedPreview)findViewById(R.id.view);
 
-                        squashedPreview.setDirectory(currentDirectory);
 
                         SeekBar seekBar=(SeekBar)findViewById(R.id.previewSeekBar);
-                        seekBar.setMax(squashedPreview.getNumberImages()-1);
+                        squashedPreview.setSeekbar(seekBar);
+
+                        squashedPreview.setDirectory(currentDirectory);
 
                         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
