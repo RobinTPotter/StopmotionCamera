@@ -25,6 +25,20 @@ public class Onionskin extends View {
 
     int opacity = 128;
 
+    @Override
+    public boolean isActivated() {
+        return activated;
+    }
+
+    @Override
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    private boolean activated=true;
+
+
+
     public int getOpacity() {
         return opacity;
     }
@@ -134,6 +148,9 @@ public class Onionskin extends View {
     }
 
     public void draw(Canvas c) {
+
+
+        if (!activated) return;
 
         super.draw(c);
 

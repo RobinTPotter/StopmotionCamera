@@ -46,6 +46,7 @@ public class SquashedPreview extends View {
     }
 
     public void setImageNumber(int i) {
+        if (previewImages==null) return;
         if (i > previewImages.length - 1) i = previewImages.length - 1;
         if (i < 0) i = 0;
         currentImage = i;
@@ -70,11 +71,7 @@ public class SquashedPreview extends View {
             }
         });
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                try {
                     //Arrays.sort(images, Collections.reverseOrder());
 
                     Log.d(LOGTAG, "images " + images.length);
@@ -93,13 +90,9 @@ public class SquashedPreview extends View {
                             seekbar.setMax(ii);
                         }
                     }
-                } catch (Exception ex) {
-                    Log.d(LOGTAG,ex.getMessage());
-                }
 
-            }
-        });
-        t.start();
+
+
 
     }
 

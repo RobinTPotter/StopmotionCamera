@@ -93,7 +93,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         setContentView(R.layout.main_camera_activity);
 
 
-
         getWindow().setFormat(PixelFormat.UNKNOWN);
         surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
 
@@ -101,8 +100,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         surfaceHolder.addCallback(this);
         /// surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
-        String x = new SimpleDateFormat(dateFormat).format(new Date());
-        currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
+
 
         controlInflater = LayoutInflater.from(getBaseContext());
         viewControl = (LinearLayout) (controlInflater.inflate(R.layout.control, null));
@@ -128,10 +126,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     if (justfocussed) {
                         justfocussed = false;
                     } else {
-
-                        camera.takePicture(myShutterCallback,
-                                myPictureCallback_RAW, myPictureCallback_JPG);
-
+                        try {
+                            camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
+                        } catch (Exception ex) {
+                            Log.d(LOGTAG, "failed to take picture!");
+                        }
                     }
                 }
             };
@@ -155,6 +154,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         public void onPictureTaken(byte[] arg0, Camera arg1) {
 
             lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+
+            String x = new SimpleDateFormat(dateFormat).format(new Date());
+            currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
 
             Uri uriTarget = android.net.Uri.fromFile(new File(currentDirectory, String.valueOf((new Date()).getTime()) + ".jpg"));
 
@@ -201,8 +203,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
         dateFormat = bundle.getString("dateFormat", defaultDateFormat);
 
-        String x = new SimpleDateFormat(dateFormat).format(new Date());
-        currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
 
 
         numSkins = bundle.getInt("numSkins", 3);
@@ -336,10 +336,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         onionskin.setSkins(numSkins);
 
-        dateFormat = settings.getString("dateFormat",defaultDateFormat);
+        dateFormat = settings.getString("dateFormat", defaultDateFormat);
 
-        String x = new SimpleDateFormat(dateFormat).format(new Date());
-        currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
 
 
         idPreviewSize("bollocks", previewSizeWhich);
@@ -367,7 +365,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
 
 
         /// public boolean onGroupItemClick(MenuItem item) {
@@ -413,6 +410,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             } else if (item.getTitle().equals(SHOW_RUSHES)) {
 
+                onionskin.setActivated(false);
+
+                String x = new SimpleDateFormat(dateFormat).format(new Date());
+                currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
+
                 (new Dialog(this) {
                     @Override
                     protected void onCreate(Bundle savedInstanceState) {
@@ -426,14 +428,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         setContentView(R.layout.stopmotion_rushes_panel);
 
 
-
                     }
+
                     protected void onStart() {
 
-                        final SquashedPreview squashedPreview=(SquashedPreview)findViewById(R.id.view);
+                        final SquashedPreview squashedPreview = (SquashedPreview) findViewById(R.id.view);
 
 
-                        SeekBar seekBar=(SeekBar)findViewById(R.id.previewSeekBar);
+                        SeekBar seekBar = (SeekBar) findViewById(R.id.previewSeekBar);
                         squashedPreview.setSeekbar(seekBar);
 
                         squashedPreview.setDirectory(currentDirectory);
@@ -458,11 +460,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 }).show();
 
-
+                onionskin.setActivated(true);
 
 
             } else if (item.getTitle().equals(CHANGE_DATE_FORMAT)) {
                 // showEditDialog();
+
+                onionskin.setActivated(false);
 
                 (new Dialog(this) {
                     @Override
@@ -504,8 +508,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             @Override
                             public void onClick(View v) {
                                 dateFormat = editText.getText().toString();
-                                String x = new SimpleDateFormat(dateFormat).format(new Date());
-                                currentDirectory = getAlbumStorageDir("Stopmotion-" + x);
+
                             }
                         });
 
@@ -519,7 +522,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                     }
                 }).show();
-
+                onionskin.setActivated(true);
             }
 
             save();
