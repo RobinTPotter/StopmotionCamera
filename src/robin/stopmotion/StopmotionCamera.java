@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.File;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -61,7 +60,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     boolean justfocussed = false;
 
     Bitmap lastPicture = null;
-    String lastPictureFile = "";
+    String[] lastPictureFile = new String[3];
     Canvas canvas;
 
     File currentDirectory;
@@ -85,13 +84,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         process = launchLogcat();
 
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.main_camera_activity);
-
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
         surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
@@ -99,8 +96,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
         /// surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-
-
 
         controlInflater = LayoutInflater.from(getBaseContext());
         viewControl = (LinearLayout) (controlInflater.inflate(R.layout.control, null));
@@ -174,7 +169,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
 
             onionskin.setBmp(lastPicture);
-            lastPictureFile = uriTarget.getPath();
+
+            for (int ll = lastPictureFile.length - 1; ll > 1; ll++) {
+                lastPictureFile[ll] = lastPictureFile[ll - 1];
+            }
+
+            lastPictureFile[0] = uriTarget.getPath();
             onionskin.updateBackgound();
             camera.startPreview();
             previewing = true;
@@ -188,13 +188,18 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     public void onRestoreInstanceState(Bundle bundle) {
         super.onRestoreInstanceState(bundle);
         Log.d(LOGTAG, "onRestoreInstanceState");
+        lastPictureFile = bundle.getStringArray("lastPictureFile");
 
-        lastPictureFile = bundle.getString("lastPictureFile", "");
-        if (!lastPictureFile.equals("") && (new File(lastPictureFile).exists())) {
-            Log.d(LOGTAG, "picture file from settings " + lastPictureFile);
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            lastPicture = BitmapFactory.decodeFile(lastPictureFile, bmOptions);
-            onionskin.setBmp(lastPicture);
+        if (lastPictureFile.length == 0) lastPictureFile = new String[]{"", "", ""};
+
+        //lastPictureFile = bundle.getString("lastPictureFile", "");
+        for (String _lastPicture : lastPictureFile) {
+            if (_lastPicture != null && !_lastPicture.equals("") && (new File(_lastPicture).exists())) {
+                Log.d(LOGTAG, "picture file from settings " + _lastPicture);
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                lastPicture = BitmapFactory.decodeFile(_lastPicture, bmOptions);
+                onionskin.setBmp(lastPicture);
+            }
         }
 
         stretch = bundle.getBoolean("stretch", false);
@@ -202,8 +207,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         previewSizeWhich = bundle.getInt("previewSizeWhich", 100);
         pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
         dateFormat = bundle.getString("dateFormat", defaultDateFormat);
-
-
 
         numSkins = bundle.getInt("numSkins", 3);
 
@@ -222,7 +225,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         Log.d(LOGTAG, "onSaveInstanceState");
 
         bundle.putString("dateFormat", dateFormat);
-        bundle.putString("lastBmp", lastPictureFile);
+        bundle.putStringArray("lastBmp", lastPictureFile);
+        //bundle.putString("lastBmp", lastPictureFile);
         bundle.putInt("opacity", onionskin.getOpacity());
         bundle.putBoolean("stretch", stretch);
         bundle.putInt("previewSizeWhich", previewSizeWhich);
@@ -245,7 +249,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             return null;
         }
     }
-
 
     private void initOnionskin(LinearLayout viewControl, int skins) {
 
@@ -301,7 +304,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("lastBmp", lastPictureFile);
+
+        Set<String> set = new HashSet(Arrays.asList(lastPictureFile));
+
+        editor.putStringSet("lastBmp", set);
+
+        //      editor.putString("lastBmp", lastPictureFile);
         editor.putBoolean("stretch", stretch);
         editor.putInt("opacity", onionskin.getOpacity());
         editor.putInt("previewSizeWhich", previewSizeWhich);
@@ -338,10 +346,41 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         dateFormat = settings.getString("dateFormat", defaultDateFormat);
 
-
-
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
+
+        Log.d(LOGTAG, "about to get load of pictures");
+        Object[] o = settings.getStringSet("lastPictureFile", new HashSet()).toArray();
+
+        lastPictureFile = new String[o.length];
+
+        for (int oo = 0; oo < o.length; oo++) {
+            lastPictureFile[oo] = (String) o[oo];
+            Log.d(LOGTAG, ">>>" + lastPictureFile[oo]);
+        }
+
+        if (lastPictureFile.length == 0) lastPictureFile = new String[]{"", "", ""};
+
+        //lastPictureFile=settings.getStringArray("lastPictureFile");
+        //lastPictureFile = bundle.getString("lastPictureFile", "");
+        for (String _lastPicture : lastPictureFile) {
+            if (_lastPicture != null && !_lastPicture.equals("") && (new File(_lastPicture).exists())) {
+                Log.d(LOGTAG, "picture file from settings " + _lastPicture);
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                lastPicture = BitmapFactory.decodeFile(_lastPicture, bmOptions);
+                onionskin.setBmp(lastPicture);
+            }
+        }
+
+
+
+
+
+
+
+
+
+/*
 
         lastPictureFile = settings.getString("lastBmp", "");
         if (!lastPictureFile.equals("") && (new File(lastPictureFile).exists())) {
@@ -351,6 +390,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             onionskin.setBmp(lastPicture);
         }
+*/
 
     }
 
@@ -365,7 +405,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
 
         /// public boolean onGroupItemClick(MenuItem item) {
 
@@ -427,13 +466,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         setContentView(R.layout.stopmotion_rushes_panel);
 
-
                     }
 
                     protected void onStart() {
 
                         final SquashedPreview squashedPreview = (SquashedPreview) findViewById(R.id.view);
-
 
                         SeekBar seekBar = (SeekBar) findViewById(R.id.previewSeekBar);
                         squashedPreview.setSeekbar(seekBar);
@@ -461,7 +498,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 }).show();
 
                 onionskin.setActivated(true);
-
 
             } else if (item.getTitle().equals(CHANGE_DATE_FORMAT)) {
                 // showEditDialog();
