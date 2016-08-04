@@ -120,7 +120,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     Button.OnClickListener buttonClickListener =
             new Button.OnClickListener() {
-                
+
                 @Override
                 public void onClick(View arg0) {
                     /// TODO Auto-generated method stub

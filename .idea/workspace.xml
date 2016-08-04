@@ -48,50 +48,51 @@
       <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3983573">
-              <caret line="122" column="16" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.74945533">
+              <caret line="132" column="39" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
               <folding>
                 <element signature="e#1299#1354#0" expanded="false" />
-                <element signature="e#4535#4536#0" expanded="true" />
-                <element signature="e#5014#6347#0" expanded="true" />
-                <element signature="e#6346#6347#0" expanded="true" />
+                <element signature="e#3641#4520#0" expanded="true" />
+                <element signature="e#4519#4520#0" expanded="true" />
+                <element signature="e#4998#6331#0" expanded="true" />
+                <element signature="e#6330#6331#0" expanded="true" />
                 <element signature="method#onSaveInstanceState#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#launchLogcat#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#save#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#onResume#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#load#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="e#12406#12467#0" expanded="false" />
+                <element signature="e#12390#12451#0" expanded="false" />
                 <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#onOptionsItemSelected#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="e#14458#14520#0" expanded="false" />
-                <element signature="class#15341:16952" expanded="false" />
-                <element signature="method#onCreate#0;class#15341:16952" expanded="false" />
-                <element signature="method#onStart#0;class#15341:16952" expanded="false" />
-                <element signature="class#16298:16909" expanded="false" />
-                <element signature="method#onProgressChanged#0;class#16298:16909" expanded="false" />
-                <element signature="method#onStartTrackingTouch#0;class#16298:16909" expanded="false" />
-                <element signature="method#onStopTrackingTouch#0;class#16298:16909" expanded="false" />
-                <element signature="class#17186:19631" expanded="false" />
-                <element signature="method#onCreate#0;class#17186:19631" expanded="false" />
-                <element signature="class#17757:18544" expanded="false" />
-                <element signature="method#onProgressChanged#0;class#17757:18544" expanded="false" />
-                <element signature="method#onStartTrackingTouch#0;class#17757:18544" expanded="false" />
-                <element signature="method#onStopTrackingTouch#0;class#17757:18544" expanded="false" />
+                <element signature="e#14442#14504#0" expanded="false" />
+                <element signature="class#15325:16936" expanded="false" />
+                <element signature="method#onCreate#0;class#15325:16936" expanded="false" />
+                <element signature="method#onStart#0;class#15325:16936" expanded="false" />
+                <element signature="class#16282:16893" expanded="false" />
+                <element signature="method#onProgressChanged#0;class#16282:16893" expanded="false" />
+                <element signature="method#onStartTrackingTouch#0;class#16282:16893" expanded="false" />
+                <element signature="method#onStopTrackingTouch#0;class#16282:16893" expanded="false" />
+                <element signature="class#17170:19615" expanded="false" />
+                <element signature="method#onCreate#0;class#17170:19615" expanded="false" />
+                <element signature="class#17741:18528" expanded="false" />
+                <element signature="method#onProgressChanged#0;class#17741:18528" expanded="false" />
+                <element signature="method#onStartTrackingTouch#0;class#17741:18528" expanded="false" />
+                <element signature="method#onStopTrackingTouch#0;class#17741:18528" expanded="false" />
                 <element signature="method#setStretch#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#idPreviewSize#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#idPictureSize#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="e#22180#22264#0" expanded="false" />
+                <element signature="e#22164#22248#0" expanded="false" />
                 <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#surfaceDestroyed#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#createMenu#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="e#23265#23323#0" expanded="false" />
+                <element signature="e#23249#23307#0" expanded="false" />
                 <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#getAlbumStorageDir#0;class#StopmotionCamera#0" expanded="false" />
                 <element signature="method#onStart#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="class#26679:27025" expanded="false" />
-                <element signature="method#onFinish#0;class#26679:27025" expanded="false" />
+                <element signature="class#26663:27009" expanded="false" />
+                <element signature="method#onFinish#0;class#26663:27009" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -400,42 +401,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stopmotioncamera" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StopmotionCamera" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stopmotioncamera" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StopmotionCamera" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -656,7 +621,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="998" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -664,9 +629,9 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36682242" sideWeight="0.5906149" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36682242" sideWeight="0.5906149" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995327" sideWeight="0.552589" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3995327" sideWeight="0.552589" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72897196" sideWeight="0.40938511" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -677,7 +642,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928804" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2435275" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2435275" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -747,46 +712,47 @@
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
             <element signature="e#1299#1354#0" expanded="false" />
-            <element signature="e#4535#4536#0" expanded="true" />
-            <element signature="e#5014#6347#0" expanded="true" />
-            <element signature="e#6346#6347#0" expanded="true" />
+            <element signature="e#3641#4520#0" expanded="true" />
+            <element signature="e#4519#4520#0" expanded="true" />
+            <element signature="e#4998#6331#0" expanded="true" />
+            <element signature="e#6330#6331#0" expanded="true" />
             <element signature="method#onSaveInstanceState#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#launchLogcat#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#save#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onResume#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#load#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#12406#12467#0" expanded="false" />
+            <element signature="e#12390#12451#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#14458#14520#0" expanded="false" />
-            <element signature="class#15341:16952" expanded="false" />
-            <element signature="method#onCreate#0;class#15341:16952" expanded="false" />
-            <element signature="method#onStart#0;class#15341:16952" expanded="false" />
-            <element signature="class#16298:16909" expanded="false" />
-            <element signature="method#onProgressChanged#0;class#16298:16909" expanded="false" />
-            <element signature="method#onStartTrackingTouch#0;class#16298:16909" expanded="false" />
-            <element signature="method#onStopTrackingTouch#0;class#16298:16909" expanded="false" />
-            <element signature="class#17186:19631" expanded="false" />
-            <element signature="method#onCreate#0;class#17186:19631" expanded="false" />
-            <element signature="class#17757:18544" expanded="false" />
-            <element signature="method#onProgressChanged#0;class#17757:18544" expanded="false" />
-            <element signature="method#onStartTrackingTouch#0;class#17757:18544" expanded="false" />
-            <element signature="method#onStopTrackingTouch#0;class#17757:18544" expanded="false" />
+            <element signature="e#14442#14504#0" expanded="false" />
+            <element signature="class#15325:16936" expanded="false" />
+            <element signature="method#onCreate#0;class#15325:16936" expanded="false" />
+            <element signature="method#onStart#0;class#15325:16936" expanded="false" />
+            <element signature="class#16282:16893" expanded="false" />
+            <element signature="method#onProgressChanged#0;class#16282:16893" expanded="false" />
+            <element signature="method#onStartTrackingTouch#0;class#16282:16893" expanded="false" />
+            <element signature="method#onStopTrackingTouch#0;class#16282:16893" expanded="false" />
+            <element signature="class#17170:19615" expanded="false" />
+            <element signature="method#onCreate#0;class#17170:19615" expanded="false" />
+            <element signature="class#17741:18528" expanded="false" />
+            <element signature="method#onProgressChanged#0;class#17741:18528" expanded="false" />
+            <element signature="method#onStartTrackingTouch#0;class#17741:18528" expanded="false" />
+            <element signature="method#onStopTrackingTouch#0;class#17741:18528" expanded="false" />
             <element signature="method#setStretch#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#idPreviewSize#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#idPictureSize#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#22180#22264#0" expanded="false" />
+            <element signature="e#22164#22248#0" expanded="false" />
             <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#surfaceDestroyed#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#createMenu#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#23265#23323#0" expanded="false" />
+            <element signature="e#23249#23307#0" expanded="false" />
             <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#getAlbumStorageDir#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onStart#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="class#26679:27025" expanded="false" />
-            <element signature="method#onFinish#0;class#26679:27025" expanded="false" />
+            <element signature="class#26663:27009" expanded="false" />
+            <element signature="method#onFinish#0;class#26663:27009" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2923,50 +2889,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3983573">
-          <caret line="122" column="16" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.74945533">
+          <caret line="132" column="39" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
           <folding>
             <element signature="e#1299#1354#0" expanded="false" />
-            <element signature="e#4535#4536#0" expanded="true" />
-            <element signature="e#5014#6347#0" expanded="true" />
-            <element signature="e#6346#6347#0" expanded="true" />
+            <element signature="e#3641#4520#0" expanded="true" />
+            <element signature="e#4519#4520#0" expanded="true" />
+            <element signature="e#4998#6331#0" expanded="true" />
+            <element signature="e#6330#6331#0" expanded="true" />
             <element signature="method#onSaveInstanceState#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#launchLogcat#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onPause#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#save#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onResume#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#load#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#12406#12467#0" expanded="false" />
+            <element signature="e#12390#12451#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#14458#14520#0" expanded="false" />
-            <element signature="class#15341:16952" expanded="false" />
-            <element signature="method#onCreate#0;class#15341:16952" expanded="false" />
-            <element signature="method#onStart#0;class#15341:16952" expanded="false" />
-            <element signature="class#16298:16909" expanded="false" />
-            <element signature="method#onProgressChanged#0;class#16298:16909" expanded="false" />
-            <element signature="method#onStartTrackingTouch#0;class#16298:16909" expanded="false" />
-            <element signature="method#onStopTrackingTouch#0;class#16298:16909" expanded="false" />
-            <element signature="class#17186:19631" expanded="false" />
-            <element signature="method#onCreate#0;class#17186:19631" expanded="false" />
-            <element signature="class#17757:18544" expanded="false" />
-            <element signature="method#onProgressChanged#0;class#17757:18544" expanded="false" />
-            <element signature="method#onStartTrackingTouch#0;class#17757:18544" expanded="false" />
-            <element signature="method#onStopTrackingTouch#0;class#17757:18544" expanded="false" />
+            <element signature="e#14442#14504#0" expanded="false" />
+            <element signature="class#15325:16936" expanded="false" />
+            <element signature="method#onCreate#0;class#15325:16936" expanded="false" />
+            <element signature="method#onStart#0;class#15325:16936" expanded="false" />
+            <element signature="class#16282:16893" expanded="false" />
+            <element signature="method#onProgressChanged#0;class#16282:16893" expanded="false" />
+            <element signature="method#onStartTrackingTouch#0;class#16282:16893" expanded="false" />
+            <element signature="method#onStopTrackingTouch#0;class#16282:16893" expanded="false" />
+            <element signature="class#17170:19615" expanded="false" />
+            <element signature="method#onCreate#0;class#17170:19615" expanded="false" />
+            <element signature="class#17741:18528" expanded="false" />
+            <element signature="method#onProgressChanged#0;class#17741:18528" expanded="false" />
+            <element signature="method#onStartTrackingTouch#0;class#17741:18528" expanded="false" />
+            <element signature="method#onStopTrackingTouch#0;class#17741:18528" expanded="false" />
             <element signature="method#setStretch#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#idPreviewSize#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#idPictureSize#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#22180#22264#0" expanded="false" />
+            <element signature="e#22164#22248#0" expanded="false" />
             <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#surfaceDestroyed#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#createMenu#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#23265#23323#0" expanded="false" />
+            <element signature="e#23249#23307#0" expanded="false" />
             <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#getAlbumStorageDir#0;class#StopmotionCamera#0" expanded="false" />
             <element signature="method#onStart#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="class#26679:27025" expanded="false" />
-            <element signature="method#onFinish#0;class#26679:27025" expanded="false" />
+            <element signature="class#26663:27009" expanded="false" />
+            <element signature="method#onFinish#0;class#26663:27009" expanded="false" />
           </folding>
         </state>
       </provider>
