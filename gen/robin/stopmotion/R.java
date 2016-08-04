@@ -18,6 +18,8 @@ public final class R {
         public static final int editDate=0x7f060005;
         public static final int previewSeekBar=0x7f06000c;
         public static final int seekBar=0x7f060002;
+        public static final int textFormatString=0x7f06000e;
+        public static final int textOpacity=0x7f06000d;
         public static final int textView=0x7f060004;
         public static final int textView2=0x7f060001;
         public static final int textView3=0x7f060003;

@@ -34,8 +34,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int GROUPID_PICTURE = 1;
     private static int GROUPID_OTHER = 2;
 
-    private String dateFormat = "yyyy-MM-dd-HH-mm";
-    private String defaultDateFormat = "yyyy-MM-dd-HH-mm";
+    private String dateFormat = "yyyy-MM-dd-HH";
+    private String defaultDateFormat = "yyyy-MM-dd-HH";
 
     private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
     private static String BUTTON_TOGGLE_STRETCH = "Toggle";
@@ -49,6 +49,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static String SHOW_RUSHES = "Preview";
 
     private int numSkins = 3;
+
+    private boolean takingPicture = false;
 
     Process process;
 
@@ -91,7 +93,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         setContentView(R.layout.main_camera_activity);
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
-        surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
+
+
+        Object ob = findViewById(R.id.camerapreview);
+        ;
+        Log.d(LOGTAG, "fucking fuck bags" + ob);
+        surfaceView = (SurfaceView) ob;
 
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
@@ -113,20 +120,28 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     Button.OnClickListener buttonClickListener =
             new Button.OnClickListener() {
-
+                
                 @Override
                 public void onClick(View arg0) {
                     /// TODO Auto-generated method stub
+                    Log.d(LOGTAG, "on click listener");
+
+                    if (takingPicture) return;
+
+                    takingPicture = true;
 
                     if (justfocussed) {
                         justfocussed = false;
                     } else {
                         try {
+                            Log.d(LOGTAG, "going to take picture");
                             camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
                         } catch (Exception ex) {
                             Log.d(LOGTAG, "failed to take picture!");
                         }
+
                     }
+                    takingPicture = false;
                 }
             };
 
@@ -147,6 +162,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         @Override
         public void onPictureTaken(byte[] arg0, Camera arg1) {
+
 
             lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
 
@@ -170,7 +186,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             onionskin.setBmp(lastPicture);
 
-            for (int ll = lastPictureFile.length - 1; ll > 1; ll++) {
+            for (int ll = lastPictureFile.length - 1; ll > 1; ll--) {
                 lastPictureFile[ll] = lastPictureFile[ll - 1];
             }
 

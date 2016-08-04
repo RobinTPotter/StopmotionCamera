@@ -5,9 +5,7 @@
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$7$2.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$4.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/R$menu.class \
-/home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$6$2.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$6$1.class \
-/home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$6$3.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$7$3.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/StopmotionCamera$5.class \
 /home/deadmeat/Spod/StopmotionCamera/bin/classes/robin/stopmotion/BuildConfig.class \

@@ -32,7 +32,9 @@ public class Onionskin extends View {
 
     @Override
     public void setActivated(boolean activated) {
+        if (!activated) Log.d(LOGTAG,"INACTIVE");
         this.activated = activated;
+        if (activated) Log.d(LOGTAG,"ACTIVE");
     }
 
     private boolean activated=true;
