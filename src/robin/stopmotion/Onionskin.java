@@ -20,7 +20,7 @@ public class Onionskin extends View {
 
     private int numSkins = 3;
     Bitmap bmp;
-    String timeupdate = "not set";
+    String timeupdate = ""; //"not set";
     Bitmap skins[];
 
     int opacity = 128;
