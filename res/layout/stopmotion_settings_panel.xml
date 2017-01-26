@@ -5,7 +5,7 @@
              android:rowCount="4" android:orientation="vertical">
 
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Opacity"
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/opacity"
               android:id="@+id/textOpacity" android:layout_column="1"/>
     <SeekBar
                 android:layout_width="fill_parent"
@@ -17,7 +17,7 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Date Format String"
+            android:text="@string/label_date_format_string"
             android:id="@+id/textFormatString" android:layout_column="1"/>
     <EditText
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content" android:gravity="right">
         <Button
                 style="?android:attr/buttonStyleSmall"
-                android:text="def."
+                android:text="@string/button_default_date"
                 android:id="@+id/defaultDateButton"
                 android:longClickable="false" android:layout_column="3"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:minWidth="60dp"/>
         <Button
                 style="?android:attr/buttonStyleSmall"
-                android:text="set"
+                android:text="@string/button_set_date_patterns"
                 android:id="@+id/button"
                 android:layout_gravity="right" android:layout_column="2" android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:layout_alignParentTop="true"

@@ -80,8 +80,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     LayoutInflater controlInflater = null;
     LinearLayout viewControl;
 
-
-
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -215,7 +213,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionskin.updateBackgound();
         onionskin.invalidate();
 
-
     }
 
     @Override
@@ -279,8 +276,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         onionskin.setOpacity();
         onionskin.updateBackgound();
-
-
 
     }
 
@@ -430,7 +425,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         final SeekBar seekBar = (SeekBar) findViewById(R.id.previewSeekBar);
                         squashedPreview.setSeekbar(seekBar);
 
-                        squashedPreview.setDirectory(currentDirectory);
+                            squashedPreview.setDirectory(currentDirectory);
 
                         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
@@ -663,7 +658,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         for (Camera.Size size : pictureSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
-            ;
+
             MenuItem mi = sm2.add(GROUPID_PICTURE, Menu.NONE, order++, text);
         }
 

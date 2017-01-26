@@ -21,7 +21,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set Skins"
+                android:text="@string/label_set_skins"
                 android:id="@+id/setSkins"
                 android:layout_above="@+id/previewSeekBar" android:layout_alignParentLeft="true"/>
 

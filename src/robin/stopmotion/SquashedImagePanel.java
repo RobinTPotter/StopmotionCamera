@@ -23,13 +23,13 @@ import java.util.Collections;
 public class SquashedImagePanel extends View {
 
     private static String LOGTAG = "StopmotionCameraLog-SquashedImagePanel";
-    File directory;
-    String[] images;
-    Bitmap[] bmps;
-    boolean[] selected;
-    
-    int cc = 3;
-    int rr = 4;
+    private File directory;
+    private String[] images;
+    private Bitmap[] bmps;
+    //private  boolean[] selected;
+
+    private int cc = 3;
+    private int rr = 4;
 
     public SquashedImagePanel(Context context) {
         super(context);

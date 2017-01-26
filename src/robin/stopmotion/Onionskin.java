@@ -19,11 +19,11 @@ public class Onionskin extends View {
     private static int SKINS_MIN_ALPHA = 0;
 
     private int numSkins = 3;
-    Bitmap bmp;
-    String timeupdate = ""; //"not set";
-    Bitmap skins[];
+    private Bitmap bmp;
+    private String timeupdate = ""; //"not set";
+    private  Bitmap skins[];
 
-    int opacity = 128;
+    private int opacity = 128;
 
     @Override
     public boolean isActivated() {
