@@ -5,6 +5,7 @@
     <string name="opacity">Opacity</string>
     <string name="label_date_format_string">Date Format String</string>
     <string name="label_set_skins">Set Skins</string>
+    <string name="label_playback">Play</string>
     <string name="button_default_date">def.</string>
     <string name="button_set_date_patterns">set</string>
 </resources>

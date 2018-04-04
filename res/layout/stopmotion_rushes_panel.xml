@@ -8,22 +8,38 @@
     <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" android:id="@+id/main_rushes_layout">
+
         <robin.stopmotion.SquashedPreview
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:id="@+id/view"
-        />
-        <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/previewSeekBar" android:layout_gravity="center_horizontal"
-                android:layout_alignParentBottom="true"/>
-        <Button
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/view"
+                android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+                android:layout_above="@+id/linearLayout"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_set_skins"
-                android:id="@+id/setSkins"
-                android:layout_above="@+id/previewSeekBar" android:layout_alignParentLeft="true"/>
+                android:id="@+id/linearLayout"
+                android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
+                android:layout_marginBottom="0dp">
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_set_skins"
+                    android:id="@+id/setSkins"
+                   />
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_playback"
+                    android:id="@+id/play"
+                 />
+            <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/previewSeekBar" android:layout_gravity="center_vertical"
+            />
+        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <SurfaceView
-        android:id="@+id/camerapreview"
+        android:id="@+id/main_camera_activity"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 

@@ -12,7 +12,7 @@ public final class R {
     }
     public static final class id {
         public static final int button=0x7f060007;
-        public static final int camerapreview=0x7f06000a;
+        public static final int main_camera_activity =0x7f06000a;
         public static final int control=0x7f060000;
         public static final int defaultDateButton=0x7f060006;
         public static final int editDate=0x7f060005;
@@ -28,7 +28,7 @@ public final class R {
         public static final int view=0x7f06000b;
     }
     public static final class layout {
-        public static final int control=0x7f030000;
+        public static final int camera_control_screen =0x7f030000;
         public static final int details=0x7f030001;
         public static final int main_camera_activity=0x7f030002;
         public static final int stopmotion_rushes_panel=0x7f030003;

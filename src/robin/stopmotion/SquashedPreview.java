@@ -32,7 +32,7 @@ public class SquashedPreview extends View {
     private String[] images;
     private int currentImage = 0;
     private SeekBar seekbar;
-    int MAX_IMAGES = 20;
+    int MAX_IMAGES = 100;
 
     public SquashedPreview(Context context) {
         super(context);
@@ -67,22 +67,18 @@ public class SquashedPreview extends View {
     }
 
     public void setDirectory(File d) {
-        directory = d;
+        directory = d ;
 
         images = directory.list(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String filename) {
-                return filename.endsWith(".jpg");
+                return filename.endsWith(".thumb.jpg");
             }
         });
 
         //Arrays.sort(images, Collections.reverseOrder());
 
         Log.d(LOGTAG, "images " + images.length);
-
-
-
-
 
         if (images.length > 0) {
 
@@ -91,17 +87,19 @@ public class SquashedPreview extends View {
 
             previewImages = new Bitmap[images.length];
             for (int ii = 0; (ii < to_be_used); ii++) {
-
                 int imageindex = ii + images.length - to_be_used;
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 Log.d(LOGTAG, "loading " + images[imageindex]);
                 Bitmap pic = BitmapFactory.decodeFile(directory + "/" + images[imageindex], bmOptions);
                 Log.d(LOGTAG, pic.toString());
-                previewImages[ii] = Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
+                previewImages[ii] = pic; //Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
                 setImageNumber(ii);
                 seekbar.setMax(ii);
             }
         }
+
+        seekbar.setProgress(0);
+
     }
 
 
