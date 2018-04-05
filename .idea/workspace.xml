@@ -57,19 +57,19 @@
       <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12290503">
-              <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.43156424">
+              <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9822#10005#0" expanded="true" />
-                <element signature="e#10004#10005#0" expanded="true" />
-                <element signature="e#10194#10710#0" expanded="true" />
-                <element signature="e#10709#10710#0" expanded="true" />
+                <element signature="e#9909#10092#0" expanded="true" />
+                <element signature="e#10091#10092#0" expanded="true" />
+                <element signature="e#10281#10797#0" expanded="true" />
+                <element signature="e#10796#10797#0" expanded="true" />
                 <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="e#17213#18048#0" expanded="true" />
-                <element signature="e#18047#18048#0" expanded="true" />
-                <element signature="e#18242#18822#0" expanded="true" />
-                <element signature="e#18821#18822#0" expanded="true" />
+                <element signature="e#17300#18135#0" expanded="true" />
+                <element signature="e#18134#18135#0" expanded="true" />
+                <element signature="e#18329#18909#0" expanded="true" />
+                <element signature="e#18908#18909#0" expanded="true" />
                 <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
               </folding>
             </state>
@@ -1106,17 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/io/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="11" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
-          <folding>
-            <element signature="e#4703#4704#0" expanded="false" />
-            <element signature="e#4765#4766#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/LinearLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33240223">
@@ -1262,21 +1251,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33240223">
+          <caret line="257" column="19" selection-start-line="257" selection-start-column="19" selection-end-line="257" selection-end-column="19" />
+          <folding>
+            <element signature="e#9635#9636#0" expanded="true" />
+            <element signature="e#9672#9673#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12290503">
-          <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.43156424">
+          <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9822#10005#0" expanded="true" />
-            <element signature="e#10004#10005#0" expanded="true" />
-            <element signature="e#10194#10710#0" expanded="true" />
-            <element signature="e#10709#10710#0" expanded="true" />
+            <element signature="e#9909#10092#0" expanded="true" />
+            <element signature="e#10091#10092#0" expanded="true" />
+            <element signature="e#10281#10797#0" expanded="true" />
+            <element signature="e#10796#10797#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#17213#18048#0" expanded="true" />
-            <element signature="e#18047#18048#0" expanded="true" />
-            <element signature="e#18242#18822#0" expanded="true" />
-            <element signature="e#18821#18822#0" expanded="true" />
+            <element signature="e#17300#18135#0" expanded="true" />
+            <element signature="e#18134#18135#0" expanded="true" />
+            <element signature="e#18329#18909#0" expanded="true" />
+            <element signature="e#18908#18909#0" expanded="true" />
             <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
           </folding>
         </state>

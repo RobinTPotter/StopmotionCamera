@@ -113,8 +113,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         try {
             //File filename = new File(Environment.getExternalStorageDirectory() + "/Download/ffmpeg_v2.8");
             //filename.createNewFile();
-            String cmd1 = "chmod u+x " + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8";
-            Runtime.getRuntime().exec(cmd1);
+            File ffmpeg = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8");
+            ffmpeg.setExecutable(true);
+
+            Toast.makeText(this, "Can execute "+ffmpeg.canExecute(), Toast.LENGTH_LONG).show();
             String cmd2 = "." + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8 -formats > " + Environment.getExternalStorageDirectory() + "/test.txt";
             Runtime.getRuntime().exec(cmd2);
         } catch (IOException e) {
