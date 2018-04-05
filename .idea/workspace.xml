@@ -57,84 +57,21 @@
       <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5312955">
-              <caret line="482" column="45" selection-start-line="482" selection-start-column="45" selection-end-line="482" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.12290503">
+              <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#9822#10005#0" expanded="true" />
+                <element signature="e#10004#10005#0" expanded="true" />
+                <element signature="e#10194#10710#0" expanded="true" />
+                <element signature="e#10709#10710#0" expanded="true" />
                 <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="e#16102#16594#0" expanded="true" />
-                <element signature="e#16593#16594#0" expanded="true" />
-                <element signature="method#setStretch#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="method#idPreviewSize#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="method#idPictureSize#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
+                <element signature="e#17213#18048#0" expanded="true" />
+                <element signature="e#18047#18048#0" expanded="true" />
+                <element signature="e#18242#18822#0" expanded="true" />
+                <element signature="e#18821#18822#0" expanded="true" />
                 <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
-                <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SquashedPreview.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-              <folding>
-                <element signature="e#1790#1977#0" expanded="true" />
-                <element signature="e#1976#1977#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OnionSkinView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/OnionSkinView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="185" column="27" selection-start-line="185" selection-start-column="27" selection-end-line="185" selection-end-column="27" />
-              <folding>
-                <element signature="e#870#871#0" expanded="true" />
-                <element signature="e#905#906#0" expanded="true" />
-                <element signature="e#964#965#0" expanded="true" />
-                <element signature="e#999#1000#0" expanded="true" />
-                <element signature="e#1064#1065#0" expanded="true" />
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1353#1354#0" expanded="true" />
-                <element signature="e#1385#1386#0" expanded="true" />
-                <element signature="e#1623#1624#0" expanded="true" />
-                <element signature="e#1653#1654#0" expanded="true" />
-                <element signature="e#2360#2361#0" expanded="true" />
-                <element signature="e#2395#2396#0" expanded="true" />
-                <element signature="e#5657#5658#0" expanded="true" />
-                <element signature="e#5707#5708#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main_camera_activity.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main_camera_activity.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.576923">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stopmotion_rushes_panel.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617">
-              <caret line="10" column="84" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -445,6 +382,11 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="315" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.SHOW" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="onhover&#9;PSI&#9;JAVA://android.view.View.OnHoverListener" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="stopmotioncamera" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -824,53 +766,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/camera_control_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_camera_activity.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/camera_control_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1222,51 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/OnionSkinView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="185" column="27" selection-start-line="185" selection-start-column="27" selection-end-line="185" selection-end-column="27" />
-          <folding>
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-            <element signature="e#964#965#0" expanded="true" />
-            <element signature="e#999#1000#0" expanded="true" />
-            <element signature="e#1064#1065#0" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1353#1354#0" expanded="true" />
-            <element signature="e#1385#1386#0" expanded="true" />
-            <element signature="e#1623#1624#0" expanded="true" />
-            <element signature="e#1653#1654#0" expanded="true" />
-            <element signature="e#2360#2361#0" expanded="true" />
-            <element signature="e#2395#2396#0" expanded="true" />
-            <element signature="e#5657#5658#0" expanded="true" />
-            <element signature="e#5707#5708#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_camera_activity.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/camera_control_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12859304">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/LinearLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33240223">
@@ -1316,29 +1166,118 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="549" column="26" selection-start-line="549" selection-start-column="23" selection-end-line="549" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/Button.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35893854">
+          <caret line="96" column="29" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/util/TimerTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="25" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/util/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2346369">
+          <caret line="411" column="21" selection-start-line="411" selection-start-column="21" selection-end-line="411" selection-end-column="21" />
+          <folding>
+            <element signature="e#13052#13053#0" expanded="false" />
+            <element signature="e#13079#13080#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/OnionSkinView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding>
+            <element signature="e#870#871#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#999#1000#0" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+            <element signature="e#1353#1354#0" expanded="true" />
+            <element signature="e#1385#1386#0" expanded="true" />
+            <element signature="e#1623#1624#0" expanded="true" />
+            <element signature="e#1653#1654#0" expanded="true" />
+            <element signature="e#2360#2361#0" expanded="true" />
+            <element signature="e#2395#2396#0" expanded="true" />
+            <element signature="e#5657#5658#0" expanded="true" />
+            <element signature="e#5707#5708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33240223">
-          <caret line="18491" column="21" selection-start-line="18491" selection-start-column="21" selection-end-line="18491" selection-end-column="21" />
+          <caret line="14801" column="16" selection-start-line="14801" selection-start-column="16" selection-end-line="14801" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main_camera_activity.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1636364">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/camera_control_screen.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12859304">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/os/Environment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21368715">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5312955">
-          <caret line="482" column="45" selection-start-line="482" selection-start-column="45" selection-end-line="482" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.12290503">
+          <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9822#10005#0" expanded="true" />
+            <element signature="e#10004#10005#0" expanded="true" />
+            <element signature="e#10194#10710#0" expanded="true" />
+            <element signature="e#10709#10710#0" expanded="true" />
             <element signature="method#onCreateOptionsMenu#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="e#16102#16594#0" expanded="true" />
-            <element signature="e#16593#16594#0" expanded="true" />
-            <element signature="method#setStretch#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="method#idPreviewSize#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="method#idPictureSize#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="method#surfaceChanged#0;class#StopmotionCamera#0" expanded="false" />
+            <element signature="e#17213#18048#0" expanded="true" />
+            <element signature="e#18047#18048#0" expanded="true" />
+            <element signature="e#18242#18822#0" expanded="true" />
+            <element signature="e#18821#18822#0" expanded="true" />
             <element signature="method#surfaceCreated#0;class#StopmotionCamera#0" expanded="false" />
-            <element signature="method#setSize#0;class#StopmotionCamera#0" expanded="false" />
           </folding>
         </state>
       </provider>

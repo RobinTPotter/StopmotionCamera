@@ -36,8 +36,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
     private static String BUTTON_TOGGLE_STRETCH = "Toggle";
-    //  private static String CHANGE_OPACITY_INC = "Opac+";
-    //  private static String CHANGE_OPACITY_DEC = "Opac-";
+
     private static String THUMBNAIL_SUBFOLDER = "/thumb";
 
     private static String ONION_LEAF_INC = "Skin+";
@@ -82,7 +81,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         super.onCreate(savedInstanceState);
 
-        process = launchLogcat();
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -111,7 +109,29 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         initOnionskin(viewSiteForOnionSkinControl, 3);
 
+
+        try {
+            //File filename = new File(Environment.getExternalStorageDirectory() + "/Download/ffmpeg_v2.8");
+            //filename.createNewFile();
+            String cmd1 = "chmod u+x " + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8";
+            Runtime.getRuntime().exec(cmd1);
+            String cmd2 = "." + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8 -formats > " + Environment.getExternalStorageDirectory() + "/test.txt";
+            Runtime.getRuntime().exec(cmd2);
+        } catch (IOException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+
+        }
+
+
+
         Log.d(LOGTAG, "created");
+
+
+
+
+
+
     }
 
     Button.OnClickListener buttonClickListener =
@@ -165,10 +185,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             String stamp = String.valueOf((new Date()).getTime());
             Uri uriTarget = android.net.Uri.fromFile(new File(currentDirectory, stamp + ".jpg"));
-            Uri uriTarget_thumb = android.net.Uri.fromFile(new File(currentDirectory.getPath() + THUMBNAIL_SUBFOLDER + '/' , stamp + ".thumb.jpg"));
+            Uri uriTarget_thumb = android.net.Uri.fromFile(new File(currentDirectory.getPath() + THUMBNAIL_SUBFOLDER + '/', stamp + ".thumb.jpg"));
 
             //lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
-            Bitmap smallerPicture = Bitmap.createScaledBitmap(lastPicture,lastPicture.getWidth()/20,lastPicture.getHeight()/20,false);
+            Bitmap smallerPicture = Bitmap.createScaledBitmap(lastPicture, lastPicture.getWidth() / 20, lastPicture.getHeight() / 20, false);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             smallerPicture.compress(Bitmap.CompressFormat.JPEG, 50, stream);
             byte[] byteArray = stream.toByteArray();
@@ -268,6 +288,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         viewSiteForOnionSkin.addView(onionSkinView);
 
+        Button test=new Button(viewSiteForOnionSkin.getContext());
+        test.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(StopmotionCamera.this, "X", Toast.LENGTH_SHORT).show();
+            }
+        });
+        test.layout(0,0,20,20);
+        viewSiteForOnionSkin.addView(test);
+
         onionSkinView.setOnClickListener(buttonClickListener);
 
         onionSkinView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -283,6 +312,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 return false;
             }
         });
+
+        viewSiteForOnionSkin.invalidate();
 
         onionSkinView.setOpacity();
         onionSkinView.updateBackgound();
@@ -321,7 +352,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         editor.putInt("numSkins", numSkins);
         // Commit the edits!
         editor.commit();
-        Log.d(LOGTAG, "committed");
+
+
+        Log.d(LOGTAG, "committed and logged");
+        process = launchLogcat();
+        Toast.makeText(StopmotionCamera.this,"properties saved and logged", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -352,6 +387,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
 
+        Toast.makeText(StopmotionCamera.this,"properties loaded", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -377,21 +413,21 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         /// Handle item selection
         if (item.getGroupId() == GROUPID_PREVIEW) {
 
-            Log.d(LOGTAG,"GROUPID_PREVIEW");
+            Log.d(LOGTAG, "GROUPID_PREVIEW");
             /// preview
             success = idPreviewSize(item.getTitle().toString(), -1);
 
         } else if (item.getGroupId() == GROUPID_PICTURE) {
 
-            Log.d(LOGTAG,"GROUPID_PICTURE");
+            Log.d(LOGTAG, "GROUPID_PICTURE");
             /// pict
             success = idPictureSize(item.getTitle().toString(), -1);
 
         } else if (item.getGroupId() == GROUPID_OTHER) {
 
-            Log.d(LOGTAG,"GROUPID_OTHER");
+            Log.d(LOGTAG, "GROUPID_OTHER");
             if (item.getTitle().equals(BUTTON_TOGGLE_STRETCH)) {
-                Log.d(LOGTAG,"BUTTON_TOGGLE_STRETCH");
+                Log.d(LOGTAG, "BUTTON_TOGGLE_STRETCH");
 
                 setStretch(!stretch);
 
@@ -403,13 +439,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             } else if (item.getTitle().equals(ONION_LEAF_INC)) {
 
-                Log.d(LOGTAG,"ONION_LEAF_INC");
+                Log.d(LOGTAG, "ONION_LEAF_INC");
                 numSkins++;
                 onionSkinView.setOnionSkins(numSkins);
 
             } else if (item.getTitle().equals(ONION_LEAF_DEC)) {
 
-                Log.d(LOGTAG,"ONION_LEAF_DEC");
+                Log.d(LOGTAG, "ONION_LEAF_DEC");
                 if (numSkins > 1) {
                     numSkins--;
                     onionSkinView.setOnionSkins(numSkins);
@@ -417,9 +453,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             } else if (item.getTitle().equals(SHOW_RUSHES)) {
 
-                Log.d(LOGTAG,"SHOW_RUSHES");
+                Log.d(LOGTAG, "SHOW_RUSHES");
                 onionSkinView.setActivated(false);
-
 
                 currentDirectory = getAlbumStorageDir();
 
@@ -445,7 +480,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         final SeekBar seekBar = (SeekBar) findViewById(R.id.previewSeekBar);
                         squashedPreview.setSeekbar(seekBar);
 
-                            squashedPreview.setDirectory(new File(currentDirectory.getPath() , THUMBNAIL_SUBFOLDER));
+                        squashedPreview.setDirectory(new File(currentDirectory.getPath(), THUMBNAIL_SUBFOLDER));
 
                         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
@@ -454,14 +489,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             }
 
                             @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-
-                            }
+                            public void onStartTrackingTouch(SeekBar seekBar) { }
 
                             @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-
-                            }
+                            public void onStopTrackingTouch(SeekBar seekBar) { }
                         });
 
                         Button buttonSetSkins = (Button) findViewById(R.id.setSkins);
@@ -470,31 +501,41 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             public void onClick(View v) {
                                 for (int nn = seekBar.getMax() - 1; nn >= seekBar.getProgress(); nn--) {
                                     onionSkinView.setBmp(squashedPreview.previewImages[nn]);
-
                                 }
                             }
                         });
 
+                        final TimerTask t = new TimerTask() {
+                            public void run() {
+                                try {
+                                    int progress = seekBar.getProgress();
+                                    progress++;
+                                    if (progress > seekBar.getMax()) {
+                                        progress = 0;
+                                    }
+                                    seekBar.setProgress(progress);
+                                    //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
+                                } catch (Exception e) {
+                                    Toast.makeText(StopmotionCamera.this, "TimerTask " +  e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        };
+
+                        final Timer timer = new Timer();
 
                         Button buttonPlay = (Button) findViewById(R.id.play);
-                        buttonPlay.setOnHoverListener(new View.OnHoverListener() {
-                            public boolean onHover(View v, MotionEvent e) {
-                                int progress = seekBar.getProgress()+1;
-                                if (progress > seekBar.getMax()) {
-                                    progress = 0;
+
+                        buttonPlay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    //timer.schedule(t,10);
+                                    timer.scheduleAtFixedRate(t, 300, 100);
+                                } catch (Exception e) {
+                                    Toast.makeText(StopmotionCamera.this,"Timer schedule " + e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
-                                seekBar.setProgress(progress);
-                                return true;
                             }
-
                         });
-                       // buttonPlay.setOnClickListener(new View.OnClickListener() {
-                        //    @Override
-                       //     public void onClick(View v) {
-                       //
-                        //    }
-                      //  });
-
                     }
                 }).show();
 
@@ -502,7 +543,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             } else if (item.getTitle().equals(CHANGE_DATE_FORMAT)) {
                 // showEditDialog();
-                Log.d(LOGTAG,"CHANGE_DATE_FORMAT");
+                Log.d(LOGTAG, "CHANGE_DATE_FORMAT");
                 onionSkinView.setActivated(false);
 
                 getSettingsDialog().show();
@@ -516,66 +557,66 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             if (previewing) camera.startPreview();
         }
         onionSkinView.invalidate();
-        Log.d(LOGTAG,"end of menu "+success);
+        Log.d(LOGTAG, "end of menu " + success);
         return success;
     }
 
-    private Dialog getSettingsDialog(){
+    private Dialog getSettingsDialog() {
 
         return (new Dialog(this) {
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.stopmotion_settings_panel);
+            @Override
+            protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.stopmotion_settings_panel);
 
-            getWindow().setLayout(-1, -1);
+                getWindow().setLayout(-1, -1);
 
-            SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
-            seekBar.setMax(255);
-            seekBar.setProgress(onionSkinView.getOpacity());
+                SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+                seekBar.setMax(255);
+                seekBar.setProgress(onionSkinView.getOpacity());
 
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    Log.d(LOGTAG, "progress " + progress);
-                    onionSkinView.setOpacity(progress);
-                    onionSkinView.updateBackgound();
-                    onionSkinView.invalidate();
-                }
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        Log.d(LOGTAG, "progress " + progress);
+                        onionSkinView.setOpacity(progress);
+                        onionSkinView.updateBackgound();
+                        onionSkinView.invalidate();
+                    }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
 
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-                }
-            });
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
 
-            final EditText editText = (EditText) findViewById(R.id.editDate);
-            editText.setClickable(true);
-            editText.setEnabled(true);
-            editText.setText(dateFormat);
+                final EditText editText = (EditText) findViewById(R.id.editDate);
+                editText.setClickable(true);
+                editText.setEnabled(true);
+                editText.setText(dateFormat);
 
-            final Button button = (Button) findViewById(R.id.button);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dateFormat = editText.getText().toString();
+                final Button button = (Button) findViewById(R.id.button);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dateFormat = editText.getText().toString();
 
-                }
-            });
+                    }
+                });
 
-            final Button defbutton = (Button) findViewById(R.id.defaultDateButton);
-            defbutton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    editText.setText(defaultDateFormat);
-                }
-            });
+                final Button defbutton = (Button) findViewById(R.id.defaultDateButton);
+                defbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editText.setText(defaultDateFormat);
+                    }
+                });
 
-        }
-    });
+            }
+        });
     }
 
     public void setStretch(boolean stretch) {
@@ -767,7 +808,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         String albumName = "Stopmotion-";
         try {
             albumName = "Stopmotion-" + (new SimpleDateFormat(dateFormat).format(new Date()));
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             getSettingsDialog().show();
         }
         // Get the directory for the user's public pictures directory.
