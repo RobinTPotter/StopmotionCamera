@@ -1,6 +1,7 @@
 package robin.stopmotion;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -15,6 +16,7 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
@@ -54,6 +56,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     Camera camera;
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
+    Button testButton;
     boolean previewing = false;
 
     boolean justfocussed = false;
@@ -110,27 +113,53 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         initOnionskin(viewSiteForOnionSkinControl, 3);
 
 
+
+        Object ob2 = findViewById(R.id.testButton);
+        testButton = (Button) ob2;
+        testButton.setText("..");
+
+        testButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                StopmotionCamera.this.openOptionsMenu();
+            }
+        });
+
+
+
+
+/*
         try {
+
+
+            Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
+
+
             //File filename = new File(Environment.getExternalStorageDirectory() + "/Download/ffmpeg_v2.8");
             //filename.createNewFile();
             File ffmpeg = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8");
-            ffmpeg.setExecutable(true);
+            File internal_ffmpeg  = new File(this.getApplicationInfo().dataDir+"/ffmpeg_v2.8");
+            copy(ffmpeg, internal_ffmpeg);
 
-            Toast.makeText(this, "Can execute "+ffmpeg.canExecute(), Toast.LENGTH_LONG).show();
-            String cmd2 = "." + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8 -formats > " + Environment.getExternalStorageDirectory() + "/test.txt";
+
+            internal_ffmpeg.setExecutable(true);
+
+            Toast.makeText(this, "Can execute "+internal_ffmpeg.canExecute(), Toast.LENGTH_LONG).show();
+
+            File output = new File(Environment.getExternalStorageDirectory() + "/test.log");
+
+            String cmd2 = "./"  + internal_ffmpeg.getPath() + " --help > " + output.getAbsolutePath();
             Runtime.getRuntime().exec(cmd2);
         } catch (IOException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
 
-        }
+        }*/
 
 
+        //Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
 
         Log.d(LOGTAG, "created");
-
-
-
 
 
 
@@ -244,6 +273,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.setOpacity();
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
+        testButton.invalidate();
+        testButton.bringToFront();
 
     }
 
@@ -261,6 +292,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         bundle.putInt("pictureSizeWhich", pictureSizeWhich);
         bundle.putInt("numSkins", numSkins);
         onionSkinView.invalidate();
+        testButton.invalidate();
+        testButton.bringToFront();
 
     }
 
@@ -290,14 +323,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         viewSiteForOnionSkin.addView(onionSkinView);
 
-        Button test=new Button(viewSiteForOnionSkin.getContext());
-        test.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(StopmotionCamera.this, "X", Toast.LENGTH_SHORT).show();
-            }
-        });
-        test.layout(0,0,20,20);
-        viewSiteForOnionSkin.addView(test);
+
 
         onionSkinView.setOnClickListener(buttonClickListener);
 
@@ -336,6 +362,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
+        testButton.invalidate();
+        testButton.bringToFront();
         Log.d(LOGTAG, "paused");
 
     }
@@ -370,6 +398,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         load();
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
+        testButton.invalidate();
+        testButton.bringToFront();
     }
 
     private void load() {
@@ -559,6 +589,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             if (previewing) camera.startPreview();
         }
         onionSkinView.invalidate();
+        testButton.invalidate();
+        testButton.bringToFront();
         Log.d(LOGTAG, "end of menu " + success);
         return success;
     }
@@ -584,6 +616,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         onionSkinView.setOpacity(progress);
                         onionSkinView.updateBackgound();
                         onionSkinView.invalidate();
+                        testButton.invalidate();
+                        testButton.bringToFront();
                     }
 
                     @Override
@@ -802,6 +836,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
 
+        testButton.layout(10,10,160,160);
+        testButton.invalidate();
+        testButton.bringToFront();
+
         Log.d(LOGTAG, "setSize " + width + " " + height);
 
     }
@@ -853,5 +891,26 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         }.start();
     }
+
+
+    public static void copy(File src, File dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        try {
+            OutputStream out = new FileOutputStream(dst);
+            try {
+                // Transfer bytes from in to out
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+            } finally {
+                out.close();
+            }
+        } finally {
+            in.close();
+        }
+    }
+
 }
 
