@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="fill_parent"
-             android:layout_height="fill_parent" android:layout_gravity="center_horizontal" android:columnCount="12"
-             android:rowCount="4" android:orientation="vertical">
+             android:layout_height="fill_parent" android:layout_gravity="center_horizontal"
+             android:orientation="vertical">
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/opacity"
               android:id="@+id/textOpacity" android:layout_column="1"/>
     <SeekBar
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/seekBar"
-    />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_below="@+id/textOpacity" android:layout_alignParentLeft="true"/>
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
               android:id="@+id/textView3" android:layout_column="1"/>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_date_format_string"
-            android:id="@+id/textFormatString" android:layout_column="1"/>
+            android:id="@+id/textFormatString" android:layout_column="1"
+            android:layout_below="@+id/seekBar" android:layout_alignParentLeft="true"/>
     <EditText
             android:layout_width="fill_parent"
             android:layout_height="60dp"
-            android:id="@+id/editDate"
+            android:id="@+id/editDateFormat"
             android:focusableInTouchMode="true"
-            android:inputType="text" android:enabled="true" android:focusable="true"  />
+            android:inputType="text" android:enabled="true" android:focusable="true"
+            android:layout_below="@+id/textFormatString" android:layout_alignParentLeft="true"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="right">
+            android:layout_height="wrap_content" android:gravity="right"
+            android:id="@+id/linearLayout2"
+            android:layout_alignParentBottom="true" android:layout_alignParentLeft="true">
         <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="@string/button_default_date"
-                android:id="@+id/defaultDateButton"
-                android:longClickable="false" android:layout_column="3"
-                android:layout_width="wrap_content" android:layout_height="60dp"
-                android:layout_gravity="right" android:layout_alignParentEnd="true"
-               />
-        <Button
-                style="?android:attr/buttonStyleSmall"
-                android:text="@string/button_set_date_patterns"
-                android:id="@+id/button"
-                android:layout_gravity="right" android:layout_column="2" android:layout_width="wrap_content"
-                android:layout_height="60dp" android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" android:layout_alignStart="@id/editDate"
-               />
+            style="?android:attr/buttonStyleSmall"
+            android:text="@string/button_default_date"
+            android:id="@+id/defaultDateButton"
+            android:longClickable="false" android:layout_column="3"
+            android:layout_width="wrap_content" android:layout_height="60dp"
+            android:layout_gravity="right" android:layout_alignParentEnd="true"
+    />
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:text="@string/button_set_date_patterns"
+            android:id="@+id/button"
+            android:layout_gravity="right" android:layout_column="2" android:layout_width="wrap_content"
+            android:layout_height="60dp" android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" android:layout_alignStart="@id/editDateFormat"
+    />
+
     </LinearLayout>
+
+    </RelativeLayout>
 
 
 </LinearLayout>

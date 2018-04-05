@@ -1,7 +1,6 @@
 package robin.stopmotion;
 
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -16,7 +15,7 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
-import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
@@ -79,6 +78,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     LayoutInflater controlInflater = null;
     LinearLayout viewSiteForOnionSkinControl;
+    private int lastGoodHeight =0;
+    private int lastGoodWidth =0;
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -334,7 +335,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     @Override
                     public void onAutoFocus(boolean success, Camera camera) {
                         justfocussed = true;
-                        Toast.makeText(StopmotionCamera.this, "focus", Toast.LENGTH_LONG).show();
+                        Toast.makeText(StopmotionCamera.this, "focus", Toast.LENGTH_SHORT).show();
                     }
                 });
                 return false;
@@ -419,7 +420,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
 
-        Toast.makeText(StopmotionCamera.this,"properties loaded", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(StopmotionCamera.this,"properties loaded", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -579,6 +580,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 onionSkinView.setActivated(false);
 
                 getSettingsDialog().show();
+
+                onionSkinView.invalidate();
+                setSize();
+                setStretch();
+                testButton.invalidate();
+                testButton.bringToFront();
                 onionSkinView.setActivated(true);
             }
 
@@ -600,10 +607,28 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         return (new Dialog(this) {
             @Override
             protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
+
+
+
+
+
                 super.onCreate(savedInstanceState);
+
+
+
+                requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
                 setContentView(R.layout.stopmotion_settings_panel);
 
-                getWindow().setLayout(-1, -1);
+                //getWindow().setLayout(-1, -1);
 
                 SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
                 seekBar.setMax(255);
@@ -629,7 +654,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 });
 
-                final EditText editText = (EditText) findViewById(R.id.editDate);
+                final EditText editText = (EditText) findViewById(R.id.editDateFormat);
                 editText.setClickable(true);
                 editText.setEnabled(true);
                 editText.setText(dateFormat);
@@ -653,6 +678,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             }
         });
+    }
+
+    public void setStretch() {
+        setStretch(this.stretch);
     }
 
     public void setStretch(boolean stretch) {
@@ -790,12 +819,30 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         return true;
     }
 
+    public void setSize() {
+        setSize(lastGoodWidth,lastGoodHeight);
+    }
+
     public void setSize(int width, int height) {
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int measuredHeight = displayMetrics.heightPixels;
+        int measuredWidth = displayMetrics.widthPixels;
+
+        if (width==0 && height==0) {
+            width=measuredWidth;
+            height=measuredHeight;
+        }
 
         float asp = (float) width / height;
 
-        int measuredHeight = surfaceView.getMeasuredHeight();
-        int measuredWidth = surfaceView.getMeasuredWidth();
+
+
+
+
+        //int measuredHeight = surfaceView.getMeasuredHeight();
+        //int measuredWidth = surfaceView.getMeasuredWidth();
 
         float dev_asp = (float) measuredWidth / measuredHeight;
 
@@ -826,10 +873,19 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         }
 
+        //Toast.makeText(StopmotionCamera.this,"Size " + width +"x" + height  + " Screen " + measuredWidth + "x" + measuredHeight  , Toast.LENGTH_LONG).show();
+        surfaceView.getHolder().setFixedSize(width,height);
+
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width, height);
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
+
+
         int l = (measuredWidth - width) / 2;
         int t = (measuredHeight - height) / 2;
 
-        surfaceView.layout(l, t, l + width, t + height);
+        //surfaceView.layout(l, t, l + width, t + height);
+        surfaceView.setLayoutParams(layoutParams);
         surfaceView.invalidate();
 
         onionSkinView.layout(l, t, l + width, t + height);
@@ -842,6 +898,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         Log.d(LOGTAG, "setSize " + width + " " + height);
 
+        lastGoodHeight = height;
+        lastGoodWidth = width;
+
     }
 
     public File getAlbumStorageDir() {
@@ -850,6 +909,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             albumName = "Stopmotion-" + (new SimpleDateFormat(dateFormat).format(new Date()));
         } catch (Exception ex) {
             getSettingsDialog().show();
+            setSize();
+            setStretch();
         }
         // Get the directory for the user's public pictures directory.
         File file = new File(Environment.getExternalStoragePublicDirectory(

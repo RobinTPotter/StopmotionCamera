@@ -15,7 +15,7 @@ public final class R {
         public static final int main_camera_activity =0x7f06000a;
         public static final int control=0x7f060000;
         public static final int defaultDateButton=0x7f060006;
-        public static final int editDate=0x7f060005;
+        public static final int editDateFormat =0x7f060005;
         public static final int previewSeekBar=0x7f06000c;
         public static final int seekBar=0x7f060002;
         public static final int textFormatString=0x7f06000e;
