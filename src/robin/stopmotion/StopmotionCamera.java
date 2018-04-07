@@ -993,13 +993,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     //Toast.makeText(this,"alignment set default "  ,Toast.LENGTH_SHORT).show();
                     break;
             }
+
+
+
         testButton.setLayoutParams(params);
        // }
 
         // testButton.layout(measuredWidth - 200,50,measuredWidth - 50,200);
 
         testButton.invalidate();
-        //testButton.bringToFront();
+        testButton.bringToFront();
 
         Log.d(LOGTAG, "setSize " + width + " " + height);
 

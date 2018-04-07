@@ -1,6 +1,0 @@
-# view res/layout/stopmotion_rushes_panel.xml #generated:13
--keep class robin.stopmotion.SquashedPreview { <init>(...); }
-
-# view AndroidManifest.xml #generated:13
--keep class robin.stopmotion.StopmotionCamera { <init>(...); }
-
