@@ -172,31 +172,37 @@ public class OnionSkinView extends View {
         //getBackground().setAlpha(opacity);  // 50% transparent
     }
 
-    public void draw(Canvas c) {
+    public void draw(Canvas canvas) {
 
         if (!activated) return;
 
-        super.draw(c);
+        super.draw(canvas);
 
         //text paint
-        Paint p = new Paint();
-        p.setColor(Color.BLUE);
-        p.setTextSize(30.0f);
+        Paint overDetailPaint = new Paint();
+        overDetailPaint.setColor(Color.BLUE);
+        overDetailPaint.setTextSize(30.0f);
 
-        Paint pw = new Paint();
-        pw.setColor(Color.WHITE);
-        pw.setTextSize(30.0f);
-        pw.setStrokeWidth(6.0f);
+        Paint underDetailPaint = new Paint();
+        underDetailPaint.setColor(Color.WHITE);
+        underDetailPaint.setTextSize(30.0f);
+        underDetailPaint.setStrokeWidth(6.0f);
 
         int offset_skin_number = 36;
 
         //skin number text paint
-        Paint p2 = new Paint();
-        p2.setColor(Color.BLACK);
-        p2.setTextSize(42.0f);
-        p2.setStrokeWidth(8.0f);
+        Paint overSkinPaint = new Paint();
+        overSkinPaint.setColor(Color.BLACK);
+        overSkinPaint.setTextSize(42.0f);
+        overSkinPaint.setStrokeWidth(8.0f);
 
-        c.drawARGB(0, 0, 0, 0);
+        //skin number text paint
+        Paint underSkinPaint = new Paint();
+        underSkinPaint.setColor(Color.WHITE);
+        underSkinPaint.setTextSize(42.0f);
+        underSkinPaint.setStrokeWidth(8.0f);
+
+        canvas.drawARGB(0, 0, 0, 0);
 
         int opacity = 255;
         int opacityDecrease = (opacity - SKINS_MIN_ALPHA) / (numSkins);
@@ -217,10 +223,11 @@ public class OnionSkinView extends View {
                 if (_bmp != null) {
                     try {
 
-                        c.drawBitmap(_bmp, new Rect(0, 0, _bmp.getWidth(), _bmp.getHeight()),
+                        canvas.drawBitmap(_bmp, new Rect(0, 0, _bmp.getWidth(), _bmp.getHeight()),
                                 new Rect(0, 0, getWidth(), getHeight()), trans);
 
-                        c.drawText(String.valueOf(skin), 40, 40 + (skin * offset_skin_number), p2);
+                        canvas.drawText(String.valueOf(skin), 42, 42 + (skin * offset_skin_number), underSkinPaint);
+                        canvas.drawText(String.valueOf(skin), 40, 40 + (skin * offset_skin_number), overSkinPaint);
 
                     } catch (Exception ex) {
                         Toast.makeText(OnionSkinView.this.getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -229,11 +236,11 @@ public class OnionSkinView extends View {
                 }
             }
 
-            c.drawText(timeupdate, 11, 31, pw);
-            c.drawText(timeupdate, 10, 30, p);
+            canvas.drawText(timeupdate, 11, 32, underDetailPaint);
+            canvas.drawText(timeupdate, 10, 30, overDetailPaint);
 
         } else {
-            c.drawText("null array", 10, 50, p);
+            canvas.drawText("null array", 10, 50, overDetailPaint);
             initSkins();
         }
     }

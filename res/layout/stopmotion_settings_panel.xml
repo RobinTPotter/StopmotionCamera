@@ -94,60 +94,57 @@
         <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLayout2" android:orientation="horizontal" android:id="@+id/radiolayout">
+            android:orientation="horizontal" android:id="@+id/radiolayout">
 
 
 
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="10dp"
+                    android:text="@string/TL"
                     android:id="@+id/rdoTL"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
+                    android:background="@drawable/custom_radio_button"
+                    android:button="@android:color/transparent"
+
             />
 
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="10dp"
+                    android:text="@string/TR"
                     android:id="@+id/rdoTR"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@id/rdoTL"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
+                    android:background="@drawable/custom_radio_button"
+                    android:button="@android:color/transparent"
             />
 
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="10dp"
+                    android:text="@string/BL"
                     android:id="@+id/rdoBL"
                     android:layout_below="@id/rdoTL"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-
-                    android:layout_alignParentBottom="true" android:layout_alignRight="@+id/rdoTL"
-            />
+                    android:background="@drawable/custom_radio_button"
+                    android:button="@android:color/transparent"
+                android:layout_alignRight="@+id/rdoTL"
+                android:layout_alignBottom="@+id/rdoBR" />
 
 
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="10dp"
+                    android:text="@string/BR"
                     android:id="@+id/rdoBR"
+                    android:background="@drawable/custom_radio_button"
+                    android:button="@android:color/transparent"
                     android:layout_below="@id/rdoTR"
                     android:layout_toRightOf="@id/rdoBL"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-
             />
+
+
 
 
         </RelativeLayout>

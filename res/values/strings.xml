@@ -9,4 +9,8 @@
     <string name="label_playback">Play</string>
     <string name="button_default_date">default</string>
     <string name="button_set_date_patterns">set</string>
+    <string name="TL">TL</string>
+    <string name="BL">BL</string>
+    <string name="TR">TR</string>
+    <string name="BR">BR</string>
 </resources>
