@@ -20,6 +20,9 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import android.view.ViewGroup.LayoutParams;
+
+
+
 /// import android.R;
 
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
@@ -40,11 +43,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private static String THUMBNAIL_SUBFOLDER = "/thumb";
 
-    private static String ONION_LEAF_INC = "Skin+";
-    private static String ONION_LEAF_DEC = "Skin-";
+    //private static String ONION_LEAF_INC = "Skin+";
+    //private static String ONION_LEAF_DEC = "Skin-";
 
     private static String CHANGE_DATE_FORMAT = "Settings";
     private static String SHOW_RUSHES = "Preview";
+
+    private RadioGroup alignmentGroup;
 
     private int numSkins = 3;
 
@@ -64,6 +69,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     Canvas canvas;
 
+    int alignment;
+
     File currentDirectory;
 
     Camera.Size previewSize = null;
@@ -78,13 +85,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     LayoutInflater controlInflater = null;
     LinearLayout viewSiteForOnionSkinControl;
-    private int lastGoodHeight =0;
-    private int lastGoodWidth =0;
+    private int lastGoodHeight = 0;
+    private int lastGoodWidth = 0;
 
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -113,11 +119,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         initOnionskin(viewSiteForOnionSkinControl, 3);
 
-
-
         Object ob2 = findViewById(R.id.testButton);
         testButton = (Button) ob2;
-        testButton.setText("..");
+        testButton.setText("...");
 
         testButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -157,12 +161,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         }*/
 
-
         //Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
 
         Log.d(LOGTAG, "created");
-
-
 
     }
 
@@ -275,7 +276,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
         testButton.invalidate();
-        testButton.bringToFront();
+        //testButton.bringToFront();
 
     }
 
@@ -287,6 +288,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         bundle.putString("dateFormat", dateFormat);
 
         //bundle.putString("lastBmp", lastPictureFile);
+        bundle.putInt("buttonlignment", alignment);
         bundle.putInt("opacity", onionSkinView.getOpacity());
         bundle.putBoolean("stretch", stretch);
         bundle.putInt("previewSizeWhich", previewSizeWhich);
@@ -294,7 +296,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         bundle.putInt("numSkins", numSkins);
         onionSkinView.invalidate();
         testButton.invalidate();
-        testButton.bringToFront();
+        //testButton.bringToFront();
 
     }
 
@@ -323,8 +325,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 LinearLayout.LayoutParams.MATCH_PARENT));
 
         viewSiteForOnionSkin.addView(onionSkinView);
-
-
 
         onionSkinView.setOnClickListener(buttonClickListener);
 
@@ -364,7 +364,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
         testButton.invalidate();
-        testButton.bringToFront();
+       //testButton.bringToFront();
         Log.d(LOGTAG, "paused");
 
     }
@@ -377,6 +377,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         editor.putBoolean("stretch", stretch);
         editor.putInt("opacity", onionSkinView.getOpacity());
+        editor.putInt("buttonlignment", alignment);
         editor.putInt("previewSizeWhich", previewSizeWhich);
         editor.putInt("pictureSizeWhich", pictureSizeWhich);
         editor.putString("dateFormat", dateFormat);
@@ -384,10 +385,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         // Commit the edits!
         editor.commit();
 
-
         Log.d(LOGTAG, "committed and logged");
         process = launchLogcat();
-        Toast.makeText(StopmotionCamera.this,"properties saved and logged", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(StopmotionCamera.this, "properties saved and logged", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -400,7 +400,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
         testButton.invalidate();
-        testButton.bringToFront();
+        //testButton.bringToFront();
     }
 
     private void load() {
@@ -412,6 +412,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         previewSizeWhich = settings.getInt("previewSizeWhich", 100);
         pictureSizeWhich = settings.getInt("pictureSizeWhich", 100);
         numSkins = settings.getInt("numSkins", 3);
+        alignment = settings.getInt("buttonlignment", R.id.rdoTL);
 
         onionSkinView.setOnionSkins(numSkins);
 
@@ -470,19 +471,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 //     } else if (item.getTitle().equals(CHANGE_OPACITY_INC)) {
                 //       onionskin.increaseOpacity();
 
-            } else if (item.getTitle().equals(ONION_LEAF_INC)) {
+                //  } //else if (item.getTitle().equals(ONION_LEAF_INC)) {
 
-                Log.d(LOGTAG, "ONION_LEAF_INC");
-                numSkins++;
-                onionSkinView.setOnionSkins(numSkins);
+                //  Log.d(LOGTAG, "ONION_LEAF_INC");
+                // onionSkinView.skinsInc();
 
-            } else if (item.getTitle().equals(ONION_LEAF_DEC)) {
+                //  } //else if (item.getTitle().equals(ONION_LEAF_DEC)) {
 
-                Log.d(LOGTAG, "ONION_LEAF_DEC");
-                if (numSkins > 1) {
-                    numSkins--;
-                    onionSkinView.setOnionSkins(numSkins);
-                }
+                //  Log.d(LOGTAG, "ONION_LEAF_DEC");
+                //   onionSkinView.skinsDec();
 
             } else if (item.getTitle().equals(SHOW_RUSHES)) {
 
@@ -522,10 +519,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             }
 
                             @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) { }
+                            public void onStartTrackingTouch(SeekBar seekBar) {
+                            }
 
                             @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) { }
+                            public void onStopTrackingTouch(SeekBar seekBar) {
+                            }
                         });
 
                         Button buttonSetSkins = (Button) findViewById(R.id.setSkins);
@@ -549,7 +548,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                     seekBar.setProgress(progress);
                                     //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
                                 } catch (Exception e) {
-                                    Toast.makeText(StopmotionCamera.this, "TimerTask " +  e.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(StopmotionCamera.this, "TimerTask " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         };
@@ -565,7 +564,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                     //timer.schedule(t,10);
                                     timer.scheduleAtFixedRate(t, 300, 100);
                                 } catch (Exception e) {
-                                    Toast.makeText(StopmotionCamera.this,"Timer schedule " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(StopmotionCamera.this, "Timer schedule " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -585,7 +584,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 setSize();
                 setStretch();
                 testButton.invalidate();
-                testButton.bringToFront();
+                //testButton.bringToFront();
                 onionSkinView.setActivated(true);
             }
 
@@ -597,7 +596,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         }
         onionSkinView.invalidate();
         testButton.invalidate();
-        testButton.bringToFront();
+        //testButton.bringToFront();
         Log.d(LOGTAG, "end of menu " + success);
         return success;
     }
@@ -608,23 +607,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             @Override
             protected void onCreate(Bundle savedInstanceState) {
 
-
-
-
-
-
-
-
-
                 super.onCreate(savedInstanceState);
-
-
 
                 requestWindowFeature(Window.FEATURE_NO_TITLE);
 
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                         WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 
                 setContentView(R.layout.stopmotion_settings_panel);
 
@@ -642,7 +630,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         onionSkinView.updateBackgound();
                         onionSkinView.invalidate();
                         testButton.invalidate();
-                        testButton.bringToFront();
+                        //testButton.bringToFront();
                     }
 
                     @Override
@@ -673,6 +661,79 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     @Override
                     public void onClick(View v) {
                         editText.setText(defaultDateFormat);
+                    }
+                });
+
+                final Button btnSkinPlus = (Button) findViewById(R.id.btnSkinPlus);
+                btnSkinPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onionSkinView.skinsInc();
+                    }
+                });
+
+                final Button btnSkinMinus = (Button) findViewById(R.id.btnSkinMinus);
+                btnSkinMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onionSkinView.skinsDec();
+                    }
+                });
+
+                final RadioGroup alignmentGroup = (RadioGroup) findViewById(R.id.radiogroup);
+                alignmentGroup.check(alignment);
+
+                final RadioButton tr = (RadioButton) findViewById(R.id.rdoTR);
+
+                tr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            alignment = R.id.rdoTR;
+                            alignmentGroup.check(R.id.rdoTR);
+                            save();
+                            setSize();
+                        }
+                    }
+                });
+
+                final RadioButton tl = (RadioButton) findViewById(R.id.rdoTL);
+                tl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            alignment = R.id.rdoTL;
+                            alignmentGroup.check(R.id.rdoTL);
+                            save();
+                            setSize();
+                        }
+                    }
+                });
+
+
+                final RadioButton br = (RadioButton) findViewById(R.id.rdoBR);
+                br.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            alignment = R.id.rdoBR;
+                            alignmentGroup.check(R.id.rdoBR);
+                            save();
+                            setSize();
+                        }
+                    }
+                });
+
+                final RadioButton bl = (RadioButton) findViewById(R.id.rdoBL);
+                bl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            alignment = R.id.rdoBL;
+                            alignmentGroup.check(R.id.rdoBL);
+                            save();
+                            setSize();
+                        }
                     }
                 });
 
@@ -793,8 +854,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         menu.add(2, Menu.NONE, order++, BUTTON_TOGGLE_STRETCH);
         //    menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_DEC);
         //   menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_INC);
-        menu.add(2, Menu.NONE, order++, ONION_LEAF_DEC);
-        menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
+        // menu.add(2, Menu.NONE, order++, ONION_LEAF_DEC);
+        // menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
         menu.add(2, Menu.NONE, order++, CHANGE_DATE_FORMAT);
         menu.add(2, Menu.NONE, order++, SHOW_RUSHES);
 
@@ -820,7 +881,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     }
 
     public void setSize() {
-        setSize(lastGoodWidth,lastGoodHeight);
+        setSize(lastGoodWidth, lastGoodHeight);
     }
 
     public void setSize(int width, int height) {
@@ -830,16 +891,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         int measuredHeight = displayMetrics.heightPixels;
         int measuredWidth = displayMetrics.widthPixels;
 
-        if (width==0 && height==0) {
-            width=measuredWidth;
-            height=measuredHeight;
+        if (width == 0 && height == 0) {
+            width = measuredWidth;
+            height = measuredHeight;
         }
 
         float asp = (float) width / height;
-
-
-
-
 
         //int measuredHeight = surfaceView.getMeasuredHeight();
         //int measuredWidth = surfaceView.getMeasuredWidth();
@@ -874,12 +931,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         }
 
         //Toast.makeText(StopmotionCamera.this,"Size " + width +"x" + height  + " Screen " + measuredWidth + "x" + measuredHeight  , Toast.LENGTH_LONG).show();
-        surfaceView.getHolder().setFixedSize(width,height);
+        surfaceView.getHolder().setFixedSize(width, height);
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width, height);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
-
 
         int l = (measuredWidth - width) / 2;
         int t = (measuredHeight - height) / 2;
@@ -892,9 +948,58 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
 
-        testButton.layout(10,10,160,160);
+
+        //if (alignmentGroup != null) {
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150,150);
+
+
+
+            switch (alignment) {
+
+
+                case R.id.rdoBL:
+                    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,RelativeLayout.TRUE);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
+
+                    //testButton.layout(50, measuredHeight - 200, 200, measuredHeight - 50);
+                  //  Toast.makeText(this,"alignment set bl"  ,Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.rdoTL:
+                    params.addRule(RelativeLayout.ALIGN_PARENT_TOP,RelativeLayout.TRUE);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
+                    //testButton.layout(50, 50, 200, 200);
+                   // Toast.makeText(this,"alignment set tl"  ,Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.rdoBR:
+                    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,RelativeLayout.TRUE);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,RelativeLayout.TRUE);
+                   // testButton.layout(measuredWidth - 200, measuredHeight - 200, measuredWidth - 50, measuredHeight - 50);
+                    //Toast.makeText(this,"alignment set br"  ,Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.rdoTR:
+                    params.addRule(RelativeLayout.ALIGN_PARENT_TOP,RelativeLayout.TRUE);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,RelativeLayout.TRUE);
+                   // testButton.layout(measuredWidth - 200, 50, measuredWidth - 50, measuredHeight - 200);
+                   // Toast.makeText(this,"alignment set tr "  ,Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    params.addRule(RelativeLayout.ALIGN_PARENT_TOP,RelativeLayout.TRUE);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
+                    //testButton.layout(50, 50, 200, 200);
+                    //Toast.makeText(this,"alignment set default "  ,Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        testButton.setLayoutParams(params);
+       // }
+
+        // testButton.layout(measuredWidth - 200,50,measuredWidth - 50,200);
+
         testButton.invalidate();
-        testButton.bringToFront();
+        //testButton.bringToFront();
 
         Log.d(LOGTAG, "setSize " + width + " " + height);
 
@@ -952,7 +1057,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         }.start();
     }
-
 
     public static void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);

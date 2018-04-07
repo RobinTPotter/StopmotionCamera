@@ -127,6 +127,17 @@ public class OnionSkinView extends View {
         Log.d(LOGTAG, "setBmp");
     }
 
+    public void skinsInc() {
+        Log.d(LOGTAG,"skins inc");
+        setOnionSkins(this.numSkins+1);
+    }
+    public void skinsDec() {
+        Log.d(LOGTAG,"skins dec");
+        if (this.numSkins > 1) {
+            setOnionSkins(this.numSkins-1);
+        }
+    }
+
     public void setOnionSkins(int skinsnum) {
 
         //  if (skinsnum == this.numSkins) return;

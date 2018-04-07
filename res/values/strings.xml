@@ -4,6 +4,7 @@
     <string name="hello">bahhhh!</string>
     <string name="opacity">Opacity</string>
     <string name="label_date_format_string">Date Format String</string>
+    <string name="alignment_label">Button Alignment</string>
     <string name="label_set_skins">Set Skins</string>
     <string name="label_playback">Play</string>
     <string name="button_default_date">default</string>
