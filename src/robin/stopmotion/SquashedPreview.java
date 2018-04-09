@@ -55,7 +55,7 @@ public class SquashedPreview extends View {
         if (i > previewImages.length - 1) i = previewImages.length - 1;
         if (i < 0) i = 0;
         currentImage = i;
-        //invalidate();
+        invalidate();
     }
 
     public int getNumberImages() {
@@ -67,7 +67,7 @@ public class SquashedPreview extends View {
     }
 
     public void setDirectory(File d) {
-        directory = d ;
+        directory = d;
 
         images = directory.list(new FilenameFilter() {
             @Override
@@ -101,8 +101,6 @@ public class SquashedPreview extends View {
         seekbar.setProgress(0);
 
     }
-
-
 
     public void draw(Canvas c) {
 

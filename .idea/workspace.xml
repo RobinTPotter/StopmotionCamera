@@ -68,11 +68,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="507" column="54" selection-start-line="507" selection-start-column="54" selection-end-line="507" selection-end-column="54" />
+            <state vertical-scroll-proportion="-0.30865923">
+              <caret line="522" column="57" selection-start-line="522" selection-start-column="57" selection-end-line="522" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,99 +80,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Thread.java" pinned="false" current-in-tab="false">
-        <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/lang/Thread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1028" column="20" selection-start-line="1028" selection-start-column="20" selection-end-line="1028" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#44006#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#6426#6427#0" expanded="false" />
-                <element signature="e#6469#6470#0" expanded="false" />
-                <element signature="e#6982#6983#0" expanded="false" />
-                <element signature="e#7029#7030#0" expanded="false" />
-                <element signature="e#9148#9149#0" expanded="false" />
-                <element signature="e#9196#9197#0" expanded="false" />
-                <element signature="e#15059#15060#0" expanded="false" />
-                <element signature="e#15128#15129#0" expanded="false" />
-                <element signature="e#15603#15604#0" expanded="false" />
-                <element signature="e#15648#15649#0" expanded="false" />
-                <element signature="e#15820#15821#0" expanded="false" />
-                <element signature="e#15867#15868#0" expanded="false" />
-                <element signature="e#16017#16018#0" expanded="false" />
-                <element signature="e#16074#16075#0" expanded="false" />
-                <element signature="e#16285#16286#0" expanded="false" />
-                <element signature="e#16346#16347#0" expanded="false" />
-                <element signature="e#17992#17993#0" expanded="false" />
-                <element signature="e#18033#18034#0" expanded="false" />
-                <element signature="e#18355#18356#0" expanded="false" />
-                <element signature="e#18400#18401#0" expanded="false" />
-                <element signature="e#18750#18751#0" expanded="false" />
-                <element signature="e#18775#18776#0" expanded="false" />
-                <element signature="e#18867#18868#0" expanded="false" />
-                <element signature="e#18894#18895#0" expanded="false" />
-                <element signature="e#18991#18992#0" expanded="false" />
-                <element signature="e#19022#19023#0" expanded="false" />
-                <element signature="e#23132#23133#0" expanded="false" />
-                <element signature="e#23177#23178#0" expanded="false" />
-                <element signature="e#23608#23609#0" expanded="false" />
-                <element signature="e#23649#23650#0" expanded="false" />
-                <element signature="e#23964#23965#0" expanded="false" />
-                <element signature="e#23993#23994#0" expanded="false" />
-                <element signature="e#27961#27962#0" expanded="false" />
-                <element signature="e#28018#28019#0" expanded="false" />
-                <element signature="e#28504#28505#0" expanded="false" />
-                <element signature="e#28543#28544#0" expanded="false" />
-                <element signature="e#32703#32704#0" expanded="false" />
-                <element signature="e#32744#32745#0" expanded="false" />
-                <element signature="e#34926#34927#0" expanded="false" />
-                <element signature="e#34965#34966#0" expanded="false" />
-                <element signature="e#35252#35253#0" expanded="false" />
-                <element signature="e#35309#35310#0" expanded="false" />
-                <element signature="e#35469#35470#0" expanded="false" />
-                <element signature="e#35526#35527#0" expanded="false" />
-                <element signature="e#35807#35808#0" expanded="false" />
-                <element signature="e#35893#35894#0" expanded="false" />
-                <element signature="e#36098#36099#0" expanded="false" />
-                <element signature="e#36130#36131#0" expanded="false" />
-                <element signature="e#36480#36481#0" expanded="false" />
-                <element signature="e#36545#36546#0" expanded="false" />
-              </folding>
-            </state>
+      <file leaf-file-name="stopmotion_settings_panel.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_settings_panel.xml">
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlaybackThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/PlaybackThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProgressBar.java" pinned="false" current-in-tab="false">
-        <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/ProgressBar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="693" column="29" selection-start-line="693" selection-start-column="29" selection-end-line="693" selection-end-column="29" />
-              <folding>
-                <element signature="e#25273#25274#0" expanded="true" />
-                <element signature="e#25317#25318#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SquashedPreview.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45251396">
-              <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+            <state vertical-scroll-proportion="-0.58181816">
+              <caret line="169" column="60" selection-start-line="169" selection-start-column="60" selection-end-line="170" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -224,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/robin/stopmotion/VerySmallButton.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/Onionskin.java" />
         <option value="$PROJECT_DIR$/res/layout/camera_control_screen.xml" />
-        <option value="$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml" />
         <option value="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/OnionSkinView.java" />
@@ -233,8 +147,9 @@
         <option value="$PROJECT_DIR$/res/layout/stopmotion_settings_panel.xml" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/MakeTask.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/PlaybackThread.java" />
-        <option value="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java" />
+        <option value="$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml" />
+        <option value="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" />
       </list>
     </option>
   </component>
@@ -440,6 +355,7 @@
     <property name="ExportedModule" value="stopmotioncamera" />
     <property name="ExportedApkPath" value="$PROJECT_DIR$/stopmotioncamera.apk" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.WIDTH" value="172" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -757,11 +673,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17876343" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23948598" sideWeight="0.54948586" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2392473" sideWeight="0.54948586" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24293059" sideWeight="0.50701404" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61214954" sideWeight="0.45786062" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18233387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983682" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -784,7 +701,6 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39919356" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3373656" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -833,60 +749,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1028" column="20" selection-start-line="1028" selection-start-column="20" selection-end-line="1028" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#44006#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6426#6427#0" expanded="false" />
-            <element signature="e#6469#6470#0" expanded="false" />
-            <element signature="e#6982#6983#0" expanded="false" />
-            <element signature="e#7029#7030#0" expanded="false" />
-            <element signature="e#9148#9149#0" expanded="false" />
-            <element signature="e#9196#9197#0" expanded="false" />
-            <element signature="e#15059#15060#0" expanded="false" />
-            <element signature="e#15128#15129#0" expanded="false" />
-            <element signature="e#15603#15604#0" expanded="false" />
-            <element signature="e#15648#15649#0" expanded="false" />
-            <element signature="e#15820#15821#0" expanded="false" />
-            <element signature="e#15867#15868#0" expanded="false" />
-            <element signature="e#16017#16018#0" expanded="false" />
-            <element signature="e#16074#16075#0" expanded="false" />
-            <element signature="e#16285#16286#0" expanded="false" />
-            <element signature="e#16346#16347#0" expanded="false" />
-            <element signature="e#17992#17993#0" expanded="false" />
-            <element signature="e#18033#18034#0" expanded="false" />
-            <element signature="e#18355#18356#0" expanded="false" />
-            <element signature="e#18400#18401#0" expanded="false" />
-            <element signature="e#18750#18751#0" expanded="false" />
-            <element signature="e#18775#18776#0" expanded="false" />
-            <element signature="e#18867#18868#0" expanded="false" />
-            <element signature="e#18894#18895#0" expanded="false" />
-            <element signature="e#18991#18992#0" expanded="false" />
-            <element signature="e#19022#19023#0" expanded="false" />
-            <element signature="e#23132#23133#0" expanded="false" />
-            <element signature="e#23177#23178#0" expanded="false" />
-            <element signature="e#23608#23609#0" expanded="false" />
-            <element signature="e#23649#23650#0" expanded="false" />
-            <element signature="e#23964#23965#0" expanded="false" />
-            <element signature="e#23993#23994#0" expanded="false" />
-            <element signature="e#27961#27962#0" expanded="false" />
-            <element signature="e#28018#28019#0" expanded="false" />
-            <element signature="e#28504#28505#0" expanded="false" />
-            <element signature="e#28543#28544#0" expanded="false" />
-            <element signature="e#32703#32704#0" expanded="false" />
-            <element signature="e#32744#32745#0" expanded="false" />
-            <element signature="e#34926#34927#0" expanded="false" />
-            <element signature="e#34965#34966#0" expanded="false" />
-            <element signature="e#35252#35253#0" expanded="false" />
-            <element signature="e#35309#35310#0" expanded="false" />
-            <element signature="e#35469#35470#0" expanded="false" />
-            <element signature="e#35526#35527#0" expanded="false" />
-            <element signature="e#35807#35808#0" expanded="false" />
-            <element signature="e#35893#35894#0" expanded="false" />
-            <element signature="e#36098#36099#0" expanded="false" />
-            <element signature="e#36130#36131#0" expanded="false" />
-            <element signature="e#36480#36481#0" expanded="false" />
-            <element signature="e#36545#36546#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -895,7 +758,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -927,6 +790,7 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -965,6 +829,7 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -982,6 +847,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1002,6 +868,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="120" column="55" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,6 +933,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1153,17 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gen/R.java.d">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1196,6 +1053,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.1291392">
           <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1206,16 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_settings_panel.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="200" column="0" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1238,122 +1086,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/lang/Thread.java">
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1028" column="20" selection-start-line="1028" selection-start-column="20" selection-end-line="1028" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="10888" column="16" selection-start-line="10888" selection-start-column="16" selection-end-line="10888" selection-end-column="16" />
           <folding>
-            <element signature="e#0#44006#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6426#6427#0" expanded="false" />
-            <element signature="e#6469#6470#0" expanded="false" />
-            <element signature="e#6982#6983#0" expanded="false" />
-            <element signature="e#7029#7030#0" expanded="false" />
-            <element signature="e#9148#9149#0" expanded="false" />
-            <element signature="e#9196#9197#0" expanded="false" />
-            <element signature="e#15059#15060#0" expanded="false" />
-            <element signature="e#15128#15129#0" expanded="false" />
-            <element signature="e#15603#15604#0" expanded="false" />
-            <element signature="e#15648#15649#0" expanded="false" />
-            <element signature="e#15820#15821#0" expanded="false" />
-            <element signature="e#15867#15868#0" expanded="false" />
-            <element signature="e#16017#16018#0" expanded="false" />
-            <element signature="e#16074#16075#0" expanded="false" />
-            <element signature="e#16285#16286#0" expanded="false" />
-            <element signature="e#16346#16347#0" expanded="false" />
-            <element signature="e#17992#17993#0" expanded="false" />
-            <element signature="e#18033#18034#0" expanded="false" />
-            <element signature="e#18355#18356#0" expanded="false" />
-            <element signature="e#18400#18401#0" expanded="false" />
-            <element signature="e#18750#18751#0" expanded="false" />
-            <element signature="e#18775#18776#0" expanded="false" />
-            <element signature="e#18867#18868#0" expanded="false" />
-            <element signature="e#18894#18895#0" expanded="false" />
-            <element signature="e#18991#18992#0" expanded="false" />
-            <element signature="e#19022#19023#0" expanded="false" />
-            <element signature="e#23132#23133#0" expanded="false" />
-            <element signature="e#23177#23178#0" expanded="false" />
-            <element signature="e#23608#23609#0" expanded="false" />
-            <element signature="e#23649#23650#0" expanded="false" />
-            <element signature="e#23964#23965#0" expanded="false" />
-            <element signature="e#23993#23994#0" expanded="false" />
-            <element signature="e#27961#27962#0" expanded="false" />
-            <element signature="e#28018#28019#0" expanded="false" />
-            <element signature="e#28504#28505#0" expanded="false" />
-            <element signature="e#28543#28544#0" expanded="false" />
-            <element signature="e#32703#32704#0" expanded="false" />
-            <element signature="e#32744#32745#0" expanded="false" />
-            <element signature="e#34926#34927#0" expanded="false" />
-            <element signature="e#34965#34966#0" expanded="false" />
-            <element signature="e#35252#35253#0" expanded="false" />
-            <element signature="e#35309#35310#0" expanded="false" />
-            <element signature="e#35469#35470#0" expanded="false" />
-            <element signature="e#35526#35527#0" expanded="false" />
-            <element signature="e#35807#35808#0" expanded="false" />
-            <element signature="e#35893#35894#0" expanded="false" />
-            <element signature="e#36098#36099#0" expanded="false" />
-            <element signature="e#36130#36131#0" expanded="false" />
-            <element signature="e#36480#36481#0" expanded="false" />
-            <element signature="e#36545#36546#0" expanded="false" />
+            <element signature="e#425534#425535#0" expanded="false" />
+            <element signature="e#425566#425567#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/PlaybackThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.6452514">
           <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.023743017">
+          <caret line="1028" column="20" selection-start-line="1028" selection-start-column="20" selection-end-line="1028" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33240223">
+          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+          <folding>
+            <element signature="e#1301#1302#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.769231">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding>
+            <element signature="e#1288#1313#0" expanded="true" />
+            <element signature="e#1542#1566#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_settings_panel.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.58181816">
+          <caret line="169" column="60" selection-start-line="169" selection-start-column="60" selection-end-line="170" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/ProgressBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="693" column="29" selection-start-line="693" selection-start-column="29" selection-end-line="693" selection-end-column="29" />
-          <folding>
-            <element signature="e#25273#25274#0" expanded="true" />
-            <element signature="e#25317#25318#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.3603352">
+          <caret line="286" column="12" selection-start-line="286" selection-start-column="8" selection-end-line="286" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/AbsSeekBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14847161">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/widget/SeekBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.38282388">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="507" column="54" selection-start-line="507" selection-start-column="54" selection-end-line="507" selection-end-column="54" />
+        <state vertical-scroll-proportion="-0.30865923">
+          <caret line="522" column="57" selection-start-line="522" selection-start-column="57" selection-end-line="522" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="10888" column="16" selection-start-line="10888" selection-start-column="16" selection-end-line="10888" selection-end-column="16" />
-          <folding>
-            <element signature="e#425534#425535#0" expanded="true" />
-            <element signature="e#425566#425567#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45251396">
-          <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>

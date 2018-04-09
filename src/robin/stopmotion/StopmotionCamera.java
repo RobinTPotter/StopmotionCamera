@@ -497,12 +497,56 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final SquashedPreview squashedPreview = (SquashedPreview) findViewById(R.id.view);
 
-                        final SeekBar seekBar = (SeekBar) findViewById(R.id.previewSeekBar);
-                        squashedPreview.setSeekbar(seekBar);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        final SeekBar playbackSpeedBar = (SeekBar) findViewById(R.id.playbackSpeed);
+                        playbackSpeedBar.setProgress(playbackSpeed);
+                        playbackSpeedBar.setMax(1000);
 
                         squashedPreview.setDirectory(new File(currentDirectory.getPath(), THUMBNAIL_SUBFOLDER));
 
-                        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        playbackSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                            @Override
+                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                                playbackSpeed = progress;
+                            }
+
+                            @Override
+                            public void onStartTrackingTouch(SeekBar seekBar) {
+                            }
+
+                            @Override
+                            public void onStopTrackingTouch(SeekBar seekBar) {
+                            }
+                        });
+
+
+
+
+
+
+
+
+
+
+                        final SeekBar playbackSeek = (SeekBar) findViewById(R.id.previewSeekBar);
+                        squashedPreview.setSeekbar(playbackSeek);
+
+                        squashedPreview.setDirectory(new File(currentDirectory.getPath(), THUMBNAIL_SUBFOLDER));
+
+                        playbackSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 squashedPreview.setImageNumber(progress);
@@ -521,7 +565,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         buttonSetSkins.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                for (int nn = seekBar.getMax() - 1; nn >= seekBar.getProgress(); nn--) {
+                                for (int nn = playbackSeek.getMax() - 1; nn >= playbackSeek.getProgress(); nn--) {
                                     onionSkinView.setBmp(squashedPreview.previewImages[nn]);
                                 }
                             }
@@ -529,14 +573,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final Button buttonPlay = (Button) findViewById(R.id.play);
 
-
                         buttonPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
                                 if (buttonPlay.getText().equals(PLAY)) {
                                     buttonPlay.setText(STOP);
-                                    playbackThread = new PlaybackThread(seekBar, playbackSpeed);
+                                    playbackThread = new PlaybackThread(playbackSeek, playbackSpeed);
                                     playbackThread.setRunning(true);
                                     playbackThread.start();
 

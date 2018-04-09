@@ -2,44 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent" android:layout_gravity="center_horizontal" android:columnCount="12"
-              android:orientation="horizontal">
+              android:orientation="horizontal" android:id="@+id/main_panel">
 
 
     <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/main_rushes_layout">
+            android:layout_height="match_parent"
+            android:id="@+id/main_rushes_layout"
+
+    >
 
         <robin.stopmotion.SquashedPreview
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/view"
-                android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+                android:layout_width="fill_parent"
+                android:layout_height="480dp" android:id="@+id/view"
+
                 android:layout_above="@+id/linearLayout"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout"
-                android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
-                android:layout_marginBottom="0dp">
+                android:id="@+id/splaybackandskinset"
+                android:layout_below="@+id/linearLayout" android:layout_alignParentLeft="true">
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_set_skins"
                     android:id="@+id/setSkins"
-                   />
+            />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_playback"
                     android:id="@+id/play"
-                 />
+            />
             <SeekBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/previewSeekBar" android:layout_gravity="center_vertical"
             />
         </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:id="@+id/linearLayout"
+                android:layout_centerVertical="true" android:layout_alignParentLeft="true">
+            <SeekBar
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/playbackSpeed"/>
+        </LinearLayout>
 
     </RelativeLayout>
+
+
 </LinearLayout>
+
