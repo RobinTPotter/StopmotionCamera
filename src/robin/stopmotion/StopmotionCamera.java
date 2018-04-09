@@ -42,7 +42,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
     private static String BUTTON_TOGGLE_STRETCH = "Toggle";
-
+    PlaybackThread playbackThread;
     private static String THUMBNAIL_SUBFOLDER = "/thumb";
 
     //private static String ONION_LEAF_INC = "Skin+";
@@ -529,9 +529,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final Button buttonPlay = (Button) findViewById(R.id.play);
 
-                        final PlaybackThread playbackThread = new PlaybackThread(seekBar, playbackSpeed);
-                        playbackThread.setRunning(false);
-                        playbackThread.start();
 
                         buttonPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -539,7 +536,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                                 if (buttonPlay.getText().equals(PLAY)) {
                                     buttonPlay.setText(STOP);
+                                    playbackThread = new PlaybackThread(seekBar, playbackSpeed);
                                     playbackThread.setRunning(true);
+                                    playbackThread.start();
+
 
                                     try {
                                     } catch (Exception ex) {
