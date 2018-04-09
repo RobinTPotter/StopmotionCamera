@@ -55,7 +55,7 @@ public class SquashedPreview extends View {
         if (i > previewImages.length - 1) i = previewImages.length - 1;
         if (i < 0) i = 0;
         currentImage = i;
-        invalidate();
+        //invalidate();
     }
 
     public int getNumberImages() {
