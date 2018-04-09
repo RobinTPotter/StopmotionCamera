@@ -71,8 +71,8 @@
       <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8965516">
-              <caret line="551" column="48" selection-start-line="551" selection-start-column="48" selection-end-line="551" selection-end-column="48" />
+            <state vertical-scroll-proportion="-6.724138">
+              <caret line="551" column="51" selection-start-line="551" selection-start-column="51" selection-end-line="551" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,40 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SquashedPreview.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SquashedPreview.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-              <folding>
-                <element signature="e#1301#1302#0" expanded="true" />
-                <element signature="e#1328#1329#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stopmotion_settings_panel.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_settings_panel.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.58181816">
-              <caret line="169" column="60" selection-start-line="169" selection-start-column="60" selection-end-line="170" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stopmotion_rushes_panel.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.37988827">
+              <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -173,9 +144,9 @@
         <option value="$PROJECT_DIR$/res/layout/stopmotion_settings_panel.xml" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/MakeTask.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/PlaybackThread.java" />
-        <option value="$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java" />
         <option value="$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" />
+        <option value="$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java" />
       </list>
     </option>
   </component>
@@ -1112,17 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="10888" column="16" selection-start-line="10888" selection-start-column="16" selection-end-line="10888" selection-end-column="16" />
-          <folding>
-            <element signature="e#425534#425535#0" expanded="false" />
-            <element signature="e#425566#425567#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/PlaybackThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6452514">
@@ -1165,24 +1125,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-          <folding>
-            <element signature="e#1301#1302#0" expanded="true" />
-            <element signature="e#1328#1329#0" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8965516">
-          <caret line="551" column="48" selection-start-line="551" selection-start-column="48" selection-end-line="551" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1191,19 +1141,37 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.58181816">
+        <state vertical-scroll-proportion="0.048411496">
           <caret line="169" column="60" selection-start-line="169" selection-start-column="60" selection-end-line="170" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_rushes_panel.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.724138">
+          <caret line="551" column="51" selection-start-line="551" selection-start-column="51" selection-end-line="551" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+    </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33240223">
+          <caret line="10794" column="20" selection-start-line="10794" selection-start-column="20" selection-end-line="10794" selection-end-column="20" />
+          <folding>
+            <element signature="e#425534#425535#0" expanded="true" />
+            <element signature="e#425566#425567#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedPreview.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37988827">
+          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
           <folding />
         </state>
       </provider>

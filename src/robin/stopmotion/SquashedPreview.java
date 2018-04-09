@@ -56,6 +56,7 @@ public class SquashedPreview extends View {
         if (i < 0) i = 0;
         currentImage = i;
         invalidate();
+        //dammit
     }
 
     public int getNumberImages() {

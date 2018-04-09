@@ -541,12 +541,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
 
 
-                        final SeekBar playbackSeek = (SeekBar) findViewById(R.id.previewSeekBar);
-                        squashedPreview.setSeekbar(playbackSeek);
+                        final SeekBar previewSeekBar = (SeekBar) findViewById(R.id.previewSeekBar);
+                        squashedPreview.setSeekbar(previewSeekBar);
 
                         squashedPreview.setDirectory(new File(currentDirectory.getPath(), THUMBNAIL_SUBFOLDER));
 
-                        playbackSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        previewSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 squashedPreview.setImageNumber(progress);
@@ -565,7 +565,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         buttonSetSkins.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                for (int nn = playbackSeek.getMax() - 1; nn >= playbackSeek.getProgress(); nn--) {
+                                for (int nn = previewSeekBar.getMax() - 1; nn >= previewSeekBar.getProgress(); nn--) {
                                     onionSkinView.setBmp(squashedPreview.previewImages[nn]);
                                 }
                             }
@@ -579,7 +579,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                                 if (buttonPlay.getText().equals(PLAY)) {
                                     buttonPlay.setText(STOP);
-                                    playbackThread = new PlaybackThread(playbackSeek, playbackSpeed);
+                                    playbackThread = new PlaybackThread(previewSeekBar, playbackSpeed);
                                     playbackThread.setRunning(true);
                                     playbackThread.start();
 
