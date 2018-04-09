@@ -22,7 +22,6 @@ import android.widget.*;
 import android.view.ViewGroup.LayoutParams;
 
 
-
 /// import android.R;
 
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
@@ -34,6 +33,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int GROUPID_PREVIEW = 0;
     private static int GROUPID_PICTURE = 1;
     private static int GROUPID_OTHER = 2;
+    public static final String PLAY = new String("Play");
+    public static final String STOP = "Stop";
+
 
     private String dateFormat = "yyyy-MM-dd-HH";
     private String defaultDateFormat = "yyyy-MM-dd-HH";
@@ -52,6 +54,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private RadioGroup alignmentGroup;
 
     private int numSkins = 3;
+    private int playbackSpeed = 300;
+
 
     private boolean takingPicture = false;
 
@@ -266,6 +270,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
         dateFormat = bundle.getString("dateFormat", defaultDateFormat);
 
+        playbackSpeed = bundle.getInt("playbackSpeed", 300);
         numSkins = bundle.getInt("numSkins", 3);
 
         idPreviewSize("bollocks", previewSizeWhich);
@@ -294,6 +299,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         bundle.putInt("previewSizeWhich", previewSizeWhich);
         bundle.putInt("pictureSizeWhich", pictureSizeWhich);
         bundle.putInt("numSkins", numSkins);
+        bundle.putInt("playbackSpeed", playbackSpeed);
         onionSkinView.invalidate();
         testButton.invalidate();
         //testButton.bringToFront();
@@ -364,7 +370,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
         testButton.invalidate();
-       //testButton.bringToFront();
+        //testButton.bringToFront();
         Log.d(LOGTAG, "paused");
 
     }
@@ -382,12 +388,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         editor.putInt("pictureSizeWhich", pictureSizeWhich);
         editor.putString("dateFormat", dateFormat);
         editor.putInt("numSkins", numSkins);
+        editor.putInt("playbackSpeed", playbackSpeed);
         // Commit the edits!
         editor.commit();
 
         Log.d(LOGTAG, "committed and logged");
         process = launchLogcat();
-       // Toast.makeText(StopmotionCamera.this, "properties saved and logged", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(StopmotionCamera.this, "properties saved and logged", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -412,6 +419,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         previewSizeWhich = settings.getInt("previewSizeWhich", 100);
         pictureSizeWhich = settings.getInt("pictureSizeWhich", 100);
         numSkins = settings.getInt("numSkins", 3);
+        playbackSpeed = settings.getInt("playbackSpeed", 300);
         alignment = settings.getInt("buttonlignment", R.id.rdoTL);
 
         onionSkinView.setOnionSkins(numSkins);
@@ -462,24 +470,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Log.d(LOGTAG, "GROUPID_OTHER");
             if (item.getTitle().equals(BUTTON_TOGGLE_STRETCH)) {
                 Log.d(LOGTAG, "BUTTON_TOGGLE_STRETCH");
-
                 setStretch(!stretch);
-
-                //    } else if (item.getTitle().equals(CHANGE_OPACITY_DEC)) {
-                //        onionskin.decreaseOpacity();
-
-                //     } else if (item.getTitle().equals(CHANGE_OPACITY_INC)) {
-                //       onionskin.increaseOpacity();
-
-                //  } //else if (item.getTitle().equals(ONION_LEAF_INC)) {
-
-                //  Log.d(LOGTAG, "ONION_LEAF_INC");
-                // onionSkinView.skinsInc();
-
-                //  } //else if (item.getTitle().equals(ONION_LEAF_DEC)) {
-
-                //  Log.d(LOGTAG, "ONION_LEAF_DEC");
-                //   onionSkinView.skinsDec();
 
             } else if (item.getTitle().equals(SHOW_RUSHES)) {
 
@@ -537,34 +528,30 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             }
                         });
 
-                        final TimerTask t = new TimerTask() {
-                            public void run() {
-                                try {
-                                    int progress = seekBar.getProgress();
-                                    progress++;
-                                    if (progress > seekBar.getMax()) {
-                                        progress = 0;
-                                    }
-                                    seekBar.setProgress(progress);
-                                    //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
-                                } catch (Exception e) {
-                                    Toast.makeText(StopmotionCamera.this, "TimerTask " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        };
-
                         final Timer timer = new Timer();
 
-                        Button buttonPlay = (Button) findViewById(R.id.play);
+                        final Button buttonPlay = (Button) findViewById(R.id.play);
 
                         buttonPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 try {
+
+                                    if (buttonPlay.getText().equals(PLAY)) {
+                                        buttonPlay.setText(STOP);
+                                    } else {
+                                        buttonPlay.setText(PLAY);
+                                    }
                                     //timer.schedule(t,10);
-                                    timer.scheduleAtFixedRate(t, 300, 100);
+                                    timer.scheduleAtFixedRate(MakeTask.makeTask(seekBar), 300, playbackSpeed);
+X
+
                                 } catch (Exception e) {
+                                    playbackTask.cancel();
+                                    timer.cancel();
+                                    timer.purge();
                                     Toast.makeText(StopmotionCamera.this, "Timer schedule " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });
@@ -951,53 +938,51 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         //if (alignmentGroup != null) {
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150,150);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150, 150);
 
 
+        switch (alignment) {
 
-            switch (alignment) {
 
+            case R.id.rdoBL:
+                params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+                params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
 
-                case R.id.rdoBL:
-                    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,RelativeLayout.TRUE);
-                    params.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
+                //testButton.layout(50, measuredHeight - 200, 200, measuredHeight - 50);
+                //  Toast.makeText(this,"alignment set bl"  ,Toast.LENGTH_SHORT).show();
+                break;
 
-                    //testButton.layout(50, measuredHeight - 200, 200, measuredHeight - 50);
-                  //  Toast.makeText(this,"alignment set bl"  ,Toast.LENGTH_SHORT).show();
-                    break;
+            case R.id.rdoTL:
+                params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+                params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+                //testButton.layout(50, 50, 200, 200);
+                // Toast.makeText(this,"alignment set tl"  ,Toast.LENGTH_SHORT).show();
+                break;
 
-                case R.id.rdoTL:
-                    params.addRule(RelativeLayout.ALIGN_PARENT_TOP,RelativeLayout.TRUE);
-                    params.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
-                    //testButton.layout(50, 50, 200, 200);
-                   // Toast.makeText(this,"alignment set tl"  ,Toast.LENGTH_SHORT).show();
-                    break;
+            case R.id.rdoBR:
+                params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+                // testButton.layout(measuredWidth - 200, measuredHeight - 200, measuredWidth - 50, measuredHeight - 50);
+                //Toast.makeText(this,"alignment set br"  ,Toast.LENGTH_SHORT).show();
+                break;
 
-                case R.id.rdoBR:
-                    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,RelativeLayout.TRUE);
-                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,RelativeLayout.TRUE);
-                   // testButton.layout(measuredWidth - 200, measuredHeight - 200, measuredWidth - 50, measuredHeight - 50);
-                    //Toast.makeText(this,"alignment set br"  ,Toast.LENGTH_SHORT).show();
-                    break;
-
-                case R.id.rdoTR:
-                    params.addRule(RelativeLayout.ALIGN_PARENT_TOP,RelativeLayout.TRUE);
-                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,RelativeLayout.TRUE);
-                   // testButton.layout(measuredWidth - 200, 50, measuredWidth - 50, measuredHeight - 200);
-                   // Toast.makeText(this,"alignment set tr "  ,Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    params.addRule(RelativeLayout.ALIGN_PARENT_TOP,RelativeLayout.TRUE);
-                    params.addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
-                    //testButton.layout(50, 50, 200, 200);
-                    //Toast.makeText(this,"alignment set default "  ,Toast.LENGTH_SHORT).show();
-                    break;
-            }
-
+            case R.id.rdoTR:
+                params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+                // testButton.layout(measuredWidth - 200, 50, measuredWidth - 50, measuredHeight - 200);
+                // Toast.makeText(this,"alignment set tr "  ,Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+                params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+                //testButton.layout(50, 50, 200, 200);
+                //Toast.makeText(this,"alignment set default "  ,Toast.LENGTH_SHORT).show();
+                break;
+        }
 
 
         testButton.setLayoutParams(params);
-       // }
+        // }
 
         // testButton.layout(measuredWidth - 200,50,measuredWidth - 50,200);
 
