@@ -54,7 +54,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private RadioGroup alignmentGroup;
 
     private int numSkins = 3;
-    private int playbackSpeed = 100;
+    private int playbackSpeed = 70;
 
     private boolean takingPicture = false;
 
@@ -269,7 +269,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         pictureSizeWhich = bundle.getInt("pictureSizeWhich", 100);
         dateFormat = bundle.getString("dateFormat", defaultDateFormat);
 
-        playbackSpeed = bundle.getInt("playbackSpeed", 300);
+        playbackSpeed = bundle.getInt("playbackSpeed", 70);
         numSkins = bundle.getInt("numSkins", 3);
 
         idPreviewSize("bollocks", previewSizeWhich);
@@ -418,7 +418,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         previewSizeWhich = settings.getInt("previewSizeWhich", 100);
         pictureSizeWhich = settings.getInt("pictureSizeWhich", 100);
         numSkins = settings.getInt("numSkins", 3);
-        playbackSpeed = settings.getInt("playbackSpeed", 300);
+        playbackSpeed = settings.getInt("playbackSpeed", 70);
         alignment = settings.getInt("buttonlignment", R.id.rdoTL);
 
         onionSkinView.setOnionSkins(numSkins);
