@@ -528,10 +528,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final Button buttonPlay = (Button) findViewById(R.id.play);
 
-
-;
-                        final PlaybackThread playbackThread= new PlaybackThread(seekBar,playbackSpeed);
-
+                        final PlaybackThread playbackThread = new PlaybackThread(seekBar, playbackSpeed);
 
                         buttonPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -541,14 +538,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                     buttonPlay.setText(STOP);
 
                                     playbackThread.setRunning(true);
-                                    playbackThread.run();
+                                    playbackThread.start();
 
                                 } else {
                                     buttonPlay.setText(PLAY);
                                     playbackThread.setRunning(false);
 
                                 }
-
 
                             }
                         });
