@@ -3,6 +3,7 @@ package robin.stopmotion;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ThreadFactory;
 
 import android.app.Dialog;
 
@@ -526,7 +527,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         });
 
                         final Button buttonPlay = (Button) findViewById(R.id.play);
-                        final Timer timer = new Timer();
+
+
+;
+                        final PlaybackThread playbackThread= new PlaybackThread(seekBar,playbackSpeed);
+
 
                         buttonPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -535,30 +540,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                 if (buttonPlay.getText().equals(PLAY)) {
                                     buttonPlay.setText(STOP);
 
-                                    final TimerTask timerTask = new TimerTask() {
-                                        public void run() {
-                                            try {
-                                                int progress = seekBar.getProgress();
-                                                progress++;
-                                                if (progress > seekBar.getMax()) {
-                                                    progress = 0;
-                                                }
-                                                seekBar.setProgress(progress);
-                                                //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
-                                            } catch (Exception e) {
-                                                Toast.makeText(StopmotionCamera.this, "TimerTask " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    };
-                                    timer.scheduleAtFixedRate(timerTask, 300, 100);
+                                    playbackThread.setRunning(true);
+                                    playbackThread.run();
 
                                 } else {
                                     buttonPlay.setText(PLAY);
-                                    timer.cancel();
-                                    timer.purge();
+                                    playbackThread.setRunning(false);
+
                                 }
 
-                                Button buttonPlay = (Button) findViewById(R.id.play);
 
                             }
                         });
