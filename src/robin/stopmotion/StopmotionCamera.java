@@ -54,7 +54,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private RadioGroup alignmentGroup;
 
     private int numSkins = 3;
-    private int playbackSpeed = 300;
+    private int playbackSpeed = 100;
 
     private boolean takingPicture = false;
 
@@ -530,6 +530,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         final Button buttonPlay = (Button) findViewById(R.id.play);
 
                         final PlaybackThread playbackThread = new PlaybackThread(seekBar, playbackSpeed);
+                        playbackThread.setRunning(false);
+                        playbackThread.start();
 
                         buttonPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -537,21 +539,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                                 if (buttonPlay.getText().equals(PLAY)) {
                                     buttonPlay.setText(STOP);
-
                                     playbackThread.setRunning(true);
 
                                     try {
-                                        playbackThread.start();
                                     } catch (Exception ex) {
-                                        try {
-                                            PrintWriter printWriter = new PrintWriter(new File(Environment.getExternalStorageDirectory() + "/stopmotion-logfile2.log"));
-                                            ex.printStackTrace(printWriter);
-                                        }
-                                        catch (Exception e2x) {}
-                                        finally {
-                                        }
                                         Log.d(LOGTAG, "except..." + ex.getMessage());
-
                                     }
                                 } else {
                                     buttonPlay.setText(PLAY);

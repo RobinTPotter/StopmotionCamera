@@ -3,15 +3,15 @@ package robin.stopmotion;
 import android.util.Log;
 import android.widget.SeekBar;
 
-public class PlaybackThread  extends Thread {
+public class PlaybackThread extends Thread {
 
     boolean running = false;
-String LOGTAG = "PlaybackThread";
+    String LOGTAG = "PlaybackThread";
 
     SeekBar seekBar;
     int playBackSpeed;
-
-
+    int holdspeed = 1000;
+    int currentSpeed;
 
     public boolean isRunning() {
         return running;
@@ -19,20 +19,17 @@ String LOGTAG = "PlaybackThread";
 
     public void setRunning(boolean running) {
         this.running = running;
+        if (running) currentSpeed=playBackSpeed;
+        else currentSpeed=holdspeed;
         Log.d(LOGTAG, "set running..." + running);
     }
-
-
 
     PlaybackThread(SeekBar seekbar, int playBackSpeed) {
         Log.d(LOGTAG, "creating...");
         this.seekBar = seekbar;
-        this.playBackSpeed=playBackSpeed;
+        this.playBackSpeed = playBackSpeed;
         Log.d(LOGTAG, "created...");
     }
-
-
-
 
     public void run() {
 
@@ -45,12 +42,11 @@ String LOGTAG = "PlaybackThread";
                     progress = 0;
                 }
                 seekBar.setProgress(progress);
-                this.sleep(playBackSpeed);
+                sleep(currentSpeed);
             }
             //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
         } catch (Exception e) {
-            Log.d(LOGTAG, "except..."+e.getMessage());
-
+            Log.d(LOGTAG, "except..." + e.getMessage());
         }
     }
 
