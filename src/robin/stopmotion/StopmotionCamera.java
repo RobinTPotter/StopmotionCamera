@@ -544,6 +544,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                     } catch(Exception ex) {
 
                                         Log.d(LOGTAG, "except..." + ex.getMessage());
+                                        throw ex;
                                     }
                                 } else {
                                     buttonPlay.setText(PLAY);
