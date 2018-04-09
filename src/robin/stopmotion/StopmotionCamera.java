@@ -21,7 +21,6 @@ import android.view.*;
 import android.widget.*;
 import android.view.ViewGroup.LayoutParams;
 
-
 /// import android.R;
 
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
@@ -35,7 +34,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int GROUPID_OTHER = 2;
     public static final String PLAY = new String("Play");
     public static final String STOP = "Stop";
-
 
     private String dateFormat = "yyyy-MM-dd-HH";
     private String defaultDateFormat = "yyyy-MM-dd-HH";
@@ -55,7 +53,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private int numSkins = 3;
     private int playbackSpeed = 300;
-
 
     private boolean takingPicture = false;
 
@@ -528,31 +525,41 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             }
                         });
 
-                        final Timer timer = new Timer();
-
                         final Button buttonPlay = (Button) findViewById(R.id.play);
+                        final Timer timer = new Timer();
 
                         buttonPlay.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                try {
 
-                                    if (buttonPlay.getText().equals(PLAY)) {
-                                        buttonPlay.setText(STOP);
-                                    } else {
-                                        buttonPlay.setText(PLAY);
-                                    }
-                                    //timer.schedule(t,10);
-                                    timer.scheduleAtFixedRate(MakeTask.makeTask(seekBar), 300, playbackSpeed);
-X
+                                if (buttonPlay.getText().equals(PLAY)) {
+                                    buttonPlay.setText(STOP);
 
-                                } catch (Exception e) {
-                                    playbackTask.cancel();
+                                    final TimerTask timerTask = new TimerTask() {
+                                        public void run() {
+                                            try {
+                                                int progress = seekBar.getProgress();
+                                                progress++;
+                                                if (progress > seekBar.getMax()) {
+                                                    progress = 0;
+                                                }
+                                                seekBar.setProgress(progress);
+                                                //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
+                                            } catch (Exception e) {
+                                                Toast.makeText(StopmotionCamera.this, "TimerTask " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    };
+                                    timer.scheduleAtFixedRate(timerTask, 300, 100);
+
+                                } else {
+                                    buttonPlay.setText(PLAY);
                                     timer.cancel();
                                     timer.purge();
-                                    Toast.makeText(StopmotionCamera.this, "Timer schedule " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
                                 }
+
+                                Button buttonPlay = (Button) findViewById(R.id.play);
+
                             }
                         });
                     }
@@ -696,7 +703,6 @@ X
                         }
                     }
                 });
-
 
                 final RadioButton br = (RadioButton) findViewById(R.id.rdoBR);
                 br.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -935,14 +941,11 @@ X
         onionSkinView.updateBackgound();
         onionSkinView.invalidate();
 
-
         //if (alignmentGroup != null) {
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150, 150);
 
-
         switch (alignment) {
-
 
             case R.id.rdoBL:
                 params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
@@ -979,7 +982,6 @@ X
                 //Toast.makeText(this,"alignment set default "  ,Toast.LENGTH_SHORT).show();
                 break;
         }
-
 
         testButton.setLayoutParams(params);
         // }
