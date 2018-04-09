@@ -71,16 +71,31 @@
       <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72925764">
-              <caret line="546" column="49" selection-start-line="546" selection-start-column="49" selection-end-line="546" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.23435226">
+              <caret line="542" column="41" selection-start-line="542" selection-start-column="41" selection-end-line="542" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#18292#19229#0" expanded="true" />
-                <element signature="e#19228#19229#0" expanded="true" />
-                <element signature="e#25898#25899#0" expanded="true" />
-                <element signature="e#25938#25939#0" expanded="true" />
-                <element signature="e#30629#30630#0" expanded="true" />
-                <element signature="e#30683#30684#0" expanded="true" />
+                <element signature="e#3883#4036#0" expanded="true" />
+                <element signature="e#4035#4036#0" expanded="true" />
+                <element signature="e#18331#19710#0" expanded="true" />
+                <element signature="e#19709#19710#0" expanded="true" />
+                <element signature="e#26379#26380#0" expanded="true" />
+                <element signature="e#26419#26420#0" expanded="true" />
+                <element signature="e#31110#31111#0" expanded="true" />
+                <element signature="e#31164#31165#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Throwable.java" pinned="false" current-in-tab="false">
+        <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/lang/Throwable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="279" column="16" selection-start-line="279" selection-start-column="16" selection-end-line="279" selection-end-column="16" />
+              <folding>
+                <element signature="e#8969#8970#0" expanded="true" />
+                <element signature="e#9012#9013#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -745,12 +760,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18292#19229#0" expanded="true" />
-            <element signature="e#19228#19229#0" expanded="true" />
-            <element signature="e#25898#25899#0" expanded="true" />
-            <element signature="e#25938#25939#0" expanded="true" />
-            <element signature="e#30629#30630#0" expanded="true" />
-            <element signature="e#30683#30684#0" expanded="true" />
+            <element signature="e#3883#4036#0" expanded="true" />
+            <element signature="e#4035#4036#0" expanded="true" />
+            <element signature="e#18331#19710#0" expanded="true" />
+            <element signature="e#19709#19710#0" expanded="true" />
+            <element signature="e#26379#26380#0" expanded="true" />
+            <element signature="e#26419#26420#0" expanded="true" />
+            <element signature="e#31110#31111#0" expanded="true" />
+            <element signature="e#31164#31165#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -791,12 +808,14 @@
           <caret line="1004" column="8" selection-start-line="1004" selection-start-column="8" selection-end-line="1004" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18292#19229#0" expanded="true" />
-            <element signature="e#19228#19229#0" expanded="true" />
-            <element signature="e#25898#25899#0" expanded="true" />
-            <element signature="e#25938#25939#0" expanded="true" />
-            <element signature="e#30629#30630#0" expanded="true" />
-            <element signature="e#30683#30684#0" expanded="true" />
+            <element signature="e#3883#4036#0" expanded="true" />
+            <element signature="e#4035#4036#0" expanded="true" />
+            <element signature="e#18331#19710#0" expanded="true" />
+            <element signature="e#19709#19710#0" expanded="true" />
+            <element signature="e#26379#26380#0" expanded="true" />
+            <element signature="e#26419#26420#0" expanded="true" />
+            <element signature="e#31110#31111#0" expanded="true" />
+            <element signature="e#31164#31165#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -829,12 +848,14 @@
           <caret line="1081" column="0" selection-start-line="1081" selection-start-column="0" selection-end-line="1081" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18292#19229#0" expanded="true" />
-            <element signature="e#19228#19229#0" expanded="true" />
-            <element signature="e#25898#25899#0" expanded="true" />
-            <element signature="e#25938#25939#0" expanded="true" />
-            <element signature="e#30629#30630#0" expanded="true" />
-            <element signature="e#30683#30684#0" expanded="true" />
+            <element signature="e#3883#4036#0" expanded="true" />
+            <element signature="e#4035#4036#0" expanded="true" />
+            <element signature="e#18331#19710#0" expanded="true" />
+            <element signature="e#19709#19710#0" expanded="true" />
+            <element signature="e#26379#26380#0" expanded="true" />
+            <element signature="e#26419#26420#0" expanded="true" />
+            <element signature="e#31110#31111#0" expanded="true" />
+            <element signature="e#31164#31165#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -875,12 +896,14 @@
           <caret line="1081" column="0" selection-start-line="1081" selection-start-column="0" selection-end-line="1081" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18292#19229#0" expanded="true" />
-            <element signature="e#19228#19229#0" expanded="true" />
-            <element signature="e#25898#25899#0" expanded="true" />
-            <element signature="e#25938#25939#0" expanded="true" />
-            <element signature="e#30629#30630#0" expanded="true" />
-            <element signature="e#30683#30684#0" expanded="true" />
+            <element signature="e#3883#4036#0" expanded="true" />
+            <element signature="e#4035#4036#0" expanded="true" />
+            <element signature="e#18331#19710#0" expanded="true" />
+            <element signature="e#19709#19710#0" expanded="true" />
+            <element signature="e#26379#26380#0" expanded="true" />
+            <element signature="e#26419#26420#0" expanded="true" />
+            <element signature="e#31110#31111#0" expanded="true" />
+            <element signature="e#31164#31165#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -909,12 +932,14 @@
           <caret line="755" column="0" selection-start-line="755" selection-start-column="0" selection-end-line="755" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18292#19229#0" expanded="true" />
-            <element signature="e#19228#19229#0" expanded="true" />
-            <element signature="e#25898#25899#0" expanded="true" />
-            <element signature="e#25938#25939#0" expanded="true" />
-            <element signature="e#30629#30630#0" expanded="true" />
-            <element signature="e#30683#30684#0" expanded="true" />
+            <element signature="e#3883#4036#0" expanded="true" />
+            <element signature="e#4035#4036#0" expanded="true" />
+            <element signature="e#18331#19710#0" expanded="true" />
+            <element signature="e#19709#19710#0" expanded="true" />
+            <element signature="e#26379#26380#0" expanded="true" />
+            <element signature="e#26419#26420#0" expanded="true" />
+            <element signature="e#31110#31111#0" expanded="true" />
+            <element signature="e#31164#31165#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1131,18 +1156,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/__utils/Android/sdk/sources/android-19/java/lang/Throwable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="279" column="16" selection-start-line="279" selection-start-column="16" selection-end-line="279" selection-end-column="16" />
+          <folding>
+            <element signature="e#8969#8970#0" expanded="true" />
+            <element signature="e#9012#9013#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72925764">
-          <caret line="546" column="49" selection-start-line="546" selection-start-column="49" selection-end-line="546" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.23435226">
+          <caret line="542" column="41" selection-start-line="542" selection-start-column="41" selection-end-line="542" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18292#19229#0" expanded="true" />
-            <element signature="e#19228#19229#0" expanded="true" />
-            <element signature="e#25898#25899#0" expanded="true" />
-            <element signature="e#25938#25939#0" expanded="true" />
-            <element signature="e#30629#30630#0" expanded="true" />
-            <element signature="e#30683#30684#0" expanded="true" />
+            <element signature="e#3883#4036#0" expanded="true" />
+            <element signature="e#4035#4036#0" expanded="true" />
+            <element signature="e#18331#19710#0" expanded="true" />
+            <element signature="e#19709#19710#0" expanded="true" />
+            <element signature="e#26379#26380#0" expanded="true" />
+            <element signature="e#26419#26420#0" expanded="true" />
+            <element signature="e#31110#31111#0" expanded="true" />
+            <element signature="e#31164#31165#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -3,6 +3,7 @@ package robin.stopmotion;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.Exchanger;
 import java.util.concurrent.ThreadFactory;
 
 import android.app.Dialog;
@@ -541,10 +542,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                                     try {
                                         playbackThread.start();
-                                    } catch(Exception ex) {
-
+                                    } catch (Exception ex) {
+                                        try {
+                                            PrintWriter printWriter = new PrintWriter(new File(Environment.getExternalStorageDirectory() + "/stopmotion-logfile2.log"));
+                                            ex.printStackTrace(printWriter);
+                                        }
+                                        catch (Exception e2x) {}
+                                        finally {
+                                        }
                                         Log.d(LOGTAG, "except..." + ex.getMessage());
-                                        throw ex;
+
                                     }
                                 } else {
                                     buttonPlay.setText(PLAY);
