@@ -226,7 +226,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             //lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
             Bitmap smallerPicture = Bitmap.createScaledBitmap(lastPicture, lastPicture.getWidth() / 20, lastPicture.getHeight() / 20, false);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            smallerPicture.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+            smallerPicture.compress(Bitmap.CompressFormat.JPEG, 70, stream);
             byte[] byteArray = stream.toByteArray();
 
             OutputStream imageFileOS;
