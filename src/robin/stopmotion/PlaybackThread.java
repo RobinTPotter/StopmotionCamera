@@ -8,8 +8,19 @@ public class PlaybackThread extends Thread {
     boolean running = false;
     String LOGTAG = "PlaybackThread";
 
-    SeekBar seekBar;
     int playBackSpeed;
+
+
+    SeekBar seekBar;
+
+    public int getPlayBackSpeed() {
+        return playBackSpeed;
+    }
+
+    public void setPlayBackSpeed(int playBackSpeed) {
+        this.playBackSpeed = playBackSpeed;
+    }
+
     int holdspeed = 1000;
     int currentSpeed;
 
@@ -42,7 +53,7 @@ public class PlaybackThread extends Thread {
                     progress = 0;
                 }
                 seekBar.setProgress(progress);
-                sleep(currentSpeed);
+                sleep(getPlayBackSpeed());
             }
             //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
         } catch (Exception e) {

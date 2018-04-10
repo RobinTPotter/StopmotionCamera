@@ -519,6 +519,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 playbackSpeed = progress;
+                                playbackThread.setPlayBackSpeed(progress);
                             }
 
                             @Override
