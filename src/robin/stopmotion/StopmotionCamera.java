@@ -515,8 +515,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         playbackSpeedBar.setProgress(playbackSpeed);
                         playbackSpeedBar.setMax(1000);
 
-                        squashedPreview.setDirectory(new File(currentDirectory.getPath(), THUMBNAIL_SUBFOLDER));
-
                         playbackSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -531,15 +529,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             public void onStopTrackingTouch(SeekBar seekBar) {
                             }
                         });
-
-
-
-
-
-
-
-
-
 
                         final SeekBar previewSeekBar = (SeekBar) findViewById(R.id.previewSeekBar);
                         squashedPreview.setSeekbar(previewSeekBar);
