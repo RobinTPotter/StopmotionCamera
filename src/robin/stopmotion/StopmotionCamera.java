@@ -135,7 +135,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
 
 
-/*
+
         try {
 
 
@@ -143,11 +143,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
 
 
-            //File filename = new File(Environment.getExternalStorageDirectory() + "/Download/ffmpeg_v2.8");
+            //File filename = new File(Environment.getExternalStorageDirectory() + "/Download/lib_ffmpeg_v2.8.so");
             //filename.createNewFile();
-            File ffmpeg = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8");
-            File internal_ffmpeg  = new File(this.getApplicationInfo().dataDir+"/ffmpeg_v2.8");
-            copy(ffmpeg, internal_ffmpeg);
+            //File ffmpeg = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/lib_ffmpeg_v2.8.so");
+            File internal_ffmpeg  = new File(this.getApplicationInfo().nativeLibraryDir+"/lib_ffmpeg_v2.8.so");
+            //copy(ffmpeg, internal_ffmpeg);
 
 
             internal_ffmpeg.setExecutable(true);
@@ -162,7 +162,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
 
-        }*/
+        }
 
         //Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
 
