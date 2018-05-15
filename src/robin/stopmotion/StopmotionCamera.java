@@ -133,7 +133,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         });
 
-
+        final StopmotionCamera me = this;
         currentDirectory = getAlbumStorageDir();
 
         ffmpegCommandTest();
@@ -144,13 +144,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     }
 
     private void ffmpegCommandTest() {
-        ffmpegCommand(" -formats",true);
+        ffmpegCommand(" -formats", true);
     }
 
     private void encodeCurrent() {
-
-        ffmpegCommand("-start_number 0 -framerate 15 -i " + currentDirectory + "/"+IMAGE_NUMBER_FORMAT+".jpg " + currentDirectory + "/out.mp4",false);
-
+        ffmpegCommand("-start_number 0 -framerate 15 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg " + currentDirectory + "/out.mp4", false);
     }
 
     private void ffmpegCommand(String command, boolean altLog) {
@@ -158,7 +156,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             File internal_ffmpeg = new File(this.getApplicationInfo().nativeLibraryDir + "/lib_ffmpeg_v3.0.1.so");
             internal_ffmpeg.setExecutable(true);
-            File output = new File(Environment.getExternalStorageDirectory() + "/StopmotionCamera_ffmpeg"+ String.valueOf(altLog)+".log");
+            File output = new File(Environment.getExternalStorageDirectory() + "/StopmotionCamera_ffmpeg" + String.valueOf(altLog) + ".log");
 
             String commandExecute = "." + internal_ffmpeg.getPath() + " " + command;
 
@@ -166,10 +164,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             //Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
 
-
             // Run the command
             Process process = Runtime.getRuntime().exec(commandExecute);
-            BufferedReader bufferedReader = new BufferedReader(
+            process.waitFor();
+/*            BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
 
             BufferedReader bufferedReaderError = new BufferedReader(
@@ -192,7 +190,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             bof.write(log.toString().getBytes());
             bof.flush();
             bof.close();
-
+*/
             //Toast.makeText(this, log.toString().substring(0,500), Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
@@ -262,7 +260,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 }
             })).length;
 
-            String stamp = String.format( StopmotionCamera.IMAGE_NUMBER_FORMAT,imgs); // + "_" + String.valueOf((new Date()).getTime());
+            String stamp = String.format(StopmotionCamera.IMAGE_NUMBER_FORMAT, imgs); // + "_" + String.valueOf((new Date()).getTime());
             Uri uriTarget = android.net.Uri.fromFile(new File(currentDirectory, stamp + ".jpg"));
             Uri uriTarget_thumb = android.net.Uri.fromFile(new File(currentDirectory.getPath() + THUMBNAIL_SUBFOLDER + '/', stamp + ".thumb.jpg"));
 
