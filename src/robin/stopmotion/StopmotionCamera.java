@@ -154,6 +154,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private void ffmpegCommand(String command, boolean altLog) {
         try {
 
+
             File internal_ffmpeg = new File(this.getApplicationInfo().nativeLibraryDir + "/lib_ffmpeg_v3.0.1.so");
             internal_ffmpeg.setExecutable(true);
             File output = new File(Environment.getExternalStorageDirectory() + "/StopmotionCamera_ffmpeg" + String.valueOf(altLog) + ".log");
