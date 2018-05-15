@@ -36,6 +36,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int GROUPID_OTHER = 2;
     public static final String PLAY = new String("Play");
     public static final String STOP = "Stop";
+    public static final String IMAGE_NUMBER_FORMAT = "%07d";
 
     private String dateFormat = "yyyy-MM-dd-HH";
     private String defaultDateFormat = "yyyy-MM-dd-HH";
@@ -133,40 +134,74 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         });
 
 
+        currentDirectory = getAlbumStorageDir();
 
+        ffmpegCommandTest();
+        encodeCurrent();
 
+        Log.d(LOGTAG, "created");
 
+    }
+
+    private void ffmpegCommandTest() {
+        ffmpegCommand(" -formats",true);
+    }
+
+    private void encodeCurrent() {
+
+        ffmpegCommand("-r 15 -f image2 -i \"" + currentDirectory + "/"+IMAGE_NUMBER_FORMAT+"_*.jpg\" \"" + currentDirectory + "/out.mp4\"",false);
+
+    }
+
+    private void ffmpegCommand(String command, boolean altLog) {
         try {
 
-
-            Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show();
-            Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
-
-
-            //File filename = new File(Environment.getExternalStorageDirectory() + "/Download/lib_ffmpeg_v2.8.so");
-            //filename.createNewFile();
-            //File ffmpeg = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/lib_ffmpeg_v2.8.so");
-            File internal_ffmpeg  = new File(this.getApplicationInfo().nativeLibraryDir+"/lib_ffmpeg_v2.8.so");
-            //copy(ffmpeg, internal_ffmpeg);
-
-
+            File internal_ffmpeg = new File(this.getApplicationInfo().nativeLibraryDir + "/lib_ffmpeg_v3.0.1.so");
             internal_ffmpeg.setExecutable(true);
+            File output = new File(Environment.getExternalStorageDirectory() + "/StopmotionCamera_ffmpeg"+ String.valueOf(altLog)+".log");
 
-            Toast.makeText(this, "Can execute "+internal_ffmpeg.canExecute(), Toast.LENGTH_LONG).show();
+            String commandExecute = "." + internal_ffmpeg.getPath() + " " + command;
 
-            File output = new File(Environment.getExternalStorageDirectory() + "/test.log");
+            Log.i(LOGTAG, commandExecute);
 
-            String cmd2 = "./"  + internal_ffmpeg.getPath() + " --help > " + output.getAbsolutePath();
-            Runtime.getRuntime().exec(cmd2);
-        } catch (IOException e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
+
+
+            // Run the command
+            Process process = Runtime.getRuntime().exec(commandExecute);
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+
+            BufferedReader bufferedReaderError = new BufferedReader(
+                    new InputStreamReader(process.getErrorStream()));
+
+            // Grab the results
+            StringBuilder log = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                log.append(line + "\n");
+            }
+            log.append("----------------------------------------\n");
+
+            while ((line = bufferedReaderError.readLine()) != null) {
+                log.append(line + "\n");
+            }
+
+            BufferedOutputStream bof = (new BufferedOutputStream(new FileOutputStream(output)));
+            bof.write(log.toString().getBytes());
+            bof.flush();
+            bof.close();
+
+            //Toast.makeText(this, log.toString().substring(0,500), Toast.LENGTH_LONG).show();
+
+
+        } catch (Exception e) {
+            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+            Log.e(LOGTAG, "execute failed: " + e.getMessage());
             e.printStackTrace();
 
         }
-
-        //Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
-
-        Log.d(LOGTAG, "created");
 
     }
 
@@ -219,14 +254,22 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             currentDirectory = getAlbumStorageDir();
 
-            String stamp = String.valueOf((new Date()).getTime());
+            int imgs = (currentDirectory.list(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String filename) {
+                    if (filename.endsWith("jpg")) return true;
+                    else return false;
+                }
+            })).length;
+
+            String stamp = String.format( StopmotionCamera.IMAGE_NUMBER_FORMAT,imgs) + "_" + String.valueOf((new Date()).getTime());
             Uri uriTarget = android.net.Uri.fromFile(new File(currentDirectory, stamp + ".jpg"));
             Uri uriTarget_thumb = android.net.Uri.fromFile(new File(currentDirectory.getPath() + THUMBNAIL_SUBFOLDER + '/', stamp + ".thumb.jpg"));
 
             //lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
-            Bitmap smallerPicture = Bitmap.createScaledBitmap(lastPicture, lastPicture.getWidth() / 20, lastPicture.getHeight() / 20, false);
+            Bitmap smallerPicture = Bitmap.createScaledBitmap(lastPicture, lastPicture.getWidth() / 10, lastPicture.getHeight() / 10, false);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            smallerPicture.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+            smallerPicture.compress(Bitmap.CompressFormat.JPEG, 30, stream);
             byte[] byteArray = stream.toByteArray();
 
             OutputStream imageFileOS;
@@ -497,20 +540,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final SquashedPreview squashedPreview = (SquashedPreview) findViewById(R.id.view);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         final SeekBar playbackSpeedBar = (SeekBar) findViewById(R.id.playbackSpeed);
                         playbackSpeedBar.setProgress(playbackSpeed);
                         playbackSpeedBar.setMax(1000);
@@ -519,7 +548,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 playbackSpeed = progress;
-                                if (playbackThread!=null) playbackThread.setPlayBackSpeed(progress);
+                                if (playbackThread != null) playbackThread.setPlayBackSpeed(progress);
                             }
 
                             @Override
@@ -573,7 +602,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                     playbackThread.setRunning(true);
                                     playbackThread.start();
 
-
                                     try {
                                     } catch (Exception ex) {
                                         Log.d(LOGTAG, "except..." + ex.getMessage());
@@ -583,6 +611,18 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                     playbackThread.setRunning(false);
 
                                 }
+
+                            }
+                        });
+
+                        final Button buttonEncode = (Button) findViewById(R.id.encode);
+
+                        buttonEncode.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                //StopmotionCamera.this.ffmpegCommandTest();
+                                //StopmotionCamera.this.encodeCurrent();
 
                             }
                         });
