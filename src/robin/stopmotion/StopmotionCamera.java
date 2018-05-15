@@ -149,7 +149,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private void encodeCurrent() {
 
-        ffmpegCommand("-r 15 -f image2 -i \"" + currentDirectory + "/"+IMAGE_NUMBER_FORMAT+".jpg\" \"" + currentDirectory + "/out.mp4\"",false);
+        ffmpegCommand("-r 15 -f image2 -i '" + currentDirectory + "/"+IMAGE_NUMBER_FORMAT+".jpg' '" + currentDirectory + "/out.mp4'",false);
 
     }
 
