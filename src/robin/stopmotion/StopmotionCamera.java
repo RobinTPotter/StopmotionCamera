@@ -149,7 +149,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private void encodeCurrent() {
 
-        ffmpegCommand("-r 15 -f image2 -i \"" + currentDirectory + "/"+IMAGE_NUMBER_FORMAT+"_*.jpg\" \"" + currentDirectory + "/out.mp4\"",false);
+        ffmpegCommand("-r 15 -f image2 -i \"" + currentDirectory + "/"+IMAGE_NUMBER_FORMAT+".jpg\" \"" + currentDirectory + "/out.mp4\"",false);
 
     }
 
@@ -262,7 +262,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 }
             })).length;
 
-            String stamp = String.format( StopmotionCamera.IMAGE_NUMBER_FORMAT,imgs) + "_" + String.valueOf((new Date()).getTime());
+            String stamp = String.format( StopmotionCamera.IMAGE_NUMBER_FORMAT,imgs); // + "_" + String.valueOf((new Date()).getTime());
             Uri uriTarget = android.net.Uri.fromFile(new File(currentDirectory, stamp + ".jpg"));
             Uri uriTarget_thumb = android.net.Uri.fromFile(new File(currentDirectory.getPath() + THUMBNAIL_SUBFOLDER + '/', stamp + ".thumb.jpg"));
 

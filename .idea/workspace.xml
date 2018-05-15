@@ -71,12 +71,12 @@
       <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33401638">
-              <caret line="264" column="93" selection-start-line="264" selection-start-column="93" selection-end-line="264" selection-end-column="93" />
+            <state vertical-scroll-proportion="0.3319672">
+              <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8194#8443#0" expanded="true" />
-                <element signature="e#8442#8443#0" expanded="true" />
+                <element signature="e#8192#8441#0" expanded="true" />
+                <element signature="e#8440#8441#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -717,8 +717,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8194#8443#0" expanded="true" />
-            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8192#8441#0" expanded="true" />
+            <element signature="e#8440#8441#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -768,8 +768,8 @@
           <caret line="1004" column="8" selection-start-line="1004" selection-start-column="8" selection-end-line="1004" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8194#8443#0" expanded="true" />
-            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8192#8441#0" expanded="true" />
+            <element signature="e#8440#8441#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -801,8 +801,8 @@
           <caret line="1081" column="0" selection-start-line="1081" selection-start-column="0" selection-end-line="1081" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8194#8443#0" expanded="true" />
-            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8192#8441#0" expanded="true" />
+            <element signature="e#8440#8441#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -842,8 +842,8 @@
           <caret line="1081" column="0" selection-start-line="1081" selection-start-column="0" selection-end-line="1081" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8194#8443#0" expanded="true" />
-            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8192#8441#0" expanded="true" />
+            <element signature="e#8440#8441#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -871,8 +871,8 @@
           <caret line="755" column="0" selection-start-line="755" selection-start-column="0" selection-end-line="755" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8194#8443#0" expanded="true" />
-            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8192#8441#0" expanded="true" />
+            <element signature="e#8440#8441#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1176,12 +1176,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33401638">
-          <caret line="264" column="93" selection-start-line="264" selection-start-column="93" selection-end-line="264" selection-end-column="93" />
+        <state vertical-scroll-proportion="0.3319672">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8194#8443#0" expanded="true" />
-            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8192#8441#0" expanded="true" />
+            <element signature="e#8440#8441#0" expanded="true" />
           </folding>
         </state>
       </provider>
