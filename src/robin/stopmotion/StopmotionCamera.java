@@ -163,15 +163,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             Log.i(LOGTAG, commandExecute);
 
-            Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
 
             // Run the command
             //Process process = Runtime.getRuntime().exec(commandExecute);
             String[] list = commandExecute.split(" ");
             ProcessBuilder pb = new ProcessBuilder(list);
-            pb.redirectErrorStream();
+            //pb.redirectErrorStream();
             Process process = pb.start();
 
+            /*
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
 
@@ -182,16 +182,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             while ((line = bufferedReader.readLine()) != null) {
                 log.append(line + "\n");
             }
-
-
-
+            */
             process.waitFor();
+            /*
+            Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
 
             BufferedOutputStream bof = (new BufferedOutputStream(new FileOutputStream(output)));
             bof.write(log.toString().getBytes());
             bof.flush();
             bof.close();
-
+*/
             //Toast.makeText(this, log.toString().substring(0,500), Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
