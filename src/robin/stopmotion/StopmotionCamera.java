@@ -163,7 +163,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             Log.i(LOGTAG, commandExecute);
 
-            //Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
 
             // Run the command
             //Process process = Runtime.getRuntime().exec(commandExecute);
@@ -619,9 +619,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         buttonEncode.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
+                                Toast.makeText(StopmotionCamera.this, "encode pressed", Toast.LENGTH_SHORT).show();
                                 //StopmotionCamera.this.ffmpegCommandTest();
                                 StopmotionCamera.this.encodeCurrent();
+                                Toast.makeText(StopmotionCamera.this, "encode after", Toast.LENGTH_SHORT).show();
 
                             }
                         });
