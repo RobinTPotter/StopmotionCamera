@@ -148,7 +148,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     }
 
     private void encodeCurrent() {
-        ffmpegCommand("-start_number 0 -framerate 10 -preset ultrafast -crf 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg " + currentDirectory + "/out.mp4", false);
+        ffmpegCommand("-y -start_number 0 -framerate 10 -preset ultrafast -crf 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg " + currentDirectory + "/out.mp4", false);
     }
 
     private void ffmpegCommand(String command, boolean altLog) {
@@ -195,8 +195,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             //Toast.makeText(this, log.toString().substring(0,500), Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
-            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             Log.e(LOGTAG, "execute failed: " + e.getMessage());
             e.printStackTrace();
 

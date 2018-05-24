@@ -71,8 +71,8 @@
       <file leaf-file-name="StopmotionCamera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48392856">
-              <caret line="628" column="21" selection-start-line="628" selection-start-column="21" selection-end-line="628" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.18035714">
+              <caret line="150" column="26" selection-start-line="150" selection-start-column="26" selection-end-line="150" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3977#4130#0" expanded="true" />
@@ -1351,8 +1351,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48392856">
-          <caret line="628" column="21" selection-start-line="628" selection-start-column="21" selection-end-line="628" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.18035714">
+          <caret line="150" column="26" selection-start-line="150" selection-start-column="26" selection-end-line="150" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3977#4130#0" expanded="true" />
