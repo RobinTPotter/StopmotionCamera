@@ -55,7 +55,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private RadioGroup alignmentGroup;
 
     private int numSkins = 3;
-    private int playbackSpeed = 70;
+    private int playbackSpeed = 10;
 
     private boolean takingPicture = false;
 
@@ -513,7 +513,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         previewSizeWhich = settings.getInt("previewSizeWhich", 100);
         pictureSizeWhich = settings.getInt("pictureSizeWhich", 100);
         numSkins = settings.getInt("numSkins", 3);
-        playbackSpeed = settings.getInt("playbackSpeed", 70);
+        playbackSpeed = settings.getInt("playbackSpeed", 10);
         alignment = settings.getInt("buttonlignment", R.id.rdoTL);
 
         onionSkinView.setOnionSkins(numSkins);
@@ -594,12 +594,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final SeekBar playbackSpeedBar = (SeekBar) findViewById(R.id.playbackSpeed);
                         playbackSpeedBar.setProgress(playbackSpeed);
-                        playbackSpeedBar.setMax(1000);
+                        playbackSpeedBar.setMax(100);
+
 
                         playbackSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 playbackSpeed = progress;
+                                if (playbackSpeed==0) playbackSpeed=1;
                                 if (playbackThread != null) playbackThread.setPlayBackSpeed(progress);
                             }
 
@@ -675,7 +677,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                 Toast.makeText(StopmotionCamera.this, "encode pressed", Toast.LENGTH_SHORT).show();
                                 //StopmotionCamera.this.ffmpegCommandTest();
                                 //StopmotionCamera.this.encodeCurrent();
-                                StopmotionCamera.this.justDoThis();
+                                //StopmotionCamera.this.justDoThis();
 
                                 Toast.makeText(StopmotionCamera.this, "encode after", Toast.LENGTH_SHORT).show();
 

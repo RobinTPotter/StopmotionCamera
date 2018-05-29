@@ -1,6 +1,7 @@
 package robin.stopmotion;
 
 import android.util.Log;
+import android.util.TimeUtils;
 import android.widget.SeekBar;
 
 public class PlaybackThread extends Thread {
@@ -47,13 +48,19 @@ public class PlaybackThread extends Thread {
         Log.d(LOGTAG, "running...");
         try {
             while (running) {
+                long start = System.currentTimeMillis();
                 int progress = seekBar.getProgress();
                 progress++;
                 if (progress > seekBar.getMax()) {
                     progress = 0;
                 }
                 seekBar.setProgress(progress);
-                sleep(getPlayBackSpeed());
+
+                long stop = System.currentTimeMillis();
+                long taken = stop-start;
+                long rem = (long)(Math.floor(1000.0/getPlayBackSpeed())) - taken;
+                sleep(rem);
+
             }
             //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
         } catch (Exception e) {
