@@ -190,8 +190,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             // Waits for the command to finish.
             process.waitFor();
 
-            Toast.makeText(this,  output.toString(), Toast.LENGTH_LONG).show();
-            Toast.makeText(this,  output2.toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,  output.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  output2.toString().substring(output2.toString().length()-200), Toast.LENGTH_LONG).show();
             Log.e(LOGTAG, output2.toString());
 
 
