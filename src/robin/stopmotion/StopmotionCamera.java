@@ -136,8 +136,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         final StopmotionCamera me = this;
         currentDirectory = getAlbumStorageDir();
 
-        ffmpegCommandTest();
-        encodeCurrent();
+        //ffmpegCommandTest();
+        //encodeCurrent();
 
         Log.d(LOGTAG, "created");
 
@@ -171,7 +171,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             //pb.redirectErrorStream();
             //Process process = pb.start();
 
-            /*
+
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
 
@@ -182,17 +182,17 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             while ((line = bufferedReader.readLine()) != null) {
                 log.append(line + "\n");
             }
-            */
             
+
             process.waitFor();
             /*
             Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
-
+*/
             BufferedOutputStream bof = (new BufferedOutputStream(new FileOutputStream(output)));
             bof.write(log.toString().getBytes());
             bof.flush();
             bof.close();
-*/
+
             //Toast.makeText(this, log.toString().substring(0,500), Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
