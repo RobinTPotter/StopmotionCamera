@@ -192,6 +192,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             Toast.makeText(this,  output.toString(), Toast.LENGTH_LONG).show();
             Toast.makeText(this,  output2.toString(), Toast.LENGTH_LONG).show();
+            Log.e(LOGTAG, output2.toString());
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
