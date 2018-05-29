@@ -151,6 +151,43 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         ffmpegCommand("-y -start_number 0 -framerate 10 -preset ultrafast -crf 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg " + currentDirectory + "/out.mp4", false);
     }
 
+
+    private void justDoThis() {
+
+
+        try {
+            File internal_ffmpeg = new File(this.getApplicationInfo().nativeLibraryDir + "/lib_ffmpeg_v3.0.1.so");
+
+            // Executes the command.
+            Process process = Runtime.getRuntime().exec(internal_ffmpeg.getPath() + " -y -start_number 0 -framerate 10 -preset ultrafast -crf 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg " + currentDirectory + "/out.mp4");
+
+            // Reads stdout.
+            // NOTE: You can write to stdin of the command using
+            //       process.getOutputStream().
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+
+            int read;
+            char[] buffer = new char[4096];
+            StringBuffer output = new StringBuffer();
+            while ((read = reader.read(buffer)) > 0) {
+                output.append(buffer, 0, read);
+            }
+            reader.close();
+
+            // Waits for the command to finish.
+            process.waitFor();
+
+            Toast.makeText(this,  output.toString(), Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
     private void ffmpegCommand(String command, boolean altLog) {
         try {
 
@@ -182,7 +219,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             while ((line = bufferedReader.readLine()) != null) {
                 log.append(line + "\n");
             }
-            
+
 
             process.waitFor();
             /*
@@ -621,7 +658,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             public void onClick(View v) {
                                 Toast.makeText(StopmotionCamera.this, "encode pressed", Toast.LENGTH_SHORT).show();
                                 //StopmotionCamera.this.ffmpegCommandTest();
-                                StopmotionCamera.this.encodeCurrent();
+                                //StopmotionCamera.this.encodeCurrent();
+                                StopmotionCamera.this.justDoThis();
+
                                 Toast.makeText(StopmotionCamera.this, "encode after", Toast.LENGTH_SHORT).show();
 
                             }
