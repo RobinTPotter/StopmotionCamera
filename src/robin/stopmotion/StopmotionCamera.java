@@ -159,7 +159,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             File internal_ffmpeg = new File(this.getApplicationInfo().nativeLibraryDir + "/lib_ffmpeg_v3.0.1.so");
 
             // Executes the command.
-            Process process = Runtime.getRuntime().exec(internal_ffmpeg.getPath() + " -y -start_number 0 -framerate 10 -preset fast -format image2 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg " + currentDirectory + "/out.mp4");
+            Process process = Runtime.getRuntime().exec(internal_ffmpeg.getPath() + " -y -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg  -start_number 0 -framerate 10 -preset fast -format image2 -c:v libx264 -crf 23 " + currentDirectory + "/out.mp4");
 
             // Reads stdout.
             // NOTE: You can write to stdin of the command using
