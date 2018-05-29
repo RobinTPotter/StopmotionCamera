@@ -175,10 +175,23 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
             reader.close();
 
+
+            BufferedReader reader2 = new BufferedReader(
+                    new InputStreamReader(process.getErrorStream()));
+
+
+            StringBuffer output2 = new StringBuffer();
+            while ((read = reader2.read(buffer)) > 0) {
+                output2.append(buffer, 0, read);
+            }
+            reader.close();
+
+
             // Waits for the command to finish.
             process.waitFor();
 
             Toast.makeText(this,  output.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  output2.toString(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
