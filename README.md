@@ -7,7 +7,10 @@ Before you begin snapping away you should consider (and stick to!) a frame size 
 
 Pressing the menu button should bring up the options to set these sizes (check "more" on the end if not visible).
 
-You may consider changing the date format for the storage folder. The being under your device's Pictures folder. The date format is set in the "settings" option on the menu, which also contains a control for the opacity of the onion skin panel. Put text in single quotes to mask it from being interpreted. This is a java program so uses the rules in DateFormat
+You may consider changing the date format for the storage folder. The being under your device's Pictures folder. The date format is set in the "settings" option on the menu, which also contains a control for the opacity of the onion skin panel. Put text in single quotes to mask it from being interpreted. This is a java program so uses the rules [here](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html). Picture are stored in your phones Pictures directory with "Stopmotion" at the start:
+```
+albumName = "Stopmotion-" + (new SimpleDateFormat(dateFormat).format(new Date()));
+```
 
 In the menu the number of skins can be changed, as can whether the preview is stretched to fit the screen (if smaller than screen).
 
