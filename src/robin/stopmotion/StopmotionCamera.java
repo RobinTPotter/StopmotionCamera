@@ -3,8 +3,6 @@ package robin.stopmotion;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.Exchanger;
-import java.util.concurrent.ThreadFactory;
 
 import android.app.Dialog;
 
@@ -23,8 +21,6 @@ import android.view.*;
 import android.widget.*;
 import android.view.ViewGroup.LayoutParams;
 
-/// import android.R;
-
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
 
     private static String PREFS_NAME = "StopmotionCameraPreferences";
@@ -34,7 +30,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int GROUPID_PREVIEW = 0;
     private static int GROUPID_PICTURE = 1;
     private static int GROUPID_OTHER = 2;
-    public static final String PLAY = new String("Play");
+    public static final String PLAY = "Play";
     public static final String STOP = "Stop";
     public static final String IMAGE_NUMBER_FORMAT = "%07d";
 
@@ -51,8 +47,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private static String CHANGE_DATE_FORMAT = "Settings";
     private static String SHOW_RUSHES = "Preview";
-
-    private RadioGroup alignmentGroup;
 
     private int numSkins = 3;
     private int playbackSpeed = 10;
@@ -71,7 +65,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     Bitmap lastPicture = null;
 
-    Canvas canvas;
 
     int alignment;
 
@@ -133,7 +126,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         });
 
-        final StopmotionCamera me = this;
         currentDirectory = getAlbumStorageDir();
 
         //ffmpegCommandTest();
@@ -169,7 +161,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             int read;
             char[] buffer = new char[4096];
-            StringBuffer output = new StringBuffer();
+            StringBuilder output = new StringBuilder();
             while ((read = reader.read(buffer)) > 0) {
                 output.append(buffer, 0, read);
             }
@@ -180,7 +172,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     new InputStreamReader(process.getErrorStream()));
 
 
-            StringBuffer output2 = new StringBuffer();
+            StringBuilder output2 = new StringBuilder();
             while ((read = reader2.read(buffer)) > 0) {
                 output2.append(buffer, 0, read);
             }
@@ -233,7 +225,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             StringBuilder log = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                log.append(line + "\n");
+                log.append(line);
+                log.append("\n");
             }
 
 
@@ -309,8 +302,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             int imgs = (currentDirectory.list(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String filename) {
-                    if (filename.endsWith("jpg")) return true;
-                    else return false;
+                    return (filename.endsWith("jpg"));
                 }
             })).length;
 

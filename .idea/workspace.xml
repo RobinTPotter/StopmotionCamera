@@ -39,181 +39,66 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b5f0a76-a5cf-4474-9699-cd931e66d326" name="Default" comment="opacity">
+    <list default="true" id="8b5f0a76-a5cf-4474-9699-cd931e66d326" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$/.gradle/4.6/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/vcsWorkingDirs/gc.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/StopmotionCamera.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/robin/stopmotion/R.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/generated/not_namespaced_r_class_sources/release/processReleaseResources/r/robin/stopmotion/R.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/generated/source/buildConfig/debug/robin/stopmotion/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/generated/source/buildConfig/release/robin/stopmotion/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/annotation_processor_list/debug/javaPreCompileDebug/annotationProcessors.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/apk_list/release/mainApkListPersistenceRelease/apk-list.gson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi-v2/debug.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/multi-v2/values.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/blame/res/release/multi-v2/release.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/blame/res/release/multi-v2/values.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/blame/res/release/single/release.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/compatible_screen_manifest/debug/createDebugCompatibleScreenManifests/out/output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/compatible_screen_manifest/release/createReleaseCompatibleScreenManifests/out/output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeReleaseResources/compile-file-map.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/mergeReleaseResources/merger.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/6xQDPF3U4b+Hb9CPEVA5l9n6RQw=" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/instant_run_merged_manifests/debug/processDebugManifest/instant-run/output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/instant_run_merged_manifests/release/processReleaseManifest/instant-run/output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/BuildConfig.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/MakeTask$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/MakeTask.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/OnionSkinView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/PlaybackThread.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/R$drawable.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/R$id.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/R$layout.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/R$menu.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/R$mipmap.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/R$string.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/R.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/SquashedImagePanel$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/SquashedImagePanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/SquashedPreview$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/SquashedPreview.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$2.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$5$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$5.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$6$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$6.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$3.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$4.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$4.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$6.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$9.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$9.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/robin/stopmotion/StopmotionCamera.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/BuildConfig.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/MakeTask$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/MakeTask.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/OnionSkinView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/PlaybackThread.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/R$drawable.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/R$id.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/R$layout.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/R$menu.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/R$mipmap.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/R$string.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/R.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/SquashedImagePanel$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/SquashedImagePanel.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/SquashedPreview$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/SquashedPreview.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$3.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$5$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$6$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$6.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$3.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7$5.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$1.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$2.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$4.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$6.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$7.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8$9.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera$9.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/robin/stopmotion/StopmotionCamera.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/merged_manifests/debug/processDebugManifest/merged/output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/merged_manifests/release/processReleaseManifest/merged/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/merged_manifests/release/processReleaseManifest/merged/output.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/processed_res/release/processReleaseResources/out/output.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/processed_res/release/processReleaseResources/out/resources-release.ap_" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/drawable_custom_radio_button.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout_camera_control_screen.xml.flat" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout_main_camera_activity.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout_stopmotion_rushes_panel.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout_stopmotion_settings_panel.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/menu_menu.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/values_values.arsc.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/drawable_custom_radio_button.xml.flat" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/layout_camera_control_screen.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/layout_main_camera_activity.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/layout_stopmotion_rushes_panel.xml.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/layout_stopmotion_settings_panel.xml.flat" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/menu_menu.xml.flat" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/mipmap-hdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/mipmap-mdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/mipmap-xhdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/mipmap-xxhdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/mipmap-xxxhdpi_ic_launcher.png.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/res/merged/release/values_values.arsc.flat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/split_list/debug/splitsDiscoveryTaskDebug/split-list.gson" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/split_list/release/splitsDiscoveryTaskRelease/split-list.gson" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/BuildConfig.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/MakeTask$1.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/MakeTask.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/OnionSkinView.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/PlaybackThread.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/R$drawable.dex" afterDir="false" />
@@ -223,133 +108,48 @@
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/R$mipmap.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/R$string.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/R.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/SquashedImagePanel$1.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/SquashedImagePanel.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/SquashedPreview$1.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/SquashedPreview.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$1.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$2.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$3.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$4.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$5$1.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$5.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$6$1.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$6.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$7$1.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$7$2.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$7$3.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$7$4.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$7$5.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$7.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$1.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$2.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$3.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$4.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$5.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$6.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$7.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$8.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8$9.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$8.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera$9.dex" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/0/robin/stopmotion/StopmotionCamera.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexBuilder/debug/__content__.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/dexMerger/debug/__content__.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/externalLibsDexMerger/debug/__content__.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/mergeJavaRes/debug/0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/outputs/apk/debug/StopmotionCamera-debug.apk" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build/outputs/apk/debug/output.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/outputs/logs/manifest-merger-release-report.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Release-APK/stopmotioncamera-release-1.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Release-APK/stopmotioncamera-release-2.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Release-APK/stopmotioncamera-release-3.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Release-APK/stopmotioncamera-release-4.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Release-APK/stopmotioncamera-release-5.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/AndroidManifest.xml.d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/build.prop" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/classes.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/classes.dex.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/lint-results.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/lint-results.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/lint-results_files/hololike.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/lint-results_files/lint-error.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/lint-results_files/lint-run.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/lint-results_files/lint-warning.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/proguard.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stopmotioncamera-release-unaligned.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/stopmotioncamera-release-unsigned.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/stopmotioncamera-release-unsigned.apk.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stopmotioncamera-release.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stopmotioncamera.ap_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stopmotioncamera.ap_.d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/armeabi/lib_ffmpeg_v2.8.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/armeabi/lib_ffmpeg_v3.0.1.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/BuildConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/OnionSkinView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/PlaybackThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R$attr.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R$drawable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R$id.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R$layout.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R$menu.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R$mipmap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R$string.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/R.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/SquashedImagePanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/SquashedImagePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/SquashedPreview$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/SquashedPreview.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$5$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$5.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$6$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$6.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$7$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$7$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$7$3$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$7$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$7$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$7$5.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$4.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$8.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/robin/stopmotion/StopmotionCamera.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/stopmotioncamera.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/stopmotioncamera/stopmotioncamera.unaligned.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stopmotioncamera.iml" beforeDir="false" />
     </list>
@@ -383,8 +183,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StopmotionCamera.iml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/StopmotionCamera.iml">
           <provider selected="true" editor-type-id="text-editor">
             <state />
           </provider>
@@ -1516,7 +1335,6 @@
         <option value="$PROJECT_DIR$/src/robin/stopmotion/Rushes.java" />
         <option value="$PROJECT_DIR$/res/layout/control.xml" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/SqushedPreview.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/SquashedImagePanel.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/VerySmallButton.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/Onionskin.java" />
@@ -1533,6 +1351,7 @@
         <option value="$PROJECT_DIR$/src/robin/stopmotion/PlaybackThread.java" />
         <option value="$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1984,11 +1803,12 @@
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="8" weight="0.17876343" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.5436893" visible="true" weight="0.23814899" />
       <window_info id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Build Variants" order="4" sideWeight="0.50814813" side_tool="true" weight="0.2985437" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.40695792" side_tool="true" visible="true" weight="0.44243792" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.4563107" side_tool="true" visible="true" weight="0.23814899" />
       <window_info anchor="bottom" id="Run" order="4" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32983682" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.49838188" weight="0.32844242" />
@@ -1997,7 +1817,7 @@
       <window_info id="Capture Tool" order="0" />
       <window_info anchor="right" id="Designer" order="8" />
       <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49185187" visible="true" weight="0.2985437" />
-      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.5930421" visible="true" weight="0.44243792" />
+      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.5930421" weight="0.44243792" />
       <window_info anchor="right" id="Gradle" order="9" />
       <window_info id="Structure" order="2" sideWeight="0.50814813" side_tool="true" weight="0.2985437" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
@@ -2017,7 +1837,6 @@
       <window_info anchor="bottom" id="Android Monitor" order="0" sideWeight="0.5421394" weight="0.40771028" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.5444984" visible="true" weight="0.23814899" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="right" id="Palette" order="6" />
     </layout>
@@ -2040,7 +1859,8 @@
     <MESSAGE value="stretch" />
     <MESSAGE value="stretch-working" />
     <MESSAGE value="opacity" />
-    <option name="LAST_COMMIT_MESSAGE" value="opacity" />
+    <MESSAGE value="android studio 3.2 - added gradle build" />
+    <option name="LAST_COMMIT_MESSAGE" value="android studio 3.2 - added gradle build" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2052,13 +1872,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/stopmotion_settings_panel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="120" column="55" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/StopmotionCamera.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -2252,13 +2065,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robin/stopmotion/SquashedImagePanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -2450,6 +2256,21 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StopmotionCamera.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state />
       </provider>
