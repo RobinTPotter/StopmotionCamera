@@ -1,0 +1,4 @@
+#Fri Sep 28 16:01:39 BST 2018
+base.0=C\:\\Users\\Potterr\\StopmotionCamera\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
