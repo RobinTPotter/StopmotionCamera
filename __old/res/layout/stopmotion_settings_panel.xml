@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textOpacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="@string/opacity"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textOpacity" />
+
+        <TextView
+            android:id="@+id/textFormatString"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/seekBar"
+            android:layout_column="1"
+            android:text="@string/label_date_format_string"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editDateFormat"
+            android:layout_width="fill_parent"
+            android:layout_height="36dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textFormatString"
+            android:enabled="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:inputType="text"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/editDateFormat"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/defaultDateButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/button"
+                android:layout_column="3"
+                android:layout_gravity="right"
+                android:layout_toLeftOf="@+id/button"
+                android:longClickable="false"
+                android:text="@string/button_default_date" />
+
+            <Button
+                android:id="@+id/button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_column="2"
+                android:layout_gravity="right"
+                android:text="@string/button_set_date_patterns" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayout3"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSkinMinus"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/defaultDateButton"
+                android:text="Skin-" />
+
+            <Button
+                android:id="@+id/btnSkinPlus"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/btnSkinMinus"
+                android:layout_toLeftOf="@+id/btnSkinMinus"
+                android:text="Skin+" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/linearLayout2">
+
+            <TextView
+                android:id="@+id/textAlignmentDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_column="1"
+                android:text="@string/alignment_label"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="12sp" />
+
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <RelativeLayout
+                    android:id="@+id/radiolayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/rdoTL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/TL"
+                        android:textSize="18sp"
+
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rdoTR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@id/rdoTL"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/TR"
+                        android:textSize="18sp"
+                        android:layout_alignBottom="@+id/rdoTL" />
+
+                    <RadioButton
+                        android:id="@+id/rdoBL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/rdoBR"
+                        android:layout_alignRight="@+id/rdoTL"
+                        android:layout_below="@id/rdoTL"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/BL"
+                        android:textSize="17.5sp" />
+
+
+                    <RadioButton
+                        android:id="@+id/rdoBR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rdoTR"
+                        android:layout_toRightOf="@id/rdoBL"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/BR"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+            </RadioGroup>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
