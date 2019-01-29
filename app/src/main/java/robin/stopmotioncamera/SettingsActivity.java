@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -18,6 +19,7 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.List;
@@ -158,8 +160,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
-           ;  //   || DataSyncPreferenceFragment.class.getName().equals(fragmentName)
-              //  || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+                || CameraPreferenceFragment.class.getName().equals(fragmentName);
+        //  || NotificationPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     /**
@@ -173,6 +175,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
             setHasOptionsMenu(true);
+
+            //Log.e("General","hello");
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
@@ -220,9 +224,23 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 ListPreference cameras = (ListPreference) findPreference("camera_list");
 
                 String[] list = cameraManager.getCameraIdList();
-                cameras.setEntries(list);
+                String[] list_description = list.clone();
+
+                for (int cc=0; cc<list.length;cc++) {
+                    String props = "";
+                    String t = list[cc];
+                    CameraCharacteristics chars = cameraManager.getCameraCharacteristics(t);
+                    Integer facing = chars.get(CameraCharacteristics.LENS_FACING);
+                    if (facing == null) props += "? ";
+                    else if (facing == CameraCharacteristics.LENS_FACING_FRONT) props += "Glamour";
+                    else props += "Normal";
+                    Log.i("Camera Pref", props);
+                    list_description[cc]=props;
+                }
+                cameras.setEntries(list_description);
                 cameras.setEntryValues(list);
-            } catch(Exception ex){
+
+            } catch (Exception ex) {
                 //Log.e("CAMERA","exception in camera listing");
             }
 
@@ -240,23 +258,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
