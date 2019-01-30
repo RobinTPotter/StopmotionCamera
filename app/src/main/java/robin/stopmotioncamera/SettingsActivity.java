@@ -260,8 +260,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     Log.i("Camera Pref", props);
                     //list_description[cc]=props;
                 }
-                cameras.setEntries((String[])new_list.toArray());
-                cameras.setEntryValues((String[])new_list.toArray());
+                cameras.setEntries(new_list.toArray(new String[0]));
+                cameras.setEntryValues(new_list.toArray(new String[0]));
 
             } catch (Exception ex) {
                 //Log.e("CAMERA","exception in camera listing");
