@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -20,8 +21,10 @@ import android.preference.RingtonePreference;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Size;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -224,21 +227,41 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 ListPreference cameras = (ListPreference) findPreference("camera_list");
 
                 String[] list = cameraManager.getCameraIdList();
+
+                ArrayList<String> new_list = new ArrayList<String>();
+
+
                 String[] list_description = list.clone();
 
                 for (int cc=0; cc<list.length;cc++) {
                     String props = "";
                     String t = list[cc];
+
                     CameraCharacteristics chars = cameraManager.getCameraCharacteristics(t);
+
+                    props += String.valueOf(t)+";";
+
                     Integer facing = chars.get(CameraCharacteristics.LENS_FACING);
-                    if (facing == null) props += "? ";
-                    else if (facing == CameraCharacteristics.LENS_FACING_FRONT) props += "Glamour";
-                    else props += "Normal";
+                    if (facing == null) props += "?;";
+                    else if (facing == CameraCharacteristics.LENS_FACING_FRONT) props += "Glamour;";
+                    else props += "Normal;";
+
+                    StreamConfigurationMap streamConfigurationMap = chars.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+
+                    for (int format : streamConfigurationMap.getOutputFormats()) {
+                        Size[] size = streamConfigurationMap.getOutputSizes(format);
+                        props += "Format:"+String.valueOf(format);
+                        for (Size s  : size) {
+                            String output = props + "Size:"+s.toString();
+                            new_list.add(output);
+                        }
+                    }
+
                     Log.i("Camera Pref", props);
-                    list_description[cc]=props;
+                    //list_description[cc]=props;
                 }
-                cameras.setEntries(list_description);
-                cameras.setEntryValues(list);
+                cameras.setEntries((String[])new_list.toArray());
+                cameras.setEntryValues((String[])new_list.toArray());
 
             } catch (Exception ex) {
                 //Log.e("CAMERA","exception in camera listing");
