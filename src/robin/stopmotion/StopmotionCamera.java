@@ -132,7 +132,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         });
 
-
+        testButton.bringToFront();
 
 
 /*
