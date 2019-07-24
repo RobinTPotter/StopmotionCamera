@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/stopmotioncamera.iml" filepath="$PROJECT_DIR$/stopmotioncamera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StopMotionRedone.iml" filepath="$PROJECT_DIR$/StopMotionRedone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
