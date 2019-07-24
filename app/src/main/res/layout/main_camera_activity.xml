@@ -4,6 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal">
 
+
     <SurfaceView
         android:id="@+id/main_camera_activity"
         android:layout_width="match_parent"
@@ -13,6 +14,6 @@
             android:id="@+id/testButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-    />
+        />
 
 </RelativeLayout>

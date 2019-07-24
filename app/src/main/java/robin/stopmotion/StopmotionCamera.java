@@ -27,6 +27,7 @@ import android.view.ViewGroup.LayoutParams;
 
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
 
+    private static final String FOCUS_HERE = "focus_here";
     private static String PREFS_NAME = "StopmotionCameraPreferences";
 
     private static int ITEMID_PREVIEW = 12;
@@ -337,13 +338,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                camera.autoFocus(new Camera.AutoFocusCallback() {
-                    @Override
-                    public void onAutoFocus(boolean success, Camera camera) {
-                        justfocussed = true;
-                        Toast.makeText(StopmotionCamera.this, "focus", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
+                StopmotionCamera.this.openOptionsMenu();
+
                 return false;
             }
         });
@@ -473,6 +470,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             if (item.getTitle().equals(BUTTON_TOGGLE_STRETCH)) {
                 Log.d(LOGTAG, "BUTTON_TOGGLE_STRETCH");
                 setStretch(!stretch);
+
+            } else if (item.getTitle().equals(FOCUS_HERE)) {
+                camera.autoFocus(new Camera.AutoFocusCallback() {
+                    @Override
+                    public void onAutoFocus(boolean success, Camera camera) {
+                        justfocussed = true;
+                        Toast.makeText(StopmotionCamera.this, "focus", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
             } else if (item.getTitle().equals(SHOW_RUSHES)) {
 
@@ -881,6 +888,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         // menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
         menu.add(2, Menu.NONE, order++, CHANGE_DATE_FORMAT);
         menu.add(2, Menu.NONE, order++, SHOW_RUSHES);
+        menu.add(2, Menu.NONE, order++, FOCUS_HERE);
+//
+
 
         SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
