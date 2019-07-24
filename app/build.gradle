@@ -2,14 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "robin.stopmotion"
-        minSdkVersion 19
+        minSdkVersion 28
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        maxSdkVersion 28
+        signingConfig signingConfigs.debug
     }
     buildTypes {
         release {
