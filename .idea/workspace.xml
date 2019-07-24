@@ -141,6 +141,7 @@
   <component name="PropertiesComponent">
     <property name="ExportApk.ApkPath" value="C:\Users\potterr\StopMotionRedone\app" />
     <property name="ExportApk.BuildVariants" value="release" />
+    <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Downloads/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../StopMotionCamera_newone" />
