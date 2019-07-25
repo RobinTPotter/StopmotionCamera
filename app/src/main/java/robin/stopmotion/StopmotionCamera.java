@@ -133,10 +133,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         });
 
-
         testButton.bringToFront();
-        ((View)testButton).getParent().requestLayout();
-
+        ((View) testButton).getParent().requestLayout();
 
 /*
         try {
@@ -144,13 +142,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show();
             Toast.makeText(this, "Hello "+ this.getApplicationInfo().dataDir, Toast.LENGTH_LONG).show();
 
-
             //File filename = new File(Environment.getExternalStorageDirectory() + "/Download/ffmpeg_v2.8");
             //filename.createNewFile();
             File ffmpeg = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/ffmpeg_v2.8");
             File internal_ffmpeg  = new File(this.getApplicationInfo().dataDir+"/ffmpeg_v2.8");
             copy(ffmpeg, internal_ffmpeg);
-
 
             internal_ffmpeg.setExecutable(true);
 
@@ -304,7 +300,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.invalidate();
         testButton.invalidate();
         testButton.bringToFront();
-        ((View)testButton).getParent().requestLayout();
+        ((View) testButton).getParent().requestLayout();
     }
 
     private Process launchLogcat() {
@@ -368,7 +364,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.invalidate();
         testButton.invalidate();
         testButton.bringToFront();
-        ((View)testButton).getParent().requestLayout();
+        ((View) testButton).getParent().requestLayout();
         Log.d(LOGTAG, "paused");
 
     }
@@ -406,7 +402,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.invalidate();
         testButton.invalidate();
         testButton.bringToFront();
-        ((View)testButton).getParent().requestLayout();
+        ((View) testButton).getParent().requestLayout();
     }
 
     private void load() {
@@ -480,7 +476,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 });
 
-
             } else if (item.getTitle().equals(SHOW_RUSHES)) {
 
                 Log.d(LOGTAG, "SHOW_RUSHES");
@@ -507,20 +502,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                         final SquashedPreview squashedPreview = (SquashedPreview) findViewById(R.id.view);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         final SeekBar playbackSpeedBar = (SeekBar) findViewById(R.id.playbackSpeed);
                         playbackSpeedBar.setProgress(playbackSpeed);
                         playbackSpeedBar.setMax(1000);
@@ -529,7 +510,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 playbackSpeed = progress;
-                                if (playbackThread!=null) playbackThread.setPlayBackSpeed(progress);
+                                if (playbackThread != null)
+                                    playbackThread.setPlayBackSpeed(progress);
                             }
 
                             @Override
@@ -583,7 +565,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                                     playbackThread.setRunning(true);
                                     playbackThread.start();
 
-
                                     try {
                                     } catch (Exception ex) {
                                         Log.d(LOGTAG, "except..." + ex.getMessage());
@@ -613,7 +594,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 setStretch();
                 testButton.invalidate();
                 testButton.bringToFront();
-                ((View)testButton).getParent().requestLayout();
+                ((View) testButton).getParent().requestLayout();
                 onionSkinView.setActivated(true);
             }
 
@@ -626,7 +607,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.invalidate();
         testButton.invalidate();
         testButton.bringToFront();
-        ((View)testButton).getParent().requestLayout();
+        ((View) testButton).getParent().requestLayout();
         Log.d(LOGTAG, "end of menu " + success);
         return success;
     }
@@ -661,7 +642,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         onionSkinView.invalidate();
                         testButton.invalidate();
                         testButton.bringToFront();
-                        ((View)testButton).getParent().requestLayout();
+                        ((View) testButton).getParent().requestLayout();
                     }
 
                     @Override
@@ -891,7 +872,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         menu.add(2, Menu.NONE, order++, FOCUS_HERE);
 //
 
-
         SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
         for (Camera.Size size : previewSizes) {
@@ -1030,7 +1010,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         testButton.invalidate();
         testButton.bringToFront();
-        ((View)testButton).getParent().requestLayout();
+        ((View) testButton).getParent().requestLayout();
 
         Log.d(LOGTAG, "setSize " + width + " " + height);
 

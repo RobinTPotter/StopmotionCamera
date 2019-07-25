@@ -34,9 +34,6 @@ public class OnionSkinView extends View {
      */
     private boolean activated = true;
 
-
-
-
     public OnionSkinView(Context context) {
         this(context, null);
     }
@@ -55,10 +52,6 @@ public class OnionSkinView extends View {
         Log.d(LOGTAG, "created Onionskin");
     }
 
-
-
-
-
     @Override
     public boolean isActivated() {
         return activated;
@@ -70,7 +63,6 @@ public class OnionSkinView extends View {
         this.activated = activated;
         if (activated) Log.d(LOGTAG, "ACTIVE");
     }
-
 
     public int getOpacity() {
         return opacity;
