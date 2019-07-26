@@ -135,14 +135,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         });
 
         testButton.bringToFront();
-        ((View) testButton).getParent().requestLayout();
-
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.floatingActionButton2);
-        fab.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                StopmotionCamera.this.openOptionsMenu();
-            }
-        });
+        testButton.getParent().requestLayout();
 
 /*
         try {
@@ -239,36 +232,38 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         }
     };
-public Button.OnClickListener generateButtonOnClickListener() {
+
+    public Button.OnClickListener generateButtonOnClickListener() {
 
 
-    return new Button.OnClickListener() {
+        return new Button.OnClickListener() {
 
-        @Override
-        public void onClick(View arg0) {
-            /// TODO Auto-generated method stub
-            Log.d(LOGTAG, "on click listener");
+            @Override
+            public void onClick(View arg0) {
+                /// TODO Auto-generated method stub
+                Log.d(LOGTAG, "on click listener");
 
-            if (takingPicture) return;
+                if (takingPicture) return;
 
-            takingPicture = true;
+                takingPicture = true;
 
-            if (justfocussed) {
-                justfocussed = false;
-            } else {
-                try {
-                    Log.d(LOGTAG, "going to take picture");
-                    camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
-                } catch (Exception ex) {
-                    Log.d(LOGTAG, "failed to take picture!");
+                if (justfocussed) {
+                    justfocussed = false;
+                } else {
+                    try {
+                        Log.d(LOGTAG, "going to take picture");
+                        camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
+                    } catch (Exception ex) {
+                        Log.d(LOGTAG, "failed to take picture!");
+                    }
+
                 }
-
+                takingPicture = false;
             }
-            takingPicture = false;
-        }
-    };
+        };
 
-}
+    }
+
     @Override
     public void onRestoreInstanceState(Bundle bundle) {
         super.onRestoreInstanceState(bundle);
