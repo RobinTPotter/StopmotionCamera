@@ -17,6 +17,7 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.*;
@@ -136,6 +137,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         testButton.bringToFront();
         ((View) testButton).getParent().requestLayout();
 
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.floatingActionButton2);
+        fab.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                StopmotionCamera.this.openOptionsMenu();
+            }
+        });
+
 /*
         try {
 
@@ -169,31 +177,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     }
 
     Button.OnClickListener buttonClickListener =
-            new Button.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-                    /// TODO Auto-generated method stub
-                    Log.d(LOGTAG, "on click listener");
-
-                    if (takingPicture) return;
-
-                    takingPicture = true;
-
-                    if (justfocussed) {
-                        justfocussed = false;
-                    } else {
-                        try {
-                            Log.d(LOGTAG, "going to take picture");
-                            camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
-                        } catch (Exception ex) {
-                            Log.d(LOGTAG, "failed to take picture!");
-                        }
-
-                    }
-                    takingPicture = false;
-                }
-            };
+            generateButtonOnClickListener();
 
     Camera.ShutterCallback myShutterCallback = new Camera.ShutterCallback() {
 
@@ -255,7 +239,36 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         }
     };
+public Button.OnClickListener generateButtonOnClickListener() {
 
+
+    return new Button.OnClickListener() {
+
+        @Override
+        public void onClick(View arg0) {
+            /// TODO Auto-generated method stub
+            Log.d(LOGTAG, "on click listener");
+
+            if (takingPicture) return;
+
+            takingPicture = true;
+
+            if (justfocussed) {
+                justfocussed = false;
+            } else {
+                try {
+                    Log.d(LOGTAG, "going to take picture");
+                    camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
+                } catch (Exception ex) {
+                    Log.d(LOGTAG, "failed to take picture!");
+                }
+
+            }
+            takingPicture = false;
+        }
+    };
+
+}
     @Override
     public void onRestoreInstanceState(Bundle bundle) {
         super.onRestoreInstanceState(bundle);

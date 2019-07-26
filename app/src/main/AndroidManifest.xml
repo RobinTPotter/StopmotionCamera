@@ -3,7 +3,6 @@
     package="robin.stopmotion"
     android:versionCode="1"
     android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="16" />
 
     <application
         android:icon="@mipmap/ic_launcher"
