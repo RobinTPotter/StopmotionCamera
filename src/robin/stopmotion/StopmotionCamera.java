@@ -20,7 +20,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
-import android.view.ViewGroup.LayoutParams;
 
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
 
@@ -28,9 +27,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private static int ITEMID_PREVIEW = 12;
     private static int ITEMID_PICTURE = 23;
+    private static int ITEMID_ASPECT = 27;
     private static int GROUPID_PREVIEW = 0;
     private static int GROUPID_PICTURE = 1;
-    private static int GROUPID_OTHER = 2;
+    private static int GROUPID_ASPECT = 2;
+    private static int GROUPID_OTHER = 3;
     public static final String PLAY = "Play";
     public static final String STOP = "Stop";
     public static final String IMAGE_NUMBER_FORMAT = "%07d";
@@ -85,6 +86,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     LayoutInflater controlInflater = null;
     private int lastGoodHeight = 0;
     private int lastGoodWidth = 0;
+    private String aspectLock;
 
     @SuppressLint("SourceLockedOrientationActivity")
     public void onCreate(Bundle savedInstanceState) {
@@ -556,6 +558,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             /// pict
             success = idPictureSize(item.getTitle().toString(), -1);
 
+        }  else if (item.getGroupId() == GROUPID_ASPECT) {
+
+            Log.d(LOGTAG, "GROUP ID ASPECT");
+            /// pict
+            aspectLock = item.getTitle().toString();
+            Toast.makeText(StopmotionCamera.this, aspectLock, Toast.LENGTH_SHORT).show();
+
+
         } else if (item.getGroupId() == GROUPID_OTHER) {
 
             Log.d(LOGTAG, "GROUPID_OTHER");
@@ -730,6 +740,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                 //getWindow().setLayout(-1, -1);
 
+                final TextView showSkinNums = (TextView) findViewById(R.id.txtNumSkins);
+                showSkinNums.setText(String.valueOf(onionSkinView.getNumSkins()));
+
                 SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
                 seekBar.setMax(255);
                 seekBar.setProgress(onionSkinView.getOpacity());
@@ -754,12 +767,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 });
 
-                final EditText editText = (EditText) findViewById(R.id.editDateFormat);
+                final EditText editText = (EditText) findViewById(R.id.editFormat);
                 editText.setClickable(true);
                 editText.setEnabled(true);
                 editText.setText(dateFormat);
 
-                final Button button = (Button) findViewById(R.id.button);
+                Button button = (Button) findViewById(R.id.button);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -768,7 +781,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 });
 
-                final Button defbutton = (Button) findViewById(R.id.defaultDateButton);
+                Button defbutton = (Button) findViewById(R.id.defaultDateButton);
                 defbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -776,19 +789,40 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 });
 
-                final Button btnSkinPlus = (Button) findViewById(R.id.btnSkinPlus);
+                Button btnSkinPlus = (Button) findViewById(R.id.btnSkinPlus);
                 btnSkinPlus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         onionSkinView.skinsInc();
+                        showSkinNums.setText(String.valueOf(onionSkinView.getNumSkins()));
                     }
                 });
 
-                final Button btnSkinMinus = (Button) findViewById(R.id.btnSkinMinus);
+
+
+                Button btnSkinMinus = (Button) findViewById(R.id.btnSkinMinusButton);
                 btnSkinMinus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         onionSkinView.skinsDec();
+                        showSkinNums.setText(String.valueOf(onionSkinView.getNumSkins()));
+                    }
+                });
+
+                Button btnSkinClear = (Button) findViewById(R.id.btnClearSkins);
+                btnSkinClear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onionSkinView.skinsClear();
+                    }
+                });
+
+                Button bollocks = (Button) findViewById(R.id.button2);
+                bollocks.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(StopmotionCamera.this,"Bollocks!" , Toast.LENGTH_LONG).show();
+
                     }
                 });
 
@@ -973,17 +1007,36 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
         for (Camera.Size size : previewSizes) {
-            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
-            MenuItem mi = sm1.add(GROUPID_PREVIEW, Menu.NONE, order++, text);
+            String aspect = String.format("%.3f", (float) size.width / size.height);
+            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + aspect;
+            if (aspectLock.equals("None") || aspect.equals(aspectLock)) {
+                MenuItem mi = sm1.add(GROUPID_PREVIEW, Menu.NONE, order++, text);
+            }
 
         }
 
-        SubMenu sm2 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PICTURE, order++, "Picture Size");
+        SubMenu sm2 = menu.addSubMenu(GROUPID_PICTURE, ITEMID_PICTURE, order++, "Picture Size");
 
         for (Camera.Size size : pictureSizes) {
-            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + String.format("%.3f", (float) size.width / size.height);
+            String aspect = String.format("%.3f", (float) size.width / size.height);
+            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + aspect;
 
-            MenuItem mi = sm2.add(GROUPID_PICTURE, Menu.NONE, order++, text);
+            if (aspectLock.equals("None") || aspect.equals(aspectLock)) {
+                MenuItem mi = sm2.add(GROUPID_PICTURE, Menu.NONE, order++, text);
+            }
+        }
+
+        SubMenu sm3 = menu.addSubMenu(GROUPID_ASPECT, ITEMID_ASPECT, order++, "Aspect Lock");
+
+        MenuItem minn = sm3.add(GROUPID_ASPECT, Menu.NONE, order++, "None");
+        ArrayList<String> listAspects = new ArrayList<String>();
+
+        for (Camera.Size size : pictureSizes) {
+            String text = String.format("%.3f", (float) size.width / size.height);
+            if (!listAspects.contains(text)) {
+                listAspects.add(text);
+                MenuItem mi = sm3.add(GROUPID_ASPECT, Menu.NONE, order++, text);
+            }
         }
 
         Log.d(LOGTAG, "created Menu for first time");

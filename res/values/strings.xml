@@ -14,4 +14,9 @@
     <string name="BL">BL</string>
     <string name="TR">TR</string>
     <string name="BR">BR</string>
+    <string name="clear">Clear</string>
+    <string name="_99">99</string>
+    <string name="skinP">Skin+</string>
+    <string name="skinM">Skin-</string>
+    <string name="create_format_string_for_date">create format string for date</string>
 </resources>

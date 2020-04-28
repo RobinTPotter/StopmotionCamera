@@ -20,7 +20,6 @@ public class OnionSkinView extends View {
     private static int SKINS_MIN_ALPHA = 40;
 
     private int numSkins = 3;
-    private Bitmap bmp;
     private String timeupdate = ""; //"not set";
     private Bitmap _onionSkins[];
 
@@ -114,7 +113,6 @@ public class OnionSkinView extends View {
 
         if (_onionSkins == null) return;
 
-        this.bmp = bmp;
         this.timeupdate = (new Date()).toString() + " | " + bmp.getWidth() + " x " + bmp.getHeight();
 
         for (int ss = numSkins - 1; ss > 0; ss--) {
@@ -137,19 +135,28 @@ public class OnionSkinView extends View {
             setOnionSkins(this.numSkins-1);
         }
     }
+    public void skinsClear() {
+        Log.d(LOGTAG,"skins clear");
+        initSkins();
+        setOpacity();
+        updateBackgound();
+        invalidate();
+    }
 
     public void setOnionSkins(int skinsnum) {
 
-        //  if (skinsnum == this.numSkins) return;
+        if (skinsnum == this.numSkins) return;
 
-        if (_onionSkins == null) {
+        this.numSkins = skinsnum;
+
+        if (_onionSkins == null || _onionSkins.length!=this.numSkins) {
             initSkins();
         }
 
-        if (skinsnum == this.numSkins) return;
 
         Bitmap[] tmpskins = new Bitmap[this.numSkins];
-        for (int bb = 0; bb < _onionSkins.length; bb++) {
+        for (int bb = 0; bb < numSkins; bb++) {
+            Log.d("size of temp is "+tmpskins.length+" index:"+bb+ " size of onionskins "+_onionSkins.length,LOGTAG);
             tmpskins[bb] = _onionSkins[bb];
         }
 
@@ -241,6 +248,7 @@ public class OnionSkinView extends View {
 
         } else {
             canvas.drawText("null array", 10, 50, overDetailPaint);
+            Log.i("onion skins are null", LOGTAG);
             initSkins();
         }
     }
@@ -249,5 +257,8 @@ public class OnionSkinView extends View {
         _onionSkins = new Bitmap[numSkins];
     }
 
+    public int getNumSkins() {
+        return numSkins;
+    }
 }
 
