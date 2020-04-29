@@ -86,7 +86,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     LayoutInflater controlInflater = null;
     private int lastGoodHeight = 0;
     private int lastGoodWidth = 0;
-    private String aspectLock;
+    private String aspectLock="None";
 
     @SuppressLint("SourceLockedOrientationActivity")
     public void onCreate(Bundle savedInstanceState) {
@@ -526,8 +526,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
+    public boolean onPrepareOptionsMenu(Menu menu) {
+menu.clear();
         if (menu.findItem(ITEMID_PREVIEW) == null || menu.findItem(ITEMID_PICTURE) == null)
             return createMenu(menu);
         else return true;
@@ -543,6 +543,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             if (previewing) camera.stopPreview();
         }
 
+        Log.d("item group "+item.getGroupId(),LOGTAG);
         boolean success = false;
 
         /// Handle item selection
@@ -562,7 +563,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             Log.d(LOGTAG, "GROUP ID ASPECT");
             /// pict
-            aspectLock = item.getTitle().toString();
+            setAspectLock(item.getTitle().toString());
+            invalidateOptionsMenu();
+            closeOptionsMenu();
             Toast.makeText(StopmotionCamera.this, aspectLock, Toast.LENGTH_SHORT).show();
 
 
@@ -996,20 +999,20 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         int order = 0;
 
-        menu.add(2, Menu.NONE, order++, BUTTON_TOGGLE_STRETCH);
+        menu.add(GROUPID_OTHER, Menu.NONE, order++, BUTTON_TOGGLE_STRETCH);
         //    menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_DEC);
         //   menu.add(2, Menu.NONE, order++, CHANGE_OPACITY_INC);
         // menu.add(2, Menu.NONE, order++, ONION_LEAF_DEC);
         // menu.add(2, Menu.NONE, order++, ONION_LEAF_INC);
-        menu.add(2, Menu.NONE, order++, CHANGE_DATE_FORMAT);
-        menu.add(2, Menu.NONE, order++, SHOW_RUSHES);
+        menu.add(GROUPID_OTHER, Menu.NONE, order++, CHANGE_DATE_FORMAT);
+        menu.add(GROUPID_OTHER, Menu.NONE, order++, SHOW_RUSHES);
 
         SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
         for (Camera.Size size : previewSizes) {
             String aspect = String.format("%.3f", (float) size.width / size.height);
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + aspect;
-            if (aspectLock.equals("None") || aspect.equals(aspectLock)) {
+            if (aspectLock.equals("None") || aspect.equals(getAspectLock())) {
                 MenuItem mi = sm1.add(GROUPID_PREVIEW, Menu.NONE, order++, text);
             }
 
@@ -1021,7 +1024,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             String aspect = String.format("%.3f", (float) size.width / size.height);
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + aspect;
 
-            if (aspectLock.equals("None") || aspect.equals(aspectLock)) {
+            if (aspectLock.equals("None") || aspect.equals(getAspectLock())) {
                 MenuItem mi = sm2.add(GROUPID_PICTURE, Menu.NONE, order++, text);
             }
         }
@@ -1044,6 +1047,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         return true;
     }
 
+    private String getAspectLock() {
+        return aspectLock;
+    }
+
+    private void setAspectLock(String val) {
+        aspectLock = val;
+    }
     public void setSize() {
         setSize(lastGoodWidth, lastGoodHeight);
     }
