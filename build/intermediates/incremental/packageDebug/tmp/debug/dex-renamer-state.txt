@@ -1,0 +1,4 @@
+#Thu Apr 30 23:08:03 BST 2020
+base.0=/home/jon/StopmotionCamera/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
