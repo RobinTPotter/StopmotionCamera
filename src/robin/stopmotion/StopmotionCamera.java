@@ -1,12 +1,17 @@
 package robin.stopmotion;
 
 import java.io.*;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 
+import android.app.DownloadManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.*;
 import android.app.Activity;
@@ -86,7 +91,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     LayoutInflater controlInflater = null;
     private int lastGoodHeight = 0;
     private int lastGoodWidth = 0;
-    private String aspectLock="None";
+    private String aspectLock = "None";
 
     @SuppressLint("SourceLockedOrientationActivity")
     public void onCreate(Bundle savedInstanceState) {
@@ -117,10 +122,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         //        LayoutParams.MATCH_PARENT);/// FILL_PARENT);
 
 
-
-
         //this.addContentView(viewSiteForOnionSkinControl, layoutParamsControl);
-        layoutOnionSkin = (LinearLayout)(findViewById(R.id.layoutOnionSkin));
+        layoutOnionSkin = (LinearLayout) (findViewById(R.id.layoutOnionSkin));
         initOnionskin(layoutOnionSkin, 3);
 
         Object ob2 = findViewById(R.id.testButton);
@@ -155,11 +158,38 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
 
         try {
-            File internal_ffmpeg = new File(this.getApplicationInfo().nativeLibraryDir + "/lib_ffmpeg_v3.0.1.so");
+            DownloadManager downloadmanager;
+            String internal_ffmpeg = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/lib_ffmpeg_v3.0.1.so";
+            if (!new File(internal_ffmpeg).exists()) {
+                String FILE_URL = "https://github.com/RobinTPotter/StopmotionCamera/raw/master/libs/armeabi/lib_ffmpeg_v3.0.1.so";
+
+                downloadmanager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                Uri uri = Uri.parse("files:///" + FILE_URL);
+
+                DownloadManager.Request request = new DownloadManager.Request(uri);
+                request.setTitle("My File");
+                request.setDescription("Downloading");
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                request.setVisibleInDownloadsUi(false);
+                request.setDestinationUri(Uri.parse(internal_ffmpeg));
+
+                Log.i(LOGTAG, "destination: " + internal_ffmpeg);
+                Log.i(LOGTAG, "source: " + uri.toString());
+                downloadmanager.enqueue(request);
+
+
+            }
 
             // Executes the command.
-            Process process = Runtime.getRuntime().exec(internal_ffmpeg.getPath() + " -y -framerate 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg -start_number 0 -format image2 -c:v libx264 -preset ultrafast -crf 32 " + currentDirectory + "/out.mp4");
 
+            Log.i(LOGTAG, "trying to run " + internal_ffmpeg);
+            Log.i(LOGTAG, "EXISTS: " + (new File(internal_ffmpeg)).exists());
+            Log.i(LOGTAG, "execut: " + new File(internal_ffmpeg).setExecutable(true));
+            //  for (File fl : (new File(internal_ffmpeg)).getParentFile().listFiles())  Log.i(LOGTAG, "list: " + fl);
+            String cmd = internal_ffmpeg + " -y -framerate 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg -start_number 0 -format image2 -c:v libx264 -preset ultrafast -crf 32 " + currentDirectory + "/out.mp4";
+            Log.i(LOGTAG, "command " + cmd);
+
+            Process process = Runtime.getRuntime().exec(cmd);
             // Reads stdout.
             // NOTE: You can write to stdin of the command using
             //       process.getOutputStream().
@@ -190,7 +220,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             process.waitFor();
 
             //Toast.makeText(this,  output.toString(), Toast.LENGTH_LONG).show();
-            Toast.makeText(this,  output2.toString().substring(output2.toString().length()-200), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, output2.toString().substring(output2.toString().length() - 200), Toast.LENGTH_LONG).show();
             Log.e(LOGTAG, output2.toString());
 
 
@@ -419,8 +449,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView = new OnionSkinView(this, skins);
 
         //onionSkinView.setLayoutParams(new LinearLayout.LayoutParams(
-         //       LinearLayout.LayoutParams.MATCH_PARENT,
-         //       LinearLayout.LayoutParams.MATCH_PARENT));
+        //       LinearLayout.LayoutParams.MATCH_PARENT,
+        //       LinearLayout.LayoutParams.MATCH_PARENT));
 
 
         onionSkinView.setOnClickListener(buttonClickListener);
@@ -527,7 +557,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-menu.clear();
+        menu.clear();
         if (menu.findItem(ITEMID_PREVIEW) == null || menu.findItem(ITEMID_PICTURE) == null)
             return createMenu(menu);
         else return true;
@@ -543,7 +573,7 @@ menu.clear();
             if (previewing) camera.stopPreview();
         }
 
-        Log.d("item group "+item.getGroupId(),LOGTAG);
+        Log.d("item group " + item.getGroupId(), LOGTAG);
         boolean success = false;
 
         /// Handle item selection
@@ -559,7 +589,7 @@ menu.clear();
             /// pict
             success = idPictureSize(item.getTitle().toString(), -1);
 
-        }  else if (item.getGroupId() == GROUPID_ASPECT) {
+        } else if (item.getGroupId() == GROUPID_ASPECT) {
 
             Log.d(LOGTAG, "GROUP ID ASPECT");
             /// pict
@@ -611,8 +641,9 @@ menu.clear();
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 playbackSpeed = progress;
-                                if (playbackSpeed==0) playbackSpeed=1;
-                                if (playbackThread != null) playbackThread.setPlayBackSpeed(progress);
+                                if (playbackSpeed == 0) playbackSpeed = 1;
+                                if (playbackThread != null)
+                                    playbackThread.setPlayBackSpeed(progress);
                             }
 
                             @Override
@@ -688,8 +719,10 @@ menu.clear();
                                 //StopmotionCamera.this.ffmpegCommandTest();
                                 //StopmotionCamera.this.encodeCurrent();
                                 //StopmotionCamera.this.justDoThis();
-
-                                Toast.makeText(StopmotionCamera.this, "encode after", Toast.LENGTH_SHORT).show();
+                                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText("ffmpeg string for termux", "ffmpeg -r 15 -f image2 -s " + pictureSize.width + "x" + pictureSize.height + " -i " + getAlbumStorageDir(true) + "/" + IMAGE_NUMBER_FORMAT + ".jpg -vcodec libx264 -crf 25 -pix_fmt yuv420p " + getAlbumStorageDir(true) + "/out.mp4");
+                                clipboard.setPrimaryClip(clip);
+                                Toast.makeText(StopmotionCamera.this, "copied", Toast.LENGTH_SHORT).show();
 
                             }
                         });
@@ -802,7 +835,6 @@ menu.clear();
                 });
 
 
-
                 Button btnSkinMinus = (Button) findViewById(R.id.btnSkinMinusButton);
                 btnSkinMinus.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -824,7 +856,7 @@ menu.clear();
                 bollocks.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(StopmotionCamera.this,"Bollocks!" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(StopmotionCamera.this, "Bollocks!", Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -1054,6 +1086,7 @@ menu.clear();
     private void setAspectLock(String val) {
         aspectLock = val;
     }
+
     public void setSize() {
         setSize(lastGoodWidth, lastGoodHeight);
     }
@@ -1181,6 +1214,10 @@ menu.clear();
     }
 
     public File getAlbumStorageDir() {
+        return getAlbumStorageDir(false);
+    }
+
+    public File getAlbumStorageDir(boolean termux) {
         String albumName = "Stopmotion-";
         try {
             albumName = "Stopmotion-" + (new SimpleDateFormat(dateFormat).format(new Date()));
@@ -1204,8 +1241,9 @@ menu.clear();
         }
 
         Log.d(LOGTAG, "getAlbumStorageDir " + file.toString());
-
-        return file;
+        if (termux)
+            return new File("/data/data/com.termux/files/home/storage/pictures/" + albumName);
+        else return file;
     }
 
     @Override

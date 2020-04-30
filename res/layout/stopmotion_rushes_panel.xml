@@ -42,11 +42,10 @@
                     android:text="@string/label_playback"
                     android:id="@+id/play"
             />
-            <SeekBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/previewSeekBar" android:layout_gravity="center_vertical"
-            />
+             <SeekBar
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/playbackSpeed"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
@@ -55,9 +54,10 @@
                 android:id="@+id/linearLayout"
                 android:layout_above="@+id/splaybackandskinset" android:layout_alignParentLeft="true">
             <SeekBar
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/playbackSpeed"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/previewSeekBar" android:layout_gravity="center_vertical"
+                />
         </LinearLayout>
 
     </RelativeLayout>
