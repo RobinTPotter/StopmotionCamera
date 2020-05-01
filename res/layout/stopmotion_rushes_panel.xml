@@ -53,11 +53,26 @@
                 android:layout_height="30dp"
                 android:id="@+id/linearLayout"
                 android:layout_above="@+id/splaybackandskinset" android:layout_alignParentLeft="true">
-            <SeekBar
-                android:layout_width="match_parent"
+
+
+            <Button
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/previewSeekBar" android:layout_gravity="center_vertical"
-                />
+                android:id="@+id/frameLeft"
+                android:text="@string/leftArrow" />
+
+            <SeekBar
+                android:id="@+id/previewSeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/frameRight"
+                android:text="@string/rightArrow" />
+
         </LinearLayout>
 
     </RelativeLayout>

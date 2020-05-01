@@ -50,11 +50,16 @@ public class SquashedPreview extends View {
         seekbar = s;
     }
 
+    public int getImageNumber() {
+        return currentImage ;
+    }
+
     public void setImageNumber(int i) {
         if (previewImages == null) return;
         if (i > previewImages.length - 1) i = previewImages.length - 1;
         if (i < 0) i = 0;
         currentImage = i;
+        seekbar.setProgress(currentImage);
         invalidate();
         //dammit
     }

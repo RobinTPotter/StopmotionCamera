@@ -675,6 +675,34 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                             }
                         });
 
+                        Button btnFrameLeft = (Button) findViewById(R.id.frameLeft);
+                        btnFrameLeft.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                int current = squashedPreview.getImageNumber();
+                                if (current == 0) {
+                                    current = squashedPreview.getNumberImages();
+                                }
+                                current--;
+                                squashedPreview.setImageNumber(current);
+                            }
+                        });
+
+                        Button btnFrameRight = (Button) findViewById(R.id.frameRight);
+                        btnFrameRight.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                int current = squashedPreview.getImageNumber();
+                                if (current == squashedPreview.getNumberImages()) {
+                                    current = 0;
+                                } else {
+                                    current++;
+                                }
+                                squashedPreview.setImageNumber(current);
+                            }
+                        });
+
+
                         Button buttonSetSkins = (Button) findViewById(R.id.setSkins);
                         buttonSetSkins.setOnClickListener(new View.OnClickListener() {
                             @Override
