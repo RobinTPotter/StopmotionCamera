@@ -72,7 +72,7 @@ android {
         release.setRoot('build-types/release')
     }
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 26
     }
 }
 

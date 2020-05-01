@@ -27,6 +27,8 @@ public class SquashedPreview extends View {
     private String[] mainImages;
     private int currentImage = 0;
     private SeekBar seekbar;
+    private String main;
+    private String thumb;
 
     public SquashedPreview(Context context) {
         super(context);
@@ -49,9 +51,16 @@ public class SquashedPreview extends View {
     }
 
     public String deleteImage(int imnum) {
+        if (imnum>=mainImages.length) return "Error";
         String me = mainImages[imnum];
         String th = thumbnailImages[imnum];
-        if ((new File(me)).delete() && (new File(th)).delete()) {
+        Log.i(StopmotionCamera.LOGTAG,"found "+ me +  " exists "+(new File(me).exists()));
+        Log.i(StopmotionCamera.LOGTAG,"found "+ th +  " exists "+(new File(th).exists()));
+        boolean medone = (new File(me)).delete();
+        boolean thdone = (new File(th)).delete();
+        Log.i(StopmotionCamera.LOGTAG,"del "+ me +  " " + medone);
+        Log.i(StopmotionCamera.LOGTAG,"del "+ th +  " " +thdone);
+        if (medone && thdone) {
             return me;
         } else {
             return "Error";
@@ -91,22 +100,45 @@ public class SquashedPreview extends View {
 
     }
 
+
+    public void setDirectory() {
+        if (this.main==null || this.thumb==null) return;
+        setDirectory(this.main, this.thumb);
+    }
+
+
     public void setDirectory(String main, String thumb) {
+
+        this.thumb= thumb;
+        this.main = main;
+
         directory = new File(main, thumb);
 
-        thumbnailImages = directory.list(new FilenameFilter() {
+        String[] _thumbnailImages = directory.list(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String filename) {
                 return filename.endsWith(".thumb.jpg");
             }
         });
 
-        mainImages = (new File(main)).list(new FilenameFilter() {
+        String[] _mainImages = (new File(main)).list(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String filename) {
                 return filename.endsWith(".jpg");
             }
         });
+
+        mainImages = new String[_mainImages.length];
+        thumbnailImages = new String[_thumbnailImages.length];
+
+        for (int mm=0;mm<_mainImages.length;mm++) {
+            mainImages[mm] = main + "/" + _mainImages[mm];
+            Log.d(StopmotionCamera.LOGTAG, "main image now "+mainImages[mm]);
+        }
+        for (int mm=0;mm<_thumbnailImages.length;mm++) {
+            thumbnailImages[mm] = main + "/" + thumb  + "/" +_thumbnailImages[mm];
+            Log.d(StopmotionCamera.LOGTAG, "thumb image now "+thumbnailImages[mm]);
+        }
 
         //Arrays.sort(images, Collections.reverseOrder());
 
@@ -122,7 +154,7 @@ public class SquashedPreview extends View {
                 int imageindex = ii + thumbnailImages.length - to_be_used;
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 Log.d(LOGTAG, "loading " + thumbnailImages[imageindex]);
-                Bitmap pic = BitmapFactory.decodeFile(directory + "/" + thumbnailImages[imageindex], bmOptions);
+                Bitmap pic = BitmapFactory.decodeFile( thumbnailImages[imageindex], bmOptions);
                 Log.d(LOGTAG, pic.toString());
                 previewImages[ii] = pic; //Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
                 setImageNumber(ii);

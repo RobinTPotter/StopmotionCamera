@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="BL">BL</string>
+    <string name="BR">BR</string>
+    <string name="TL">TL</string>
+    <string name="TR">TR</string>
+    <string name="_99">99</string>
+    <string name="alignment_label">Button Alignment</string>
+    <string name="app_name">Stopmotion Camera</string>
+    <string name="button_default_date">default</string>
+    <string name="button_set_date_patterns">set</string>
+    <string name="clear">Clear</string>
+    <string name="create_format_string_for_date">create format string for date</string>
+    <string name="hello">bahhhh!</string>
+    <string name="labelDeleteAll">X</string>
+    <string name="labelDeleteCurrent">x</string>
+    <string name="label_date_format_string">Date Format String</string>
+    <string name="label_encode">Enc.</string>
+    <string name="label_playback">Play</string>
+    <string name="label_set_skins">SetSkn</string>
+    <string name="leftArrow"><![CDATA[<]]></string>
+    <string name="opacity">Opacity</string>
+    <string name="rightArrow"><![CDATA[>]]></string>
+    <string name="skinM">Skin-</string>
+    <string name="skinP">Skin+</string>
+</resources>

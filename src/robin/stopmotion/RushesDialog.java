@@ -103,8 +103,8 @@ public class RushesDialog extends Dialog {
 
         final SeekBar playbackSpeedBar = (SeekBar) findViewById(R.id.playbackSpeed);
         playbackSpeedBar.setProgress(playbackSpeed);
-        playbackSpeedBar.setMax(100);
-
+        playbackSpeedBar.setMax(StopmotionCamera.MAX_FPS);
+        playbackSpeedBar.setMin(1);
 
         playbackSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -176,7 +176,8 @@ public class RushesDialog extends Dialog {
         buttonSetSkins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int nn = previewSeekBar.getMax() - 1; nn >= previewSeekBar.getProgress(); nn--) {
+                if (squashedPreview.previewImages.length==0) return;
+                for (int nn = previewSeekBar.getProgress(); nn < previewSeekBar.getProgress() + onionSkinView.getNumSkins(); nn++) {
                     onionSkinView.setBmp(squashedPreview.previewImages[nn]);
                 }
             }
@@ -216,15 +217,19 @@ public class RushesDialog extends Dialog {
                 //StopmotionCamera.this.ffmpegCommandTest();
                 //StopmotionCamera.this.encodeCurrent();
                 //StopmotionCamera.this.justDoThis();
-                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("ffmpeg string for termux", "ffmpeg -r 15 -f image2 -s "
-                        + getPictureSize().width + "x" + getPictureSize().height + " -i "
-                        + getAlbumStorageDir() + "/" + StopmotionCamera.IMAGE_NUMBER_FORMAT
-                        + ".jpg -vcodec libx264 -crf 25 -pix_fmt yuv420p "
-                        + getAlbumStorageDir() + "/out.mp4");
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(getContext(), "copied", Toast.LENGTH_SHORT).show();
 
+                if (getPictureSize() == null) {
+                    Toast.makeText(getContext(), "no picture size set! (perhaps no pictures?)", Toast.LENGTH_SHORT).show();
+                } else {
+                    ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("ffmpeg string for termux", "ffmpeg -r 15 -f image2 -s "
+                            + getPictureSize().width + "x" + getPictureSize().height + " -i "
+                            + getAlbumStorageDir() + "/" + StopmotionCamera.IMAGE_NUMBER_FORMAT
+                            + ".jpg -vcodec libx264 -crf 25 -pix_fmt yuv420p "
+                            + getAlbumStorageDir() + "/out.mp4");
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(getContext(), "copied", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -233,8 +238,11 @@ public class RushesDialog extends Dialog {
         btnDeleteCurrent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "delete "+ squashedPreview.deleteImage(squashedPreview.getImageNumber()), Toast.LENGTH_SHORT).show();
-
+                int im = squashedPreview.getImageNumber();
+                Toast.makeText(getContext(), "delete " + squashedPreview.deleteImage(im), Toast.LENGTH_SHORT).show();
+                squashedPreview.setDirectory();
+                squashedPreview.setImageNumber(im);
+                previewSeekBar.setProgress(im);
             }
         });
 
@@ -242,20 +250,18 @@ public class RushesDialog extends Dialog {
         btnDeleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int im = squashedPreview.getImageNumber();
                 if (squashedPreview.deleteAll()) {
                     Toast.makeText(getContext(), "deleted all", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
+                squashedPreview.setDirectory();
+                squashedPreview.setImageNumber(im);
+                previewSeekBar.setProgress(im);
 
             }
         });
-
-
-
-
-
-
 
 
     }

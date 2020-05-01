@@ -41,7 +41,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     public static final String PLAY = "Play";
     public static final String STOP = "Stop";
     public static final String IMAGE_NUMBER_FORMAT = "%07d";
-
+    public static int MAX_FPS = 30;
     private String dateFormat = "yyyy-MM-dd-HH";
     private String defaultDateFormat = "yyyy-MM-dd-HH";
 
@@ -613,14 +613,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                 currentDirectory = getAlbumStorageDir();
 
-                RushesDialog dialog= new RushesDialog(this);
+                RushesDialog dialog = new RushesDialog(this);
                 dialog.setPlayBackSpeed(playbackSpeed);
                 dialog.setCurrentDirectory(currentDirectory);
                 dialog.setOnionSkinView(onionSkinView);
                 dialog.setPictureSize(pictureSize);
                 dialog.setAlbumStorageDir(getAlbumStorageDir(true));
                 dialog.show();
-
                 onionSkinView.setActivated(true);
 
             } else if (item.getTitle().equals(CHANGE_DATE_FORMAT)) {
