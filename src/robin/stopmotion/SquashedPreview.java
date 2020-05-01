@@ -4,12 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.media.MediaCodec;
-import android.media.MediaFormat;
-import android.media.MediaMuxer;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -17,9 +13,6 @@ import android.widget.SeekBar;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Created by potterr on 28/07/2016.
@@ -29,10 +22,11 @@ public class SquashedPreview extends View {
     private File directory;
     private static String LOGTAG = "StopmotionCameraLog-SquashedPreview";
     Bitmap[] previewImages;
-    private String[] images;
+
+    private String[] thumbnailImages;
+    private String[] mainImages;
     private int currentImage = 0;
     private SeekBar seekbar;
-    int MAX_IMAGES = 100;
 
     public SquashedPreview(Context context) {
         super(context);
@@ -51,7 +45,32 @@ public class SquashedPreview extends View {
     }
 
     public int getImageNumber() {
-        return currentImage ;
+        return currentImage;
+    }
+
+    public String deleteImage(int imnum) {
+        String me = mainImages[imnum];
+        String th = thumbnailImages[imnum];
+        if ((new File(me)).delete() && (new File(th)).delete()) {
+            return me;
+        } else {
+            return "Error";
+        }
+    }
+
+    public boolean deleteAll() {
+        boolean ok = true;
+        for (int imnum=0;imnum<mainImages.length;imnum++) {
+            String me = mainImages[imnum];
+            String th = thumbnailImages[imnum];
+            if ((new File(me)).delete() && (new File(th)).delete()) {
+
+            } else {
+                ok = false;
+            }
+        }
+        return ok;
+
     }
 
     public void setImageNumber(int i) {
@@ -72,31 +91,38 @@ public class SquashedPreview extends View {
 
     }
 
-    public void setDirectory(File d) {
-        directory = d;
+    public void setDirectory(String main, String thumb) {
+        directory = new File(main, thumb);
 
-        images = directory.list(new FilenameFilter() {
+        thumbnailImages = directory.list(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String filename) {
                 return filename.endsWith(".thumb.jpg");
             }
         });
 
+        mainImages = (new File(main)).list(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String filename) {
+                return filename.endsWith(".jpg");
+            }
+        });
+
         //Arrays.sort(images, Collections.reverseOrder());
 
-        Log.d(LOGTAG, "images " + images.length);
+        Log.d(LOGTAG, "images " + thumbnailImages.length);
 
-        if (images.length > 0) {
+        if (thumbnailImages.length > 0) {
 
-            int to_be_used = MAX_IMAGES;
-            if (images.length < to_be_used) to_be_used = images.length;
+            int to_be_used = StopmotionCamera.MAX_IMAGES;
+            if (thumbnailImages.length < to_be_used) to_be_used = thumbnailImages.length;
 
-            previewImages = new Bitmap[images.length];
+            previewImages = new Bitmap[thumbnailImages.length];
             for (int ii = 0; (ii < to_be_used); ii++) {
-                int imageindex = ii + images.length - to_be_used;
+                int imageindex = ii + thumbnailImages.length - to_be_used;
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                Log.d(LOGTAG, "loading " + images[imageindex]);
-                Bitmap pic = BitmapFactory.decodeFile(directory + "/" + images[imageindex], bmOptions);
+                Log.d(LOGTAG, "loading " + thumbnailImages[imageindex]);
+                Bitmap pic = BitmapFactory.decodeFile(directory + "/" + thumbnailImages[imageindex], bmOptions);
                 Log.d(LOGTAG, pic.toString());
                 previewImages[ii] = pic; //Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
                 setImageNumber(ii);

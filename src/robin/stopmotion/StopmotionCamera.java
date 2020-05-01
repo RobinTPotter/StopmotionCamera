@@ -37,6 +37,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int GROUPID_PICTURE = 1;
     private static int GROUPID_ASPECT = 2;
     private static int GROUPID_OTHER = 3;
+    public static int MAX_IMAGES = 1000;
     public static final String PLAY = "Play";
     public static final String STOP = "Stop";
     public static final String IMAGE_NUMBER_FORMAT = "%07d";
@@ -44,16 +45,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private String dateFormat = "yyyy-MM-dd-HH";
     private String defaultDateFormat = "yyyy-MM-dd-HH";
 
-    private static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
-    private static String BUTTON_TOGGLE_STRETCH = "Toggle";
-    PlaybackThread playbackThread;
-    private static String THUMBNAIL_SUBFOLDER = "/thumb";
+    public static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
+    public static String BUTTON_TOGGLE_STRETCH = "Toggle";
+    public static String THUMBNAIL_SUBFOLDER = "/thumb";
 
     //private static String ONION_LEAF_INC = "Skin+";
     //private static String ONION_LEAF_DEC = "Skin-";
 
-    private static String CHANGE_DATE_FORMAT = "Settings";
-    private static String SHOW_RUSHES = "Preview";
+    public static String CHANGE_DATE_FORMAT = "Settings";
+    public static String SHOW_RUSHES = "Preview";
 
     private int numSkins = 3;
     private int playbackSpeed = 10;
@@ -613,149 +613,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                 currentDirectory = getAlbumStorageDir();
 
-                (new Dialog(this) {
-                    @Override
-                    protected void onCreate(Bundle savedInstanceState) {
-
-                        super.onCreate(savedInstanceState);
-
-                        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-                        setContentView(R.layout.stopmotion_rushes_panel);
-
-                    }
-
-                    protected void onStart() {
-
-                        final SquashedPreview squashedPreview = (SquashedPreview) findViewById(R.id.view);
-
-                        final SeekBar playbackSpeedBar = (SeekBar) findViewById(R.id.playbackSpeed);
-                        playbackSpeedBar.setProgress(playbackSpeed);
-                        playbackSpeedBar.setMax(100);
-
-
-                        playbackSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                            @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                                playbackSpeed = progress;
-                                if (playbackSpeed == 0) playbackSpeed = 1;
-                                if (playbackThread != null)
-                                    playbackThread.setPlayBackSpeed(progress);
-                            }
-
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-                            }
-
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-                            }
-                        });
-
-                        final SeekBar previewSeekBar = (SeekBar) findViewById(R.id.previewSeekBar);
-                        squashedPreview.setSeekbar(previewSeekBar);
-
-                        squashedPreview.setDirectory(new File(currentDirectory.getPath(), THUMBNAIL_SUBFOLDER));
-
-                        previewSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                            @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                                squashedPreview.setImageNumber(progress);
-                            }
-
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-                            }
-
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-                            }
-                        });
-
-                        Button btnFrameLeft = (Button) findViewById(R.id.frameLeft);
-                        btnFrameLeft.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                int current = squashedPreview.getImageNumber();
-                                if (current == 0) {
-                                    current = squashedPreview.getNumberImages();
-                                }
-                                current--;
-                                squashedPreview.setImageNumber(current);
-                            }
-                        });
-
-                        Button btnFrameRight = (Button) findViewById(R.id.frameRight);
-                        btnFrameRight.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                int current = squashedPreview.getImageNumber();
-                                if (current == squashedPreview.getNumberImages()) {
-                                    current = 0;
-                                } else {
-                                    current++;
-                                }
-                                squashedPreview.setImageNumber(current);
-                            }
-                        });
-
-
-                        Button buttonSetSkins = (Button) findViewById(R.id.setSkins);
-                        buttonSetSkins.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                for (int nn = previewSeekBar.getMax() - 1; nn >= previewSeekBar.getProgress(); nn--) {
-                                    onionSkinView.setBmp(squashedPreview.previewImages[nn]);
-                                }
-                            }
-                        });
-
-                        final Button buttonPlay = (Button) findViewById(R.id.play);
-
-                        buttonPlay.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                if (buttonPlay.getText().equals(PLAY)) {
-                                    buttonPlay.setText(STOP);
-                                    playbackThread = new PlaybackThread(previewSeekBar, playbackSpeed);
-                                    playbackThread.setRunning(true);
-                                    playbackThread.start();
-
-                                    try {
-                                    } catch (Exception ex) {
-                                        Log.d(LOGTAG, "except..." + ex.getMessage());
-                                    }
-                                } else {
-                                    buttonPlay.setText(PLAY);
-                                    playbackThread.setRunning(false);
-
-                                }
-
-                            }
-                        });
-
-                        final Button buttonEncode = (Button) findViewById(R.id.encode);
-
-                        buttonEncode.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(StopmotionCamera.this, "encode pressed", Toast.LENGTH_SHORT).show();
-                                //StopmotionCamera.this.ffmpegCommandTest();
-                                //StopmotionCamera.this.encodeCurrent();
-                                //StopmotionCamera.this.justDoThis();
-                                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                                ClipData clip = ClipData.newPlainText("ffmpeg string for termux", "ffmpeg -r 15 -f image2 -s " + pictureSize.width + "x" + pictureSize.height + " -i " + getAlbumStorageDir(true) + "/" + IMAGE_NUMBER_FORMAT + ".jpg -vcodec libx264 -crf 25 -pix_fmt yuv420p " + getAlbumStorageDir(true) + "/out.mp4");
-                                clipboard.setPrimaryClip(clip);
-                                Toast.makeText(StopmotionCamera.this, "copied", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-                    }
-                }).show();
+                RushesDialog dialog= new RushesDialog(this);
+                dialog.setPlayBackSpeed(playbackSpeed);
+                dialog.setCurrentDirectory(currentDirectory);
+                dialog.setOnionSkinView(onionSkinView);
+                dialog.setPictureSize(pictureSize);
+                dialog.setAlbumStorageDir(getAlbumStorageDir(true));
+                dialog.show();
 
                 onionSkinView.setActivated(true);
 

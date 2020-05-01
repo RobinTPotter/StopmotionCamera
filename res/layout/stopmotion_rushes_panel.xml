@@ -25,6 +25,19 @@
                 android:id="@+id/splaybackandskinset"
                 android:layout_alignParentBottom="true" android:layout_alignParentLeft="true">
             <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelDeleteAll"
+                android:id="@+id/deleteCurrent"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelDeleteCurrent"
+                android:id="@+id/deleteAll"
+                />
+            <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_set_skins"
@@ -36,27 +49,28 @@
                     android:text="@string/label_encode"
                     android:id="@+id/encode"
             />
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_playback"
-                    android:id="@+id/play"
-            />
              <SeekBar
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
+                 android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:id="@+id/playbackSpeed"/>
+            android:id="@+id/playbackSpeed" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_playback"
+                android:id="@+id/play"
+                />
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/linearLayout"
                 android:layout_above="@+id/splaybackandskinset" android:layout_alignParentLeft="true">
 
 
             <Button
-                android:layout_width="30dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/frameLeft"
                 android:text="@string/leftArrow" />
@@ -68,7 +82,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:layout_width="30dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/frameRight"
                 android:text="@string/rightArrow" />

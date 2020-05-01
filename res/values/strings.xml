@@ -21,4 +21,6 @@
     <string name="create_format_string_for_date">create format string for date</string>
     <string name="leftArrow"><![CDATA[<]]></string>
     <string name="rightArrow"><![CDATA[>]]></string>
+    <string name="labelDeleteAll">X</string>
+    <string name="labelDeleteCurrent">x</string>
 </resources>
