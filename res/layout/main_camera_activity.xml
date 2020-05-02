@@ -5,13 +5,13 @@
     android:orientation="horizontal">
 
     <SurfaceView
-        android:id="@+id/main_camera_activity"
+        android:id="@+id/surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp" />
 
     <Button
         android:id="@+id/testButton"

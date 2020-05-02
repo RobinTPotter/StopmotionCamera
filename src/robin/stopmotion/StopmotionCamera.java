@@ -1,17 +1,12 @@
 package robin.stopmotion;
 
 import java.io.*;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 
-import android.app.DownloadManager;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.*;
 import android.app.Activity;
@@ -106,9 +101,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
 
-        Object ob = findViewById(R.id.main_camera_activity);
 
-        surfaceView = (SurfaceView) ob;
+        surfaceView = (SurfaceView) findViewById(R.id.surface_view);
 
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
@@ -145,147 +139,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     }
 
-    private void ffmpegCommandTest() {
-        ffmpegCommand(" -formats", true);
-    }
-
-    private void encodeCurrent() {
-        ffmpegCommand("-y -start_number 0 -framerate 10 -preset ultrafast -crf 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg " + currentDirectory + "/out.mp4", false);
-    }
 
 
-    private void justDoThis() {
-
-
-        try {
-            DownloadManager downloadmanager;
-            String internal_ffmpeg = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/lib_ffmpeg_v3.0.1.so";
-            if (!new File(internal_ffmpeg).exists()) {
-                String FILE_URL = "https://github.com/RobinTPotter/StopmotionCamera/raw/master/libs/armeabi/lib_ffmpeg_v3.0.1.so";
-
-                downloadmanager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-                Uri uri = Uri.parse("files:///" + FILE_URL);
-
-                DownloadManager.Request request = new DownloadManager.Request(uri);
-                request.setTitle("My File");
-                request.setDescription("Downloading");
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                request.setVisibleInDownloadsUi(false);
-                request.setDestinationUri(Uri.parse(internal_ffmpeg));
-
-                Log.i(LOGTAG, "destination: " + internal_ffmpeg);
-                Log.i(LOGTAG, "source: " + uri.toString());
-                downloadmanager.enqueue(request);
-
-
-            }
-
-            // Executes the command.
-
-            Log.i(LOGTAG, "trying to run " + internal_ffmpeg);
-            Log.i(LOGTAG, "EXISTS: " + (new File(internal_ffmpeg)).exists());
-            Log.i(LOGTAG, "execut: " + new File(internal_ffmpeg).setExecutable(true));
-            //  for (File fl : (new File(internal_ffmpeg)).getParentFile().listFiles())  Log.i(LOGTAG, "list: " + fl);
-            String cmd = internal_ffmpeg + " -y -framerate 10 -i " + currentDirectory + "/" + IMAGE_NUMBER_FORMAT + ".jpg -start_number 0 -format image2 -c:v libx264 -preset ultrafast -crf 32 " + currentDirectory + "/out.mp4";
-            Log.i(LOGTAG, "command " + cmd);
-
-            Process process = Runtime.getRuntime().exec(cmd);
-            // Reads stdout.
-            // NOTE: You can write to stdin of the command using
-            //       process.getOutputStream().
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()));
-
-            int read;
-            char[] buffer = new char[4096];
-            StringBuilder output = new StringBuilder();
-            while ((read = reader.read(buffer)) > 0) {
-                output.append(buffer, 0, read);
-            }
-            reader.close();
-
-
-            BufferedReader reader2 = new BufferedReader(
-                    new InputStreamReader(process.getErrorStream()));
-
-
-            StringBuilder output2 = new StringBuilder();
-            while ((read = reader2.read(buffer)) > 0) {
-                output2.append(buffer, 0, read);
-            }
-            reader.close();
-
-
-            // Waits for the command to finish.
-            process.waitFor();
-
-            //Toast.makeText(this,  output.toString(), Toast.LENGTH_LONG).show();
-            Toast.makeText(this, output2.toString().substring(output2.toString().length() - 200), Toast.LENGTH_LONG).show();
-            Log.e(LOGTAG, output2.toString());
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
-
-    private void ffmpegCommand(String command, boolean altLog) {
-        try {
-
-
-            File internal_ffmpeg = new File(this.getApplicationInfo().nativeLibraryDir + "/lib_ffmpeg_v3.0.1.so");
-            internal_ffmpeg.setExecutable(true);
-            File output = new File(Environment.getExternalStorageDirectory() + "/StopmotionCamera_ffmpeg" + String.valueOf(altLog) + ".log");
-
-            String commandExecute = "." + internal_ffmpeg.getPath() + " " + command;
-
-            Log.i(LOGTAG, commandExecute);
-
-
-            // Run the command
-            Process process = Runtime.getRuntime().exec(commandExecute.split(" "));
-            //String[] list = commandExecute.split(" ");
-            //ProcessBuilder pb = new ProcessBuilder(list);
-            //pb.redirectErrorStream();
-            //Process process = pb.start();
-
-
-            BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()));
-
-
-            // Grab the results
-            StringBuilder log = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                log.append(line);
-                log.append("\n");
-            }
-
-
-            process.waitFor();
-            /*
-            Toast.makeText(this, commandExecute, Toast.LENGTH_LONG).show();
-*/
-            BufferedOutputStream bof = (new BufferedOutputStream(new FileOutputStream(output)));
-            bof.write(log.toString().getBytes());
-            bof.flush();
-            bof.close();
-
-            //Toast.makeText(this, log.toString().substring(0,500), Toast.LENGTH_LONG).show();
-
-        } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.e(LOGTAG, "execute failed: " + e.getMessage());
-            e.printStackTrace();
-
-        }
-
-    }
 
     Button.OnClickListener buttonClickListener =
             new Button.OnClickListener() {
@@ -305,6 +160,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         try {
                             Log.d(LOGTAG, "going to take picture");
                             camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
+                            Toast.makeText(StopmotionCamera.this, "ding!", Toast.LENGTH_SHORT).show();
+
                         } catch (Exception ex) {
                             Log.d(LOGTAG, "failed to take picture!");
                         }
@@ -373,7 +230,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
             onionSkinView.setBmp(lastPicture);
 
-            onionSkinView.updateBackgound();
+            onionSkinView.updateBackground();
             camera.startPreview();
             previewing = true;
 
@@ -401,7 +258,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         onionSkinView.setOnionSkins(numSkins);
         onionSkinView.setOpacity();
-        onionSkinView.updateBackgound();
+        onionSkinView.updateBackground();
         onionSkinView.invalidate();
         testButton.invalidate();
         //testButton.bringToFront();
@@ -473,7 +330,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         layoutOnionSkin.invalidate();
 
         onionSkinView.setOpacity();
-        onionSkinView.updateBackgound();
+        onionSkinView.updateBackground();
         onionSkinView.invalidate();
 
     }
@@ -490,7 +347,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         save();
 
-        onionSkinView.updateBackgound();
+        onionSkinView.updateBackground();
         onionSkinView.invalidate();
         testButton.invalidate();
         //testButton.bringToFront();
@@ -527,7 +384,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         Log.d(LOGTAG, "onResume");
 
         load();
-        onionSkinView.updateBackgound();
+        onionSkinView.updateBackground();
         onionSkinView.invalidate();
         testButton.invalidate();
         //testButton.bringToFront();
@@ -679,7 +536,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         Log.d(LOGTAG, "progress " + progress);
                         onionSkinView.setOpacity(progress);
-                        onionSkinView.updateBackgound();
+                        onionSkinView.updateBackground();
                         onionSkinView.invalidate();
                         testButton.invalidate();
                         //testButton.bringToFront();
@@ -1044,8 +901,10 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         //onionSkinView.layout(l, t, l + width, t + height);
         layoutOnionSkin.setLayoutParams(layoutParams);
-        onionSkinView.updateBackgound();
+        onionSkinView.updateBackground();
+        onionSkinView.layout(0,0,0,0);
         onionSkinView.invalidate();
+        layoutOnionSkin.invalidate();
 
         //if (alignmentGroup != null) {
 

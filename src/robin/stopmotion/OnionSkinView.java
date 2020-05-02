@@ -85,14 +85,14 @@ public class OnionSkinView extends View {
     public void increaseOpacity() {
 
         setOpacity(getOpacity() + OPACITY_INCREMENT);
-        updateBackgound();
+        updateBackground();
         Log.d(LOGTAG, "increaseOpacity");
     }
 
     public void decreaseOpacity() {
 
         setOpacity(getOpacity() - OPACITY_INCREMENT);
-        updateBackgound();
+        updateBackground();
         Log.d(LOGTAG, "decreaseOpacity");
 
     }
@@ -139,7 +139,7 @@ public class OnionSkinView extends View {
         Log.d(LOGTAG,"skins clear");
         initSkins();
         setOpacity();
-        updateBackgound();
+        updateBackground();
         invalidate();
     }
 
@@ -171,7 +171,7 @@ public class OnionSkinView extends View {
         invalidate();
     }
 
-    public void updateBackgound() {
+    public void updateBackground() {
 
         setAlpha((float) (opacity) / 255);
 
@@ -243,8 +243,8 @@ public class OnionSkinView extends View {
                 }
             }
 
-            canvas.drawText(timeupdate, 11, 32, underDetailPaint);
-            canvas.drawText(timeupdate, 10, 30, overDetailPaint);
+            //canvas.drawText(timeupdate, 11, 32, underDetailPaint);
+            //canvas.drawText(timeupdate, 10, 30, overDetailPaint);
 
         } else {
             canvas.drawText("null array", 10, 50, overDetailPaint);
@@ -255,6 +255,12 @@ public class OnionSkinView extends View {
 
     private void initSkins() {
         _onionSkins = new Bitmap[numSkins];
+        for (int oo=0;oo<numSkins;oo++) {
+            _onionSkins[oo]=Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(_onionSkins[oo]);
+            Paint p = new Paint(Color.BLACK);
+            canvas.drawRect(0,0,getWidth(),getHeight(),p);
+        }
     }
 
     public int getNumSkins() {
