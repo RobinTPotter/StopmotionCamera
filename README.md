@@ -2,7 +2,7 @@
 
 ## Simple Android camera app with onion skinning.
 
-[build status](https://gitlab.com/robin.t.potter/stopmotioncamera-the-revenge/badges/master/pipeline.svg "Build")
+![](https://gitlab.com/robin.t.potter/stopmotioncamera-the-revenge/badges/master/pipeline.svg)
 
 Start StopmotionCamera and camera preview is seen behind a frosty window, this is an overlay with no pictures loaded.
 Before you begin snapping away you should consider (and stick to!) a frame size for your images and preview window, these are seperate and, in release 1-4 at least, are set seperately.
