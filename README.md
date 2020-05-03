@@ -4,6 +4,8 @@
 
 ![](https://gitlab.com/robin.t.potter/stopmotioncamera-the-revenge/badges/master/pipeline.svg)
 
+[Latest apk!](https://gitlab.com/robin.t.potter/stopmotioncamera-the-revenge/-/jobs/artifacts/master/raw/build/outputs/apk/debug/stopmotioncamera-the-revenge-debug.apk?job=assembleDebug)
+
 Start StopmotionCamera and camera preview is seen.
 As pictures are taken the previous appears semi-transparently.
 
