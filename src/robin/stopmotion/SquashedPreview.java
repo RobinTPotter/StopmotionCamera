@@ -50,7 +50,7 @@ public class SquashedPreview extends View {
         return currentImage;
     }
 
-    public String deleteImage(int imnum) {
+    public String deleteImage(int imnum, boolean callRenumber) {
         if (imnum>=mainImages.length) return "Error";
         String me = mainImages[imnum];
         String th = thumbnailImages[imnum];
@@ -61,22 +61,33 @@ public class SquashedPreview extends View {
         Log.i(StopmotionCamera.LOGTAG,"del "+ me +  " " + medone);
         Log.i(StopmotionCamera.LOGTAG,"del "+ th +  " " +thdone);
         if (medone && thdone) {
+            if (callRenumber) renumber();
             return me;
         } else {
             return "Error";
         }
     }
 
+    private void renumber() {
+        int cnum = 0;
+        for (int imnum=0;imnum<mainImages.length;imnum++) {
+            File me = new File(mainImages[imnum]);
+            File th = new File(thumbnailImages[imnum]);
+            Log.d(StopmotionCamera.LOGTAG, "found " + me + " exists " + me.exists());
+            Log.d(StopmotionCamera.LOGTAG, "found " + th + " exists " + th.exists());
+            if (me.exists() && th.exists()) {
+                String stamp = String.format(StopmotionCamera.IMAGE_NUMBER_FORMAT, cnum);
+                me.renameTo(new File(me.getParent(), stamp + ".jpg"));
+                th.renameTo(new File(th.getParent(), stamp + ".thumb.jpg"));
+                cnum++;
+            }
+        }
+    }
+
     public boolean deleteAll() {
         boolean ok = true;
         for (int imnum=0;imnum<mainImages.length;imnum++) {
-            String me = mainImages[imnum];
-            String th = thumbnailImages[imnum];
-            if ((new File(me)).delete() && (new File(th)).delete()) {
-
-            } else {
-                ok = false;
-            }
+            if (deleteImage(imnum,false).equals("Error")) ok=false;
         }
         return ok;
 

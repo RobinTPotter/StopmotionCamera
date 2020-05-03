@@ -246,7 +246,7 @@ public class RushesDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 int im = squashedPreview.getImageNumber();
-                Toast.makeText(getContext(), "delete " + squashedPreview.deleteImage(im), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "delete " + squashedPreview.deleteImage(im,true), Toast.LENGTH_SHORT).show();
                 squashedPreview.setDirectory();
                 squashedPreview.setImageNumber(im);
                 previewSeekBar.setProgress(im);
