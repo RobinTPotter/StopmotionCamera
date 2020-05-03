@@ -153,7 +153,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     if (takingPicture) return;
 
                     takingPicture = true;
-his 
+
                     if (justfocussed) {
                         justfocussed = false;
                     } else {

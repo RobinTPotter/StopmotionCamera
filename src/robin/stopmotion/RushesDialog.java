@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -99,6 +100,9 @@ public class RushesDialog extends Dialog {
 
     protected void onStart() {
 
+        final TextView fpsText = (TextView) findViewById(R.id.fps);
+        fpsText.setText(String.valueOf(playbackSpeed));
+
         final SquashedPreview squashedPreview = (SquashedPreview) findViewById(R.id.view);
 
         final SeekBar playbackSpeedBar = (SeekBar) findViewById(R.id.playbackSpeed);
@@ -110,9 +114,12 @@ public class RushesDialog extends Dialog {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 playbackSpeed = progress;
+                fpsText.setText(String.valueOf(playbackSpeed));
                 if (playbackSpeed == 0) playbackSpeed = 1;
                 if (playbackThread != null)
-                    playbackThread.setPlayBackSpeed(progress);
+                    playbackThread.setPlayBackSpeed(playbackSpeed);
+
+                fpsText.setText(String.valueOf(playbackSpeed));
             }
 
             @Override
@@ -162,10 +169,10 @@ public class RushesDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 int current = squashedPreview.getImageNumber();
+                current++;
+
                 if (current == squashedPreview.getNumberImages()) {
                     current = 0;
-                } else {
-                    current++;
                 }
                 squashedPreview.setImageNumber(current);
             }
@@ -176,7 +183,7 @@ public class RushesDialog extends Dialog {
         buttonSetSkins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (squashedPreview.previewImages.length==0) return;
+                if (squashedPreview.previewImages.length == 0) return;
                 for (int nn = previewSeekBar.getProgress(); nn < previewSeekBar.getProgress() + onionSkinView.getNumSkins(); nn++) {
                     onionSkinView.setBmp(squashedPreview.previewImages[nn]);
                 }
