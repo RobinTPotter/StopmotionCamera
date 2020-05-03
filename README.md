@@ -11,7 +11,7 @@ Before you begin consider a frame size for your images and preview window,
 these are seperate and, are set seperately.
 Pressing the menu button should bring up the options to set these sizes.
 
-Storage location defaults to ```Pictures/StopmotionCamera-{date}"```.
+Storage location defaults to ```Pictures/StopmotionCamera-{date}```.
 There is created a ```thumbs``` directory beneath.
 
 You may consider changing the date format for the storage folder, always saved under your device's Pictures folder.
