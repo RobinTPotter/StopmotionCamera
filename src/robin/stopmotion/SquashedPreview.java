@@ -82,6 +82,7 @@ public class SquashedPreview extends View {
                 cnum++;
             }
         }
+        setDirectory();
     }
 
     public boolean deleteAll() {
@@ -171,6 +172,8 @@ public class SquashedPreview extends View {
                 setImageNumber(ii);
                 seekbar.setMax(ii);
             }
+        } else {
+            previewImages = null;
         }
 
         seekbar.setProgress(0);

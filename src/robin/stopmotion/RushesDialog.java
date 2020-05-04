@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -183,21 +184,26 @@ public class RushesDialog extends Dialog {
         buttonSetSkins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (squashedPreview.previewImages.length == 0) return;
+                if (squashedPreview.previewImages==null ||  squashedPreview.previewImages.length == 0) return;
                 for (int nn = previewSeekBar.getProgress(); nn < previewSeekBar.getProgress() + onionSkinView.getNumSkins(); nn++) {
                     onionSkinView.setBmp(squashedPreview.previewImages[nn]);
                 }
             }
         });
 
-        final Button buttonPlay = (Button) findViewById(R.id.play);
+        final ImageButton buttonPlay = (ImageButton) findViewById(R.id.play);
+
 
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (buttonPlay.getText().equals(StopmotionCamera.PLAY)) {
-                    buttonPlay.setText(StopmotionCamera.STOP);
+                if (buttonPlay.getTooltipText().equals(StopmotionCamera.PLAY) ) {
+
+                    if (squashedPreview.previewImages==null||squashedPreview.previewImages.length==0) return;
+
+                    buttonPlay.setImageDrawable(getContext().getDrawable(android.R.drawable.ic_media_pause));
+                    buttonPlay.setTooltipText(StopmotionCamera.STOP);
                     playbackThread = new PlaybackThread(previewSeekBar, playbackSpeed);
                     playbackThread.setRunning(true);
                     playbackThread.start();
@@ -207,7 +213,8 @@ public class RushesDialog extends Dialog {
                         Log.d(StopmotionCamera.LOGTAG, "except..." + ex.getMessage());
                     }
                 } else {
-                    buttonPlay.setText(StopmotionCamera.PLAY);
+                    buttonPlay.setTooltipText(StopmotionCamera.PLAY);
+                    buttonPlay.setImageDrawable(getContext().getDrawable(android.R.drawable.ic_media_play));
                     playbackThread.setRunning(false);
 
                 }

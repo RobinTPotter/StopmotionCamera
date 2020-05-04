@@ -23,6 +23,7 @@ import android.widget.*;
 
 public class StopmotionCamera extends Activity implements SurfaceHolder.Callback {
 
+    private static final int THUMB_HEIGHT = 480;
     private static String PREFS_NAME = "StopmotionCameraPreferences";
 
     private static int ITEMID_PREVIEW = 12;
@@ -38,7 +39,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     public static final String IMAGE_NUMBER_FORMAT = "%07d";
     public static int MAX_FPS = 30;
     private String dateFormat = "yyyy-MM-dd-HH";
-    private String defaultDateFormat = "yyyy-MM-dd-HH";
+    private String defaultDateFormat = "yyyy-MM-dd";
 
     public static String LOGTAG = "StopmotionCameraLog-StopmotionCamera";
     public static String BUTTON_TOGGLE_STRETCH = "Toggle";
@@ -205,7 +206,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Uri uriTarget_thumb = android.net.Uri.fromFile(new File(currentDirectory.getPath() + THUMBNAIL_SUBFOLDER + '/', stamp + ".thumb.jpg"));
 
             //lastPicture = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
-            Bitmap smallerPicture = Bitmap.createScaledBitmap(lastPicture, lastPicture.getWidth() / 10, lastPicture.getHeight() / 10, false);
+            Bitmap smallerPicture = Bitmap.createScaledBitmap(lastPicture, THUMB_HEIGHT * lastPicture.getWidth() / lastPicture.getHeight(), THUMB_HEIGHT, false);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             smallerPicture.compress(Bitmap.CompressFormat.JPEG, 30, stream);
             byte[] byteArray = stream.toByteArray();
@@ -600,14 +601,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 });
 
-                Button bollocks = (Button) findViewById(R.id.button2);
-                bollocks.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(StopmotionCamera.this, "Bollocks!", Toast.LENGTH_LONG).show();
 
-                    }
-                });
 
                 final RadioGroup alignmentGroup = (RadioGroup) findViewById(R.id.radiogroup);
                 alignmentGroup.check(alignment);

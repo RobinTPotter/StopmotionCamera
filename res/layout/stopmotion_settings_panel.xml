@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
 
-
     <TextView
         android:id="@+id/textOpacity"
         android:layout_width="wrap_content"
@@ -35,9 +34,9 @@
         android:enabled="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:hint="@string/create_format_string_for_date"
         android:inputType="text"
-        android:textSize="14sp"
-        android:hint="@string/create_format_string_for_date" />
+        android:textSize="14sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -74,13 +73,28 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="@string/skinM" />
+
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/txtNumSkins"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/_99" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnSkinPlus"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="@string/skinP" />
 
         <Button
@@ -90,25 +104,12 @@
             android:layout_height="wrap_content"
             android:text="@string/clear" />
 
-        <TextView
-            android:id="@+id/txtNumSkins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_99" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button" />
-
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp" >
+        android:layout_height="60dp">
 
         <TextView
             android:id="@+id/textAlignmentDesc"
@@ -186,8 +187,6 @@
             </RelativeLayout>
         </RadioGroup>
     </LinearLayout>
-
-
 
 
 </LinearLayout>
