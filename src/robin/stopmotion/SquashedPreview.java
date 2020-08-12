@@ -183,11 +183,8 @@ public class SquashedPreview extends View {
     public void draw(Canvas c) {
 
         super.draw(c);
-
         Paint p = new Paint();
-
         c.drawRect(new Rect(0, 0, getWidth(), getHeight()), p);
-
         if (previewImages != null) {
 
             int ww = getWidth();
