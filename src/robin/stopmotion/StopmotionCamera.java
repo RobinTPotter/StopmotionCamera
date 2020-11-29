@@ -88,6 +88,9 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private int lastGoodHeight = 0;
     private int lastGoodWidth = 0;
     private String aspectLock = "None";
+    private String currentPreviewSize;
+    private String currentPictureSize;
+
 
     @SuppressLint("SourceLockedOrientationActivity")
     public void onCreate(Bundle savedInstanceState) {
@@ -440,12 +443,20 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Log.d(LOGTAG, "GROUPID_PREVIEW");
             /// preview
             success = idPreviewSize(item.getTitle().toString(), -1);
+            invalidateOptionsMenu();
+            closeOptionsMenu();
+            Toast.makeText(StopmotionCamera.this, "SET PREVIEW " + success, Toast.LENGTH_SHORT).show();
+
 
         } else if (item.getGroupId() == GROUPID_PICTURE) {
 
             Log.d(LOGTAG, "GROUPID_PICTURE");
             /// pict
             success = idPictureSize(item.getTitle().toString(), -1);
+            invalidateOptionsMenu();
+            closeOptionsMenu();
+            Toast.makeText(StopmotionCamera.this, "SET PICTURE " + success, Toast.LENGTH_SHORT).show();
+
 
         } else if (item.getGroupId() == GROUPID_ASPECT) {
 
@@ -454,7 +465,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             setAspectLock(item.getTitle().toString());
             invalidateOptionsMenu();
             closeOptionsMenu();
-            Toast.makeText(StopmotionCamera.this, aspectLock, Toast.LENGTH_SHORT).show();
+            Toast.makeText(StopmotionCamera.this, aspectLock +" " + success, Toast.LENGTH_SHORT).show();
 
 
         } else if (item.getGroupId() == GROUPID_OTHER) {
@@ -574,6 +585,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     }
                 });
 
+                Button defbutton2 = (Button) findViewById(R.id.defaultDateButton2);
+                defbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editText.setText(defaultDateFormat + "-Scene-001");
+                    }
+                });
+
                 Button btnSkinPlus = (Button) findViewById(R.id.btnSkinPlus);
                 btnSkinPlus.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -680,6 +699,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         Log.d(LOGTAG, "idPreviewSize");
 
+
         List<Camera.Size> previewSizes = camera.getParameters().getSupportedPreviewSizes();
         boolean success = false;
         int enumc = 0;
@@ -694,14 +714,17 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 previewSize = size;
                 setSize(size.width, size.height);
                 previewSizeWhich = enumc;
+                currentPreviewSize = thing;
+                Log.d(LOGTAG,"currentPreviewSize set to "+thing);
                 save();
             }
             enumc++;
         }
+
         return success;
     }
 
-    private boolean idPictureSize(String startswith, int idnum) {
+    private boolean idPictureSize(String thing, int idnum) {
 
         Log.d(LOGTAG, "idPictureSize");
         boolean success = false;
@@ -711,17 +734,19 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         for (Camera.Size size : pictureSizes) {
             String text = String.valueOf(size.width) + "x" + String.valueOf(size.height);
-            if (startswith.startsWith(text) || enumc == idnum) {
+            if (thing.startsWith(text) || enumc == idnum) {
                 Camera.Parameters params = camera.getParameters();
                 params.setPictureSize(size.width, size.height);
                 pictureSize = size;
                 camera.setParameters(params);
                 success = true;
+                currentPictureSize = thing;
                 pictureSizeWhich = enumc;
                 save();
             }
             enumc++;
         }
+
         return success;
 
     }
@@ -766,6 +791,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     public boolean createMenu(Menu menu) {
 
+        Log.d(LOGTAG,"creating menu");
         menu.clear();
 
         List<Camera.Size> previewSizes = camera.getParameters().getSupportedPreviewSizes();
@@ -785,9 +811,14 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         for (Camera.Size size : previewSizes) {
             String aspect = String.format("%.3f", (float) size.width / size.height);
-            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + aspect;
+            String sizes = String.valueOf(size.width) + "x" + String.valueOf(size.height);
+            String text = sizes + " | " + aspect;
             if (aspectLock.equals("None") || aspect.equals(getAspectLock())) {
                 MenuItem mi = sm1.add(GROUPID_PREVIEW, Menu.NONE, order++, text);
+                mi.setCheckable(true);
+
+                Log.d(LOGTAG, "currentPreviewSize " + currentPreviewSize +" vs "+text);
+                if (currentPreviewSize.equals(text)) { mi.setChecked(true);}
             }
 
         }
@@ -796,10 +827,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         for (Camera.Size size : pictureSizes) {
             String aspect = String.format("%.3f", (float) size.width / size.height);
-            String text = String.valueOf(size.width) + "x" + String.valueOf(size.height) + " | " + aspect;
+            String sizes = String.valueOf(size.width) + "x" + String.valueOf(size.height);
+            String text = sizes + " | " + aspect;
 
             if (aspectLock.equals("None") || aspect.equals(getAspectLock())) {
                 MenuItem mi = sm2.add(GROUPID_PICTURE, Menu.NONE, order++, text);
+                mi.setCheckable(true);
+                if (currentPictureSize.equals(text)) { mi.setChecked(true);}
             }
         }
 
@@ -813,6 +847,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             if (!listAspects.contains(text)) {
                 listAspects.add(text);
                 MenuItem mi = sm3.add(GROUPID_ASPECT, Menu.NONE, order++, text);
+                mi.setCheckable(true);
+                if (getAspectLock().equals(text)) { mi.setChecked(true);}
             }
         }
 
@@ -827,6 +863,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
     private void setAspectLock(String val) {
         aspectLock = val;
+
     }
 
     public void setSize() {

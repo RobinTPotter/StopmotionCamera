@@ -54,6 +54,15 @@
             android:text="@string/button_default_date" />
 
         <Button
+            android:id="@+id/defaultDateButton2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:longClickable="false"
+            android:text="@string/button_default_date2" />
+
+        <Button
             android:id="@+id/button"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
