@@ -2,9 +2,9 @@
 
 ## Simple Android camera app with onion skinning.
 
-![](https://gitlab.com/robin.t.potter/stopmotioncamera-the-revenge/badges/master/pipeline.svg)
+![](https://gitlab.com/nobbymilkshakes/StopmotionCamera/badges/master/pipeline.svg)
 
-[Latest apk!](https://gitlab.com/robin.t.potter/stopmotioncamera-the-revenge/-/jobs/artifacts/master/raw/build/outputs/apk/debug/stopmotioncamera-the-revenge-debug.apk?job=assembleDebug)
+[Latest apk!]([https://gitlab.com/robin.t.potter/stopmotioncamera-the-revenge/-/jobs/artifacts/master/raw/build/outputs/apk/debug/stopmotioncamera-the-revenge-debug.apk?job=assembleDebug](https://gitlab.com/nobbymilkshakes/StopmotionCamera/-/jobs/artifacts/master/raw/build/outputs/apk/debug/StopmotionCamera-debug.apk?job=assembleDebug))
 
 Start StopmotionCamera and camera preview is seen.
 As pictures are taken the previous appears semi-transparently.
