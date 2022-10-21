@@ -124,8 +124,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         layoutOnionSkin = (LinearLayout) (findViewById(R.id.layoutOnionSkin));
         initOnionskin(layoutOnionSkin, 3);
 
-        Object ob2 = findViewById(R.id.testButton);
-        testButton = (Button) ob2;
+        Button testButton = findViewById(R.id.testButton);
         testButton.setText("...");
 
         testButton.setOnClickListener(new Button.OnClickListener() {
