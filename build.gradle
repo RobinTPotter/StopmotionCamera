@@ -41,7 +41,7 @@ dependencies {
  * You must provide a value for at least the compilation target.
  */
 android {
-    compileSdkVersion 26
+    compileSdkVersion 33
 
     /**
      * This nested sourceSets block points the source code directories to the
@@ -72,7 +72,7 @@ android {
         release.setRoot('build-types/release')
     }
     defaultConfig {
-        minSdkVersion 26
+        minSdkVersion 33
     }
 }
 
