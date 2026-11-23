@@ -184,9 +184,13 @@ public class RushesDialog extends Dialog {
         buttonSetSkins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (squashedPreview.previewImages==null ||  squashedPreview.previewImages.length == 0) return;
-                for (int nn = previewSeekBar.getProgress(); nn < previewSeekBar.getProgress() + onionSkinView.getNumSkins(); nn++) {
-                    onionSkinView.setBmp(squashedPreview.previewImages[nn]);
+                if (squashedPreview.previewImages == null || squashedPreview.previewImages.length == 0) return;
+                int start = Math.max(0, previewSeekBar.getProgress());
+                int end = Math.min(start + onionSkinView.getNumSkins(), squashedPreview.previewImages.length);
+                for (int nn = start; nn < end; nn++) {
+                    if (squashedPreview.previewImages[nn] != null) {
+                        onionSkinView.setBmp(squashedPreview.previewImages[nn]);
+                    }
                 }
             }
         });
@@ -198,9 +202,11 @@ public class RushesDialog extends Dialog {
             @Override
             public void onClick(View v) {
 
-                if (buttonPlay.getTooltipText().equals(StopmotionCamera.PLAY) ) {
+                CharSequence tooltip = buttonPlay.getTooltipText();
+                boolean isPlay = tooltip == null || StopmotionCamera.PLAY.equals(tooltip.toString());
+                if (isPlay) {
 
-                    if (squashedPreview.previewImages==null||squashedPreview.previewImages.length==0) return;
+                    if (squashedPreview.previewImages == null || squashedPreview.previewImages.length == 0) return;
 
                     buttonPlay.setImageDrawable(getContext().getDrawable(android.R.drawable.ic_media_pause));
                     buttonPlay.setTooltipText(StopmotionCamera.STOP);
@@ -208,14 +214,12 @@ public class RushesDialog extends Dialog {
                     playbackThread.setRunning(true);
                     playbackThread.start();
 
-                    try {
-                    } catch (Exception ex) {
-                        Log.d(StopmotionCamera.LOGTAG, "except..." + ex.getMessage());
-                    }
                 } else {
                     buttonPlay.setTooltipText(StopmotionCamera.PLAY);
                     buttonPlay.setImageDrawable(getContext().getDrawable(android.R.drawable.ic_media_play));
-                    playbackThread.setRunning(false);
+                    if (playbackThread != null) {
+                        playbackThread.setRunning(false);
+                    }
 
                 }
 
@@ -227,22 +231,17 @@ public class RushesDialog extends Dialog {
         buttonEncode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "encode pressed", Toast.LENGTH_SHORT).show();
-                //StopmotionCamera.this.ffmpegCommandTest();
-                //StopmotionCamera.this.encodeCurrent();
-                //StopmotionCamera.this.justDoThis();
-
                 if (getPictureSize() == null) {
                     Toast.makeText(getContext(), "no picture size set! (perhaps no pictures?)", Toast.LENGTH_SHORT).show();
                 } else {
                     ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText("ffmpeg string for termux", "ffmpeg -r 15 -f image2 -s "
+                    ClipData clip = ClipData.newPlainText("ffmpeg string for termux", "ffmpeg -r " + Math.max(1, playbackSpeed) + " -f image2 -s "
                             + getPictureSize().width + "x" + getPictureSize().height + " -i "
                             + getAlbumStorageDir() + "/" + StopmotionCamera.IMAGE_NUMBER_FORMAT
                             + ".jpg -vcodec libx264 -crf 25 -pix_fmt yuv420p "
                             + getAlbumStorageDir() + "/out.mp4");
                     clipboard.setPrimaryClip(clip);
-                    Toast.makeText(getContext(), "copied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "ffmpeg command copied", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -256,7 +255,7 @@ public class RushesDialog extends Dialog {
                 Toast.makeText(getContext(), "delete " + squashedPreview.deleteImage(im,true), Toast.LENGTH_SHORT).show();
                 squashedPreview.setDirectory();
                 squashedPreview.setImageNumber(im);
-                previewSeekBar.setProgress(im);
+                previewSeekBar.setProgress(squashedPreview.getImageNumber());
             }
         });
 
@@ -272,12 +271,21 @@ public class RushesDialog extends Dialog {
                 }
                 squashedPreview.setDirectory();
                 squashedPreview.setImageNumber(im);
-                previewSeekBar.setProgress(im);
+                previewSeekBar.setProgress(0);
 
             }
         });
 
 
+    }
+
+    @Override
+    protected void onStop() {
+        if (playbackThread != null) {
+            playbackThread.setRunning(false);
+            playbackThread = null;
+        }
+        super.onStop();
     }
 
 }

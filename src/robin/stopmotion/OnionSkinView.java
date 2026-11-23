@@ -111,7 +111,10 @@ public class OnionSkinView extends View {
 
     public void setBmp(Bitmap bmp) {
 
-        if (_onionSkins == null) return;
+        if (bmp == null) return;
+        if (_onionSkins == null || _onionSkins.length != numSkins) {
+            initSkins();
+        }
 
         this.timeupdate = (new Date()).toString() + " | " + bmp.getWidth() + " x " + bmp.getHeight();
 
@@ -119,7 +122,13 @@ public class OnionSkinView extends View {
             _onionSkins[ss] = _onionSkins[ss - 1];
         }
 
-        _onionSkins[0] = Bitmap.createScaledBitmap(bmp, bmp.getWidth() / 2, bmp.getHeight() / 2, false);
+        int targetW = Math.max(1, bmp.getWidth() / 2);
+        int targetH = Math.max(1, bmp.getHeight() / 2);
+        if (targetW > 1280) {
+            targetH = Math.max(1, (targetH * 1280) / targetW);
+            targetW = 1280;
+        }
+        _onionSkins[0] = Bitmap.createScaledBitmap(bmp, targetW, targetH, false);
 
         invalidate();
         Log.d(LOGTAG, "setBmp");
@@ -145,27 +154,20 @@ public class OnionSkinView extends View {
 
     public void setOnionSkins(int skinsnum) {
 
-        if (skinsnum == this.numSkins) return;
+        if (skinsnum < 1) skinsnum = 1;
+        if (skinsnum == this.numSkins && _onionSkins != null) return;
 
-        this.numSkins = skinsnum;
-
-        if (_onionSkins == null || _onionSkins.length!=this.numSkins) {
-            initSkins();
-        }
-
-
-        Bitmap[] tmpskins = new Bitmap[this.numSkins];
-        for (int bb = 0; bb < numSkins; bb++) {
-            Log.d("size of temp is "+tmpskins.length+" index:"+bb+ " size of onionskins "+_onionSkins.length,LOGTAG);
-            tmpskins[bb] = _onionSkins[bb];
+        Bitmap[] oldSkins = _onionSkins;
+        Bitmap[] tmpskins = new Bitmap[skinsnum];
+        if (oldSkins != null) {
+            int copyCount = Math.min(oldSkins.length, skinsnum);
+            for (int bb = 0; bb < copyCount; bb++) {
+                tmpskins[bb] = oldSkins[bb];
+            }
         }
 
         this.numSkins = skinsnum;
-
-        _onionSkins = new Bitmap[skinsnum];
-        for (int bb = 0; bb < _onionSkins.length; bb++) {
-            if (bb < tmpskins.length) _onionSkins[bb] = tmpskins[bb];
-        }
+        _onionSkins = tmpskins;
 
         Log.d(LOGTAG, "Number of _onionSkins is " + this.numSkins);
         invalidate();
@@ -255,12 +257,6 @@ public class OnionSkinView extends View {
 
     private void initSkins() {
         _onionSkins = new Bitmap[numSkins];
-        for (int oo=0;oo<numSkins;oo++) {
-            _onionSkins[oo]=Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(_onionSkins[oo]);
-            Paint p = new Paint(Color.BLACK);
-            canvas.drawRect(0,0,getWidth(),getHeight(),p);
-        }
     }
 
     public int getNumSkins() {

@@ -58,8 +58,11 @@ public class PlaybackThread extends Thread {
 
                 long stop = System.currentTimeMillis();
                 long taken = stop-start;
-                long rem = (long)(Math.floor(1000.0/getPlayBackSpeed())) - taken;
-                sleep(rem);
+                int fps = Math.max(1, getPlayBackSpeed());
+                long rem = (long)(Math.floor(1000.0/fps)) - taken;
+                if (rem > 0) {
+                    sleep(rem);
+                }
 
             }
             //onionSkinView.setBmp(squashedPreview.previewImages[progress]);
