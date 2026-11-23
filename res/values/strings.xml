@@ -24,4 +24,6 @@
     <string name="rightArrow"><![CDATA[>]]></string>
     <string name="labelDeleteAll">X</string>
     <string name="labelDeleteCurrent">x</string>
+    <string name="af_button">AF</string>
+    <string name="focus_before_capture">Auto-focus before each shot</string>
 </resources>

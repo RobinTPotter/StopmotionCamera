@@ -5,13 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.media.ExifInterface;
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.graphics.*;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -31,10 +31,12 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private static int ITEMID_PREVIEW = 12;
     private static int ITEMID_PICTURE = 23;
     private static int ITEMID_ASPECT = 27;
+    private static int ITEMID_FOCUS = 31;
     private static int GROUPID_PREVIEW = 0;
     private static int GROUPID_PICTURE = 1;
     private static int GROUPID_ASPECT = 2;
     private static int GROUPID_OTHER = 3;
+    private static int GROUPID_FOCUS = 4;
     public static int MAX_IMAGES = 1000;
     public static final String PLAY = "Play";
     public static final String STOP = "Stop";
@@ -64,6 +66,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
     Button testButton;
+    Button afButton;
     boolean previewing = false;
 
     boolean justfocussed = false;
@@ -92,11 +95,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
     private String aspectLock = "None";
     private String currentPreviewSize = "";
     private String currentPictureSize = "";
+    private String focusMode = "";
+    private boolean focusBeforeCapture = false;
+    private int displayOrientation = 0;
+    private int jpegRotation = 0;
+    private float lastTouchX = -1f;
+    private float lastTouchY = -1f;
     private boolean surfaceReady = false;
     private boolean permissionRequested = false;
 
 
-    @SuppressLint("SourceLockedOrientationActivity")
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -104,7 +112,6 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.main_camera_activity);
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
@@ -137,6 +144,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             }
         });
 
+        afButton = findViewById(R.id.afButton);
+        afButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                triggerManualFocus(false, 0f, 0f);
+            }
+        });
+
         currentDirectory = getAlbumStorageDir();
 
         //ffmpegCommandTest();
@@ -163,19 +177,50 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                     if (justfocussed) {
                         justfocussed = false;
                         takingPicture = false;
-                    } else {
+                    } else if (focusBeforeCapture && supportsAutoFocusMode(focusMode)) {
                         try {
-                            Log.d(LOGTAG, "going to take picture");
-                            camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
-                            Toast.makeText(StopmotionCamera.this, "ding!", Toast.LENGTH_SHORT).show();
-                        } catch (Exception ex) {
-                            takingPicture = false;
-                            Log.d(LOGTAG, "failed to take picture!", ex);
-                            Toast.makeText(StopmotionCamera.this, "Failed to take picture", Toast.LENGTH_SHORT).show();
+                            camera.cancelAutoFocus();
+                        } catch (Exception ignored) {
                         }
+                        try {
+                            camera.autoFocus(new Camera.AutoFocusCallback() {
+                                @Override
+                                public void onAutoFocus(boolean success, Camera cam) {
+                                    captureNow();
+                                }
+                            });
+                        } catch (Exception ex) {
+                            Log.w(LOGTAG, "autoFocus before capture failed, capturing directly", ex);
+                            captureNow();
+                        }
+                    } else {
+                        captureNow();
                     }
                 }
             };
+
+    private void captureNow() {
+        if (camera == null) {
+            takingPicture = false;
+            return;
+        }
+        try {
+            Camera.Parameters params = camera.getParameters();
+            params.setRotation(jpegRotation);
+            camera.setParameters(params);
+        } catch (Exception ex) {
+            Log.w(LOGTAG, "Failed to set JPEG rotation before capture", ex);
+        }
+        try {
+            Log.d(LOGTAG, "going to take picture");
+            camera.takePicture(myShutterCallback, myPictureCallback_RAW, myPictureCallback_JPG);
+            Toast.makeText(StopmotionCamera.this, "ding!", Toast.LENGTH_SHORT).show();
+        } catch (Exception ex) {
+            takingPicture = false;
+            Log.d(LOGTAG, "failed to take picture!", ex);
+            Toast.makeText(StopmotionCamera.this, "Failed to take picture", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     Camera.ShutterCallback myShutterCallback = new Camera.ShutterCallback() {
 
@@ -201,8 +246,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    final Bitmap decoded = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
-                    if (decoded == null) {
+                    Bitmap rawDecoded = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
+                    if (rawDecoded == null) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -211,6 +256,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         });
                         return;
                     }
+                    final Bitmap decoded = applyExifOrientation(rawDecoded, arg0);
 
                     String[] existing = targetDir.list(new FilenameFilter() {
                         @Override
@@ -272,6 +318,33 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         }
     };
 
+    private Bitmap applyExifOrientation(Bitmap bitmap, byte[] jpegBytes) {
+        try {
+            ExifInterface exif = new ExifInterface(new ByteArrayInputStream(jpegBytes));
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int degrees = 0;
+            if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                degrees = 90;
+            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_180) {
+                degrees = 180;
+            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                degrees = 270;
+            }
+            if (degrees != 0) {
+                Matrix matrix = new Matrix();
+                matrix.postRotate(degrees);
+                Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+                if (rotated != bitmap) {
+                    bitmap.recycle();
+                }
+                return rotated;
+            }
+        } catch (Exception ex) {
+            Log.w(LOGTAG, "Could not inspect EXIF orientation", ex);
+        }
+        return bitmap;
+    }
+
     @Override
     public void onRestoreInstanceState(Bundle bundle) {
         super.onRestoreInstanceState(bundle);
@@ -285,15 +358,19 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         playbackSpeed = bundle.getInt("playbackSpeed", 70);
         numSkins = bundle.getInt("numSkins", 3);
+        focusMode = bundle.getString("focusMode", "");
+        focusBeforeCapture = bundle.getBoolean("focusBeforeCapture", false);
 
         idPreviewSize("bollocks", previewSizeWhich);
         idPictureSize("bollocks", pictureSizeWhich);
+        applyFocusMode(focusMode);
 
         onionSkinView.setOnionSkins(numSkins);
         onionSkinView.setOpacity();
         onionSkinView.updateBackground();
         onionSkinView.invalidate();
         if (testButton != null) testButton.invalidate();
+        if (afButton != null) afButton.invalidate();
 
     }
 
@@ -311,8 +388,11 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         bundle.putInt("pictureSizeWhich", pictureSizeWhich);
         bundle.putInt("numSkins", numSkins);
         bundle.putInt("playbackSpeed", playbackSpeed);
+        bundle.putString("focusMode", focusMode);
+        bundle.putBoolean("focusBeforeCapture", focusBeforeCapture);
         onionSkinView.invalidate();
         if (testButton != null) testButton.invalidate();
+        if (afButton != null) afButton.invalidate();
 
     }
 
@@ -336,21 +416,24 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         layoutOnionSkin.removeAllViews();
         onionSkinView = new OnionSkinView(this, skins);
 
+        onionSkinView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    lastTouchX = event.getX();
+                    lastTouchY = event.getY();
+                }
+                return false;
+            }
+        });
+
         onionSkinView.setOnClickListener(buttonClickListener);
 
         onionSkinView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (camera != null) {
-                    camera.autoFocus(new Camera.AutoFocusCallback() {
-                        @Override
-                        public void onAutoFocus(boolean success, Camera camera) {
-                            justfocussed = true;
-                            Toast.makeText(StopmotionCamera.this, "focus", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                return false;
+                triggerManualFocus(true, lastTouchX, lastTouchY);
+                return true;
             }
         });
 
@@ -378,6 +461,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackground();
         onionSkinView.invalidate();
         if (testButton != null) testButton.invalidate();
+        if (afButton != null) afButton.invalidate();
         Log.d(LOGTAG, "paused");
 
     }
@@ -396,6 +480,8 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         editor.putString("dateFormat", dateFormat);
         editor.putInt("numSkins", numSkins);
         editor.putInt("playbackSpeed", playbackSpeed);
+        editor.putString("focusMode", focusMode);
+        editor.putBoolean("focusBeforeCapture", focusBeforeCapture);
         editor.apply();
 
         Log.d(LOGTAG, "committed and logged");
@@ -415,6 +501,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         onionSkinView.updateBackground();
         onionSkinView.invalidate();
         if (testButton != null) testButton.invalidate();
+        if (afButton != null) afButton.invalidate();
     }
 
     private void load() {
@@ -428,14 +515,18 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         numSkins = settings.getInt("numSkins", 3);
         playbackSpeed = settings.getInt("playbackSpeed", 10);
         alignment = settings.getInt("buttonlignment", R.id.rdoTL);
+        focusMode = settings.getString("focusMode", "");
+        focusBeforeCapture = settings.getBoolean("focusBeforeCapture", false);
 
         onionSkinView.setOnionSkins(numSkins);
 
         dateFormat = settings.getString("dateFormat", defaultDateFormat);
 
         if (camera != null) {
+            updateCameraDisplayOrientation();
             idPreviewSize("bollocks", previewSizeWhich);
             idPictureSize("bollocks", pictureSizeWhich);
+            applyFocusMode(focusMode);
         }
     }
 
@@ -491,6 +582,15 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             Toast.makeText(StopmotionCamera.this, aspectLock +" " + success, Toast.LENGTH_SHORT).show();
 
 
+        } else if (item.getGroupId() == GROUPID_FOCUS) {
+
+            String selectedMode = item.getTitle().toString();
+            success = applyFocusMode(selectedMode);
+            invalidateOptionsMenu();
+            closeOptionsMenu();
+            save();
+            Toast.makeText(StopmotionCamera.this, "Focus: " + focusMode, Toast.LENGTH_SHORT).show();
+
         } else if (item.getGroupId() == GROUPID_OTHER) {
 
             Log.d(LOGTAG, "GROUPID_OTHER");
@@ -525,6 +625,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                 setSize();
                 setStretch();
                 if (testButton != null) testButton.invalidate();
+                if (afButton != null) afButton.invalidate();
                 onionSkinView.setActivated(true);
             }
 
@@ -536,6 +637,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         }
         onionSkinView.invalidate();
         if (testButton != null) testButton.invalidate();
+        if (afButton != null) afButton.invalidate();
         Log.d(LOGTAG, "end of menu " + success);
         return success;
     }
@@ -572,6 +674,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
                         onionSkinView.updateBackground();
                         onionSkinView.invalidate();
                         if (testButton != null) testButton.invalidate();
+                        if (afButton != null) afButton.invalidate();
                     }
 
                     @Override
@@ -580,6 +683,16 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
+
+                CheckBox chkFocusCapture = findViewById(R.id.chkFocusBeforeCapture);
+                chkFocusCapture.setChecked(focusBeforeCapture);
+                chkFocusCapture.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        focusBeforeCapture = isChecked;
+                        save();
                     }
                 });
 
@@ -823,6 +936,7 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
 
         if (camera != null) {
             try {
+                updateCameraDisplayOrientation();
                 camera.setPreviewDisplay(surfaceHolder);
                 camera.startPreview();
                 previewing = true;
@@ -859,12 +973,24 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         Camera.Parameters params = camera.getParameters();
         List<Camera.Size> previewSizes = params.getSupportedPreviewSizes();
         List<Camera.Size> pictureSizes = params.getSupportedPictureSizes();
+        List<String> focusModes = params.getSupportedFocusModes();
 
         int order = 0;
 
         menu.add(GROUPID_OTHER, Menu.NONE, order++, BUTTON_TOGGLE_STRETCH);
         menu.add(GROUPID_OTHER, Menu.NONE, order++, CHANGE_DATE_FORMAT);
         menu.add(GROUPID_OTHER, Menu.NONE, order++, SHOW_RUSHES);
+
+        SubMenu smFocus = menu.addSubMenu(GROUPID_FOCUS, ITEMID_FOCUS, order++, "Focus Mode");
+        if (focusModes != null) {
+            for (String mode : focusModes) {
+                MenuItem mi = smFocus.add(GROUPID_FOCUS, Menu.NONE, order++, mode);
+                mi.setCheckable(true);
+                if (mode.equals(focusMode)) {
+                    mi.setChecked(true);
+                }
+            }
+        }
 
         SubMenu sm1 = menu.addSubMenu(GROUPID_PREVIEW, ITEMID_PREVIEW, order++, "Preview Size");
 
@@ -945,6 +1071,13 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
             height = measuredHeight;
         }
 
+        boolean isPortrait = (displayOrientation == 90 || displayOrientation == 270);
+        if (isPortrait && width > height) {
+            int tmp = width;
+            width = height;
+            height = tmp;
+        }
+
         float asp = (float) width / height;
         float dev_asp = (float) measuredWidth / measuredHeight;
 
@@ -982,28 +1115,45 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         layoutOnionSkin.invalidate();
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(150, 150);
+        RelativeLayout.LayoutParams afParams = new RelativeLayout.LayoutParams(150, 150);
 
         if (alignment == R.id.rdoBL) {
             params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+            afParams.addRule(RelativeLayout.RIGHT_OF, R.id.testButton);
+            afParams.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.testButton);
         } else if (alignment == R.id.rdoTL) {
             params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+            afParams.addRule(RelativeLayout.RIGHT_OF, R.id.testButton);
+            afParams.addRule(RelativeLayout.ALIGN_TOP, R.id.testButton);
         } else if (alignment == R.id.rdoBR) {
             params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+            afParams.addRule(RelativeLayout.LEFT_OF, R.id.testButton);
+            afParams.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.testButton);
         } else if (alignment == R.id.rdoTR) {
             params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+            afParams.addRule(RelativeLayout.LEFT_OF, R.id.testButton);
+            afParams.addRule(RelativeLayout.ALIGN_TOP, R.id.testButton);
         } else {
             params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+            afParams.addRule(RelativeLayout.RIGHT_OF, R.id.testButton);
+            afParams.addRule(RelativeLayout.ALIGN_TOP, R.id.testButton);
         }
 
         if (testButton != null) {
             testButton.setLayoutParams(params);
             testButton.invalidate();
             testButton.bringToFront();
+        }
+
+        if (afButton != null) {
+            afButton.setLayoutParams(afParams);
+            afButton.invalidate();
+            afButton.bringToFront();
         }
 
         Log.d(LOGTAG, "setSize " + width + " " + height);
@@ -1047,10 +1197,155 @@ public class StopmotionCamera extends Activity implements SurfaceHolder.Callback
         else return file;
     }
 
+    private void updateCameraDisplayOrientation() {
+        if (camera == null) return;
+        try {
+            Camera.CameraInfo info = new Camera.CameraInfo();
+            Camera.getCameraInfo(0, info);
+            int rotation = getWindowManager().getDefaultDisplay().getRotation();
+            int degrees = 0;
+            if (rotation == Surface.ROTATION_90) {
+                degrees = 90;
+            } else if (rotation == Surface.ROTATION_180) {
+                degrees = 180;
+            } else if (rotation == Surface.ROTATION_270) {
+                degrees = 270;
+            }
+            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                displayOrientation = (info.orientation + degrees) % 360;
+                displayOrientation = (360 - displayOrientation) % 360;
+                jpegRotation = (info.orientation - degrees + 360) % 360;
+            } else {
+                displayOrientation = (info.orientation - degrees + 360) % 360;
+                jpegRotation = (info.orientation + degrees) % 360;
+            }
+            camera.setDisplayOrientation(displayOrientation);
+            Camera.Parameters params = camera.getParameters();
+            params.setRotation(jpegRotation);
+            camera.setParameters(params);
+        } catch (Exception ex) {
+            Log.w(LOGTAG, "Failed updating camera display orientation", ex);
+        }
+    }
+
+    private boolean supportsAutoFocusMode(String mode) {
+        return Camera.Parameters.FOCUS_MODE_AUTO.equals(mode)
+                || Camera.Parameters.FOCUS_MODE_MACRO.equals(mode)
+                || Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE.equals(mode)
+                || Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO.equals(mode);
+    }
+
+    private boolean applyFocusMode(String requestedMode) {
+        if (camera == null) return false;
+        try {
+            Camera.Parameters params = camera.getParameters();
+            List<String> supported = params.getSupportedFocusModes();
+            if (supported == null || supported.isEmpty()) return false;
+
+            String chosen = null;
+            if (requestedMode != null && !requestedMode.isEmpty() && supported.contains(requestedMode)) {
+                chosen = requestedMode;
+            } else if (supported.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+                chosen = Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE;
+            } else if (supported.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+                chosen = Camera.Parameters.FOCUS_MODE_AUTO;
+            } else {
+                chosen = supported.get(0);
+            }
+
+            params.setFocusMode(chosen);
+            camera.setParameters(params);
+            focusMode = chosen;
+            Log.d(LOGTAG, "Focus mode set to " + focusMode);
+            return true;
+        } catch (Exception ex) {
+            Log.w(LOGTAG, "Failed to apply focus mode " + requestedMode, ex);
+            return false;
+        }
+    }
+
+    private Rect calculateFocusRect(float viewX, float viewY, int viewW, int viewH) {
+        float nx = (viewX / Math.max(1, viewW)) * 2000f - 1000f;
+        float ny = (viewY / Math.max(1, viewH)) * 2000f - 1000f;
+        float sx = nx;
+        float sy = ny;
+        if (displayOrientation == 90) {
+            sx = ny;
+            sy = -nx;
+        } else if (displayOrientation == 180) {
+            sx = -nx;
+            sy = -ny;
+        } else if (displayOrientation == 270) {
+            sx = -ny;
+            sy = nx;
+        }
+        int halfSize = 120;
+        int left = Math.max(-1000, Math.min(1000 - halfSize * 2, Math.round(sx) - halfSize));
+        int top = Math.max(-1000, Math.min(1000 - halfSize * 2, Math.round(sy) - halfSize));
+        int right = Math.min(1000, left + halfSize * 2);
+        int bottom = Math.min(1000, top + halfSize * 2);
+        return new Rect(left, top, right, bottom);
+    }
+
+    private void triggerManualFocus(boolean useTouchArea, float viewX, float viewY) {
+        if (camera == null || !previewing) return;
+
+        if (!supportsAutoFocusMode(focusMode)) {
+            if (!applyFocusMode(Camera.Parameters.FOCUS_MODE_AUTO)) {
+                Toast.makeText(this, "Autofocus not supported in mode: " + focusMode, Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        try {
+            camera.cancelAutoFocus();
+        } catch (Exception ignored) {
+        }
+
+        if (useTouchArea && onionSkinView != null && onionSkinView.getWidth() > 0 && onionSkinView.getHeight() > 0) {
+            try {
+                Camera.Parameters params = camera.getParameters();
+                Rect focusRect = calculateFocusRect(viewX, viewY, onionSkinView.getWidth(), onionSkinView.getHeight());
+                List<Camera.Area> areas = Collections.singletonList(new Camera.Area(focusRect, 1000));
+                if (params.getMaxNumFocusAreas() > 0) {
+                    params.setFocusAreas(areas);
+                }
+                if (params.getMaxNumMeteringAreas() > 0) {
+                    params.setMeteringAreas(areas);
+                }
+                camera.setParameters(params);
+            } catch (Exception ex) {
+                Log.w(LOGTAG, "Failed to set touch focus area", ex);
+            }
+        }
+
+        try {
+            camera.autoFocus(new Camera.AutoFocusCallback() {
+                @Override
+                public void onAutoFocus(boolean success, Camera cam) {
+                    Toast.makeText(StopmotionCamera.this, success ? "Focused" : "Focus failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception ex) {
+            Log.w(LOGTAG, "Manual autoFocus failed", ex);
+            Toast.makeText(this, "Focus failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (camera != null) {
+            updateCameraDisplayOrientation();
+            setStretch(stretch);
+        }
+    }
+
     private void openCamera() {
         if (camera != null) return;
         try {
             camera = Camera.open();
+            updateCameraDisplayOrientation();
             if (camera != null && surfaceReady && surfaceHolder != null) {
                 try {
                     camera.setPreviewDisplay(surfaceHolder);

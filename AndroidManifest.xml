@@ -20,9 +20,9 @@
         android:largeHeap="true">
         <activity
             android:name=".StopmotionCamera"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
             android:exported="true"
             android:label="@string/app_name"
-            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
