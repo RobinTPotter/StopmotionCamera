@@ -1,201 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
-    android:layout_height="300dp"
-    android:layout_gravity="center_horizontal"
-    android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
 
-
-    <TextView
-        android:id="@+id/textOpacity"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/opacity"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="12sp" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textFormatString"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_date_format_string"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="12sp" />
-
-    <EditText
-        android:id="@+id/editFormat"
-        android:layout_width="fill_parent"
-        android:layout_height="36dp"
-        android:enabled="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:hint="@string/create_format_string_for_date"
-        android:inputType="text"
-        android:textSize="14sp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/defaultDateButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:longClickable="false"
-            android:text="@string/button_default_date" />
-
-        <Button
-            android:id="@+id/defaultDateButton2"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:longClickable="false"
-            android:text="@string/button_default_date2" />
-
-        <Button
-            android:id="@+id/button"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="@string/button_set_date_patterns" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnSkinMinusButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="@string/skinM" />
-
-        <LinearLayout
-            android:layout_width="30dp"
-            android:layout_height="match_parent">
-
-
-            <TextView
-                android:id="@+id/txtNumSkins"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/_99" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnSkinPlus"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="@string/skinP" />
-
-        <Button
-            android:id="@+id/btnClearSkins"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clear" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:minWidth="300dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textAlignmentDesc"
+            android:id="@+id/textOpacity"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="@string/alignment_label"
+            android:layout_height="wrap_content"
+            android:text="@string/opacity"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="12sp" />
 
-        <RadioGroup
-            android:id="@+id/radiogroup"
+        <SeekBar
+            android:id="@+id/seekBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
+        <CheckBox
+            android:id="@+id/chkFocusBeforeCapture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/focus_before_capture"
+            android:textSize="13sp" />
 
-            <RelativeLayout
-                android:id="@+id/radiolayout"
+        <TextView
+            android:id="@+id/textFormatString"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/label_date_format_string"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editFormat"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:enabled="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/create_format_string_for_date"
+            android:inputType="text"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/defaultDateButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:longClickable="false"
+                android:text="@string/button_default_date" />
+
+            <Button
+                android:id="@+id/defaultDateButton2"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:longClickable="false"
+                android:text="@string/button_default_date2" />
+
+            <Button
+                android:id="@+id/button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_set_date_patterns" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSkinMinusButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skinM" />
+
+            <LinearLayout
+                android:layout_width="36dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtNumSkins"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/_99" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSkinPlus"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skinP" />
+
+            <Button
+                android:id="@+id/btnClearSkins"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/textAlignmentDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:text="@string/alignment_label"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="12sp" />
 
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <RadioButton
-                    android:id="@+id/rdoTL"
+                <RelativeLayout
+                    android:id="@+id/radiolayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/custom_radio_button"
-                    android:button="@android:color/transparent"
-                    android:text="@string/TL"
-                    android:textSize="18sp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    />
+                    <RadioButton
+                        android:id="@+id/rdoTL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/TL"
+                        android:textSize="18sp" />
 
-                <RadioButton
-                    android:id="@+id/rdoTR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/rdoTL"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@id/rdoTL"
-                    android:background="@drawable/custom_radio_button"
-                    android:button="@android:color/transparent"
-                    android:text="@string/TR"
-                    android:textSize="18sp" />
+                    <RadioButton
+                        android:id="@+id/rdoTR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/rdoTL"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@id/rdoTL"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/TR"
+                        android:textSize="18sp" />
 
-                <RadioButton
-                    android:id="@+id/rdoBL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rdoTL"
-                    android:layout_alignRight="@+id/rdoTL"
-                    android:layout_alignBottom="@+id/rdoBR"
-                    android:background="@drawable/custom_radio_button"
-                    android:button="@android:color/transparent"
-                    android:text="@string/BL"
-                    android:textSize="17.5sp" />
+                    <RadioButton
+                        android:id="@+id/rdoBL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rdoTL"
+                        android:layout_alignRight="@+id/rdoTL"
+                        android:layout_alignBottom="@+id/rdoBR"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/BL"
+                        android:textSize="17.5sp" />
 
+                    <RadioButton
+                        android:id="@+id/rdoBR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rdoTR"
+                        android:layout_toRightOf="@id/rdoBL"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@android:color/transparent"
+                        android:text="@string/BR"
+                        android:textSize="18sp" />
 
-                <RadioButton
-                    android:id="@+id/rdoBR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rdoTR"
-                    android:layout_toRightOf="@id/rdoBL"
-                    android:background="@drawable/custom_radio_button"
-                    android:button="@android:color/transparent"
-                    android:text="@string/BR"
-                    android:textSize="18sp" />
+                </RelativeLayout>
+            </RadioGroup>
+        </LinearLayout>
 
-
-            </RelativeLayout>
-        </RadioGroup>
     </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

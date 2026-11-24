@@ -18,6 +18,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/afButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/af_button" />
+
     <LinearLayout
         android:id="@+id/layoutOnionSkin"
         android:layout_width="match_parent"

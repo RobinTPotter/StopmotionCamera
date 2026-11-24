@@ -86,6 +86,7 @@ public class SquashedPreview extends View {
     }
 
     public boolean deleteAll() {
+        if (mainImages == null) return true;
         boolean ok = true;
         for (int imnum=0;imnum<mainImages.length;imnum++) {
             if (deleteImage(imnum,false).equals("Error")) ok=false;
@@ -95,7 +96,7 @@ public class SquashedPreview extends View {
     }
 
     public void setImageNumber(int i) {
-        if (previewImages == null) return;
+        if (previewImages == null || previewImages.length == 0) return;
         if (i > previewImages.length - 1) i = previewImages.length - 1;
         if (i < 0) i = 0;
         currentImage = i;
@@ -132,6 +133,8 @@ public class SquashedPreview extends View {
                 return filename.endsWith(".thumb.jpg");
             }
         });
+        if (_thumbnailImages == null) _thumbnailImages = new String[0];
+        java.util.Arrays.sort(_thumbnailImages);
 
         String[] _mainImages = (new File(main)).list(new FilenameFilter() {
             @Override
@@ -139,6 +142,8 @@ public class SquashedPreview extends View {
                 return filename.endsWith(".jpg");
             }
         });
+        if (_mainImages == null) _mainImages = new String[0];
+        java.util.Arrays.sort(_mainImages);
 
         mainImages = new String[_mainImages.length];
         thumbnailImages = new String[_thumbnailImages.length];
@@ -152,8 +157,6 @@ public class SquashedPreview extends View {
             Log.d(StopmotionCamera.LOGTAG, "thumb image now "+thumbnailImages[mm]);
         }
 
-        //Arrays.sort(images, Collections.reverseOrder());
-
         Log.d(LOGTAG, "images " + thumbnailImages.length);
 
         if (thumbnailImages.length > 0) {
@@ -161,22 +164,26 @@ public class SquashedPreview extends View {
             int to_be_used = StopmotionCamera.MAX_IMAGES;
             if (thumbnailImages.length < to_be_used) to_be_used = thumbnailImages.length;
 
-            previewImages = new Bitmap[thumbnailImages.length];
+            previewImages = new Bitmap[to_be_used];
             for (int ii = 0; (ii < to_be_used); ii++) {
                 int imageindex = ii + thumbnailImages.length - to_be_used;
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 Log.d(LOGTAG, "loading " + thumbnailImages[imageindex]);
                 Bitmap pic = BitmapFactory.decodeFile( thumbnailImages[imageindex], bmOptions);
-                Log.d(LOGTAG, pic.toString());
-                previewImages[ii] = pic; //Bitmap.createScaledBitmap(pic, pic.getWidth() / 10, pic.getHeight() / 10, false);
+                if (pic != null) {
+                    Log.d(LOGTAG, pic.toString());
+                }
+                previewImages[ii] = pic;
                 setImageNumber(ii);
                 seekbar.setMax(ii);
             }
         } else {
             previewImages = null;
+            seekbar.setMax(0);
         }
 
         seekbar.setProgress(0);
+        invalidate();
 
     }
 
@@ -185,28 +192,35 @@ public class SquashedPreview extends View {
         super.draw(c);
         Paint p = new Paint();
         c.drawRect(new Rect(0, 0, getWidth(), getHeight()), p);
-        if (previewImages != null) {
+        if (previewImages != null && currentImage >= 0 && currentImage < previewImages.length) {
 
             int ww = getWidth();
             int wh = getHeight();
 
-            if (previewImages[currentImage] != null) {
+            if (previewImages[currentImage] != null && ww > 0 && wh > 0) {
 
                 int w = previewImages[currentImage].getWidth();
                 int h = previewImages[currentImage].getHeight();
 
-                float wr = (float) ww / wh;
-                float r = (float) w / h;
-                float r1 = 1 / r;
-
-                int ht = (int) (r1 * ww);
-
-                if (previewImages[currentImage] != null)
-                    c.drawBitmap(previewImages[currentImage], new Rect(0, 0, w, h), new Rect(0, 0, ww, ht), p);
+                if (w > 0 && h > 0) {
+                    float r = (float) w / h;
+                    int drawW = ww;
+                    int drawH = (int) (ww / r);
+                    if (drawH > wh) {
+                        drawH = wh;
+                        drawW = (int) (wh * r);
+                    }
+                    int left = (ww - drawW) / 2;
+                    int top = (wh - drawH) / 2;
+                    c.drawBitmap(previewImages[currentImage], new Rect(0, 0, w, h),
+                            new Rect(left, top, left + drawW, top + drawH), p);
+                }
 
             }
         } else {
-            c.drawText("Loading...", 20, 20, p);
+            p.setColor(android.graphics.Color.WHITE);
+            p.setTextSize(32f);
+            c.drawText("No frames captured yet", 40, 60, p);
         }
     }
 }
